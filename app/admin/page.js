@@ -40,64 +40,7 @@ const Icons = {
     )
 };
 
-const PROJECTS = [
-    {
-        id: 'chittor-tourism',
-        title: 'Chittorgarh Tourism',
-        client: 'Akechi Webcraft IT Solution (Ritesh)',
-        domain: 'chittorgarh-tourism.in',
-        hosting: 'Vercel',
-        total: '1,82,500',
-        received: '1,70,000',
-        pending: '12,500',
-        start: '01/03/2026',
-        end: '31/03/2026',
-        url: 'https://www.chittorgarh-tourism.in/',
-        description: 'Mobile application and website development for digital presence.'
-    },
-    {
-        id: 'dharamshala-mgmt',
-        title: 'Dharamshala Management System',
-        client: 'Jain Dharamshala (Pravin)',
-        domain: 'jain-dharamsala-front.vercel.app',
-        hosting: 'Vercel',
-        total: '20,000',
-        received: '20,000',
-        pending: '0',
-        start: '15/03/2026',
-        end: '15/04/2026',
-        url: 'https://jain-dharamsala-front.vercel.app/',
-        description: 'Online Bookings and Form Filling and Real time room availability.'
-    },
-    {
-        id: 'shaadi-sutra',
-        title: 'Shaadi Sutra',
-        client: 'Shaadi Sutra Events',
-        domain: 'shaadisutra.online',
-        hosting: 'Vercel',
-        total: '45,000',
-        received: '30,000',
-        pending: '15,000',
-        start: '01/04/2026',
-        end: 'TBD',
-        url: 'https://shaadisutra.online',
-        description: 'Premium wedding planning and event management platform.'
-    },
-    {
-        id: 'mewari-achar',
-        title: 'Mewari Achar',
-        client: 'Mewari Food Products',
-        domain: 'mewariachar.com',
-        hosting: 'HostGator',
-        total: '15,000',
-        received: '15,000',
-        pending: '0',
-        start: '10/03/2026',
-        end: '25/03/2026',
-        url: 'https://mewariachar.com',
-        description: 'E-commerce platform for traditional Rajasthani pickles.'
-    }
-];
+
 
 export default function AdminPage() {
     const { checkUserExists, sendOtp, verifyOtp, login } = useAuth();
@@ -200,6 +143,7 @@ export default function AdminPage() {
             const sanitizedData = { ...editingData };
             delete sanitizedData.domainLink;
             delete sanitizedData.firebaseProvider;
+            delete sanitizedData.utrNumber;
 
             const { setDoc, doc: fireDoc } = await import("firebase/firestore");
             await setDoc(fireDoc(db, "projects", sanitizedData.id), sanitizedData, { merge: true });
@@ -333,18 +277,25 @@ export default function AdminPage() {
         setRevealStep('SELECT_ADMIN');
     };
 
+    const handleRequestReveal = (adm) => {
+        setRevealingAdmin(adm);
+        setRevealingProject(null);
+        setIsEditing(false);
+        setRevealStep('SELECT_ADMIN');
+    };
+
     const handleSendOtpToAdmin = async (adm) => {
         setLoading(true);
         try {
             // Calculate Audit Info for the Email
             let diffLog = "";
-            let projectName = revealingProject?.title || "New Project Infrastructure";
+            let projectName = revealingProject?.title || (revealingAdmin ? `Admin Credentials: ${revealingAdmin.name}` : "New Project Infrastructure");
             
             if (isEditing && editingData) {
                 const changes = [];
                 Object.keys(editingData).forEach(key => {
                     // Skip internal IDs and redundant metadata
-                    if (key === 'id' || key === 'requestedAt') return;
+                    if (key === 'id' || key === 'requestedAt' || key === 'utrNumber') return;
                     
                     const oldVal = revealingProject[key] || "N/A";
                     const newVal = editingData[key];
@@ -668,271 +619,6 @@ export default function AdminPage() {
                                     )}
                                 </div>
 
-                                {/* Security & Reveal Modal */}
-                                {revealStep && (
-                                    <div className="reveal-modal-overlay">
-                                        <div className="reveal-modal" style={{ maxWidth: revealStep === 'SHOW' ? '600px' : '400px' }}>
-                                            {revealStep === 'SELECT_ADMIN' && (
-                                                <>
-                                                    <h3>Authorize Access</h3>
-                                                    <p>Select an administrator to verify this request:</p>
-                                                    <div className="admin-selection-list">
-                                                        {admins.map(adm => (
-                                                            <div key={adm.id} className="admin-select-item">
-                                                                <div className="adm-sel-info">
-                                                                    <span className="adm-sel-name">{adm.name}</span>
-                                                                    <span className="adm-sel-email">{adm.email}</span>
-                                                                </div>
-                                                                <button onClick={() => handleSendOtpToAdmin(adm)} className="send-otp-btn" disabled={loading}>
-                                                                    {loading ? '...' : 'Send OTP'}
-                                                                </button>
-                                                            </div>
-                                                        ))}
-                                                    </div>
-                                                    <button onClick={() => { setRevealStep(null); setRevealingProject(null); }} className="cancel-btn-full">Cancel</button>
-                                                </>
-                                            )}
-
-                                            {revealStep === 'VERIFY' && (
-                                                <>
-                                                    <h3>Identity Challenge</h3>
-                                                    <p>Verification code sent to <b>{targetAdminForOtp?.email}</b>.</p>
-                                                    <input 
-                                                        type="text" 
-                                                        value={revealOtp} 
-                                                        onChange={(e) => setRevealOtp(e.target.value)} 
-                                                        placeholder="000000"
-                                                        className="reveal-otp-input"
-                                                        maxLength={6}
-                                                    />
-                                                    <div className="modal-actions">
-                                                        <button onClick={() => setRevealStep('SELECT_ADMIN')} className="cancel-btn">Back</button>
-                                                        <button onClick={handleVerifyReveal} className="confirm-btn" disabled={loading}>
-                                                            {loading ? 'Verifying...' : 'Unlock Vault'}
-                                                        </button>
-                                                    </div>
-                                                </>
-                                            )}
-
-                                            {revealStep === 'SHOW' && revealingProject && (
-                                                <div className="project-audit-view">
-                                                    <div className="audit-header" style={{ marginBottom: '2rem' }}>
-                                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '15px' }}>
-                                                            <div style={{ textAlign: 'left', flex: 1 }}>
-                                                                <span className="audit-tag">INTERNAL AUDIT</span>
-                                                                {isEditing ? (
-                                                                    <input 
-                                                                        value={editingData.title || ""} 
-                                                                        onChange={(e) => setEditingData({...editingData, title: e.target.value})} 
-                                                                        className="audit-input"
-                                                                        placeholder="Project Name"
-                                                                        style={{ fontSize: '1.2rem', fontWeight: '800', marginTop: '0.5rem', background: 'transparent', border: '1px solid rgba(212, 175, 55, 0.3)' }}
-                                                                    />
-                                                                ) : (
-                                                                    <h3 style={{ margin: '0.5rem 0 0 0', fontSize: '1.5rem' }}>{revealingProject.title}</h3>
-                                                                )}
-                                                            </div>
-                                                            <button 
-                                                                onClick={() => setIsEditing(!isEditing)} 
-                                                                className="edit-toggle-btn"
-                                                                style={{ flexShrink: 0 }}
-                                                            >
-                                                                {isEditing ? 'Cancel Edit' : 'Edit Details'}
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div className="audit-grid">
-                                                        <div className="audit-item">
-                                                            <label>Client Entity</label>
-                                                            {isEditing ? (
-                                                                <input value={editingData.client || ""} onChange={(e) => setEditingData({...editingData, client: e.target.value})} className="audit-input" />
-                                                            ) : (
-                                                                <span>{revealingProject.client}</span>
-                                                            )}
-                                                        </div>
-                                                        <div className="audit-item">
-                                                            <label>Website URL</label>
-                                                            {isEditing ? (
-                                                                <input value={editingData.websiteUrl || ""} onChange={(e) => setEditingData({...editingData, websiteUrl: e.target.value})} className="audit-input" />
-                                                            ) : (
-                                                                <a href={revealingProject.websiteUrl} target="_blank" rel="noreferrer">{revealingProject.websiteUrl}</a>
-                                                            )}
-                                                        </div>
-                                                        <div className="audit-item">
-                                                            <label>Hosting Provider & Email</label>
-                                                            {isEditing ? (
-                                                                <div style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
-                                                                    <input value={editingData.hosting || ""} onChange={(e) => setEditingData({...editingData, hosting: e.target.value})} className="audit-input" placeholder="Provider" />
-                                                                    <input value={editingData.hostingEmail || ""} onChange={(e) => setEditingData({...editingData, hostingEmail: e.target.value})} className="audit-input" placeholder="Hosting Email ID" />
-                                                                </div>
-                                                            ) : (
-                                                                <span>{revealingProject.hosting} <br/> <small style={{ color: '#64748b' }}>{revealingProject.hostingEmail}</small></span>
-                                                            )}
-                                                        </div>
-                                                        <div className="audit-item">
-                                                            <label>Github Repository</label>
-                                                            {isEditing ? (
-                                                                <input value={editingData.githubRepo || ""} onChange={(e) => setEditingData({...editingData, githubRepo: e.target.value})} className="audit-input" placeholder="Repository URL" />
-                                                            ) : (
-                                                                <a href={revealingProject.githubRepo} target="_blank" rel="noreferrer" style={{ fontSize: '0.8rem', color: '#D4AF37' }}>{revealingProject.githubRepo || 'N/A'}</a>
-                                                            )}
-                                                        </div>
-                                                        <div className="audit-item">
-                                                            <label>Domain Provider</label>
-                                                            {isEditing ? (
-                                                                <input value={editingData.domainProvider || ""} onChange={(e) => setEditingData({...editingData, domainProvider: e.target.value})} className="audit-input" />
-                                                            ) : (
-                                                                <span>{revealingProject.domainProvider}</span>
-                                                            )}
-                                                        </div>
-                                                        <div className="audit-item">
-                                                            <label>Domain By (Email)</label>
-                                                            {isEditing ? (
-                                                                <input value={editingData.domainEmail || ""} onChange={(e) => setEditingData({...editingData, domainEmail: e.target.value})} className="audit-input" />
-                                                            ) : (
-                                                                <span>{revealingProject.domainEmail}</span>
-                                                            )}
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Profit Toggle */}
-                                                    <div style={{ margin: '1.5rem 0', textAlign: 'left' }}>
-                                                        <label style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#fff', cursor: 'pointer' }}>
-                                                            <input 
-                                                                type="checkbox" 
-                                                                checked={isEditing ? (editingData.isForProfit || false) : (revealingProject.isForProfit || false)}
-                                                                onChange={(e) => isEditing && setEditingData({...editingData, isForProfit: e.target.checked})}
-                                                                disabled={!isEditing}
-                                                            />
-                                                            <span style={{ fontSize: '0.9rem', fontWeight: '600' }}>Made for Profit Project</span>
-                                                        </label>
-                                                    </div>
-
-                                                    {/* Project Finance Box */}
-                                                    {((isEditing ? editingData.isForProfit : revealingProject.isForProfit)) && (
-                                                        <div style={{ background: 'rgba(212, 175, 55, 0.05)', border: '1px solid rgba(212, 175, 55, 0.2)', padding: '1.5rem', borderRadius: '20px', marginBottom: '1.5rem', textAlign: 'left' }}>
-                                                            <span style={{ color: '#D4AF37', fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', marginBottom: '1.5rem', display: 'block' }}>Project Finance</span>
-                                                            <div className="audit-grid">
-                                                                <div className="audit-item">
-                                                                    <label>Total Valuation</label>
-                                                                    {isEditing ? <input value={editingData.totalValue || ""} onChange={(e) => setEditingData({...editingData, totalValue: e.target.value})} className="audit-input" placeholder="₹" /> : <span className="val-amt" style={{ color: '#fff', fontWeight: '800', fontSize: '1.1rem' }}>₹{revealingProject.totalValue}</span>}
-                                                                </div>
-                                                                <div className="audit-item">
-                                                                    <label>Payment Mode</label>
-                                                                    {isEditing ? <input value={editingData.paymentMode || ""} onChange={(e) => setEditingData({...editingData, paymentMode: e.target.value})} className="audit-input" placeholder="e.g. PhonePe / Bank" /> : <span>{revealingProject.paymentMode}</span>}
-                                                                </div>
-                                                                <div className="audit-item">
-                                                                    <label>UTR Number</label>
-                                                                    {isEditing ? <input value={editingData.utrNumber || ""} onChange={(e) => setEditingData({...editingData, utrNumber: e.target.value})} className="audit-input" placeholder="Transaction ID" /> : <span>{revealingProject.utrNumber}</span>}
-                                                                </div>
-                                                                <div className="audit-item">
-                                                                    <label>Total Amount Received</label>
-                                                                    {isEditing ? <input value={editingData.receivedAmount || ""} onChange={(e) => setEditingData({...editingData, receivedAmount: e.target.value})} className="audit-input" placeholder="₹ Amount" /> : <span style={{ color: '#22c55e', fontWeight: '700' }}>₹{revealingProject.receivedAmount}</span>}
-                                                                </div>
-                                                                <div className="audit-item">
-                                                                    <label>Total Pending Amount</label>
-                                                                    {isEditing ? <input value={editingData.pendingAmount || ""} onChange={(e) => setEditingData({...editingData, pendingAmount: e.target.value})} className="audit-input" placeholder="₹ Amount" /> : <span style={{ color: '#ef4444', fontWeight: '700' }}>₹{revealingProject.pendingAmount}</span>}
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    )}
-
-                                                    <div className="audit-grid">
-                                                        <div className="audit-item">
-                                                            <label>Maintenance (AMC)</label>
-                                                            {isEditing ? (
-                                                                <select value={editingData.maintenance || "No"} onChange={(e) => setEditingData({...editingData, maintenance: e.target.value})} className="audit-input" style={{ background: '#111', color: '#fff' }}>
-                                                                    <option>No</option>
-                                                                    <option>Yes (Standard)</option>
-                                                                    <option>Yes (Premium)</option>
-                                                                </select>
-                                                            ) : (
-                                                                <span>{revealingProject.maintenance || 'No'}</span>
-                                                            )}
-                                                        </div>
-                                                        <div className="audit-item">
-                                                            <label>Firebase Configuration</label>
-                                                            {isEditing ? (
-                                                                <div style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
-                                                                    <input value={editingData.firebaseEmail || ""} onChange={(e) => setEditingData({...editingData, firebaseEmail: e.target.value})} className="audit-input" placeholder="Firebase Email" />
-                                                                    <input value={editingData.firebaseProjectName || ""} onChange={(e) => setEditingData({...editingData, firebaseProjectName: e.target.value})} className="audit-input" placeholder="Project Name" />
-                                                                </div>
-                                                            ) : (
-                                                                <div style={{ fontSize: '0.8rem', color: '#fff' }}>
-                                                                    <div>{revealingProject.firebaseProjectName}</div>
-                                                                    <div style={{ color: '#64748b' }}>{revealingProject.firebaseEmail}</div>
-                                                                </div>
-                                                            )}
-                                                        </div>
-                                                        <div className="audit-item">
-                                                            <label>Project Owner</label>
-                                                            {isEditing ? (
-                                                                <select value={editingData.owner || ""} onChange={(e) => setEditingData({...editingData, owner: e.target.value})} className="audit-input" style={{ background: '#111', color: '#fff' }}>
-                                                                    <option value="">Select Owner</option>
-                                                                    {admins.map(adm => (
-                                                                        <option key={adm.id} value={adm.name}>{adm.name}</option>
-                                                                    ))}
-                                                                </select>
-                                                            ) : (
-                                                                <span>{revealingProject.owner}</span>
-                                                            )}
-                                                        </div>
-                                                        <div className="audit-item">
-                                                            <label>Deployment Period</label>
-                                                            {isEditing ? (
-                                                                <div style={{ display: 'flex', gap: '8px' }}>
-                                                                    <input type="date" value={editingData.startDate || ""} onChange={(e) => setEditingData({...editingData, startDate: e.target.value})} className="audit-input" />
-                                                                    <input type="date" value={editingData.endDate || ""} onChange={(e) => setEditingData({...editingData, endDate: e.target.value})} className="audit-input" />
-                                                                </div>
-                                                            ) : (
-                                                                <span>{revealingProject.startDate} — {revealingProject.endDate}</span>
-                                                            )}
-                                                        </div>
-                                                    </div>
-                                                    <div className="audit-item" style={{ marginBottom: '1.5rem' }}>
-                                                        <label>Description / Internal Notes</label>
-                                                        {isEditing ? (
-                                                            <textarea value={editingData.description || ""} onChange={(e) => setEditingData({...editingData, description: e.target.value})} className="audit-textarea" />
-                                                        ) : (
-                                                            <p className="audit-desc">{revealingProject.description}</p>
-                                                        )}
-                                                    </div>
-                                                    
-                                                    {isEditing ? (
-                                                        <div style={{ display: 'flex', gap: '10px' }}>
-                                                            <button 
-                                                                onClick={async () => {
-                                                                    if(confirm("Are you sure you want to PERMANENTLY DELETE this project infrastructure? This cannot be undone.")) {
-                                                                        setLoading(true);
-                                                                        try {
-                                                                            const { deleteDoc, doc: fireDoc } = await import("firebase/firestore");
-                                                                            await deleteDoc(fireDoc(db, "projects", editingData.id));
-                                                                            alert("Project Infrastructure Deleted.");
-                                                                            setRevealStep(null);
-                                                                            setRevealingProject(null);
-                                                                            fetchProjects();
-                                                                        } catch (err) { alert("Delete failed: " + err.message); }
-                                                                        finally { setLoading(false); }
-                                                                    }
-                                                                }} 
-                                                                className="close-audit-btn" 
-                                                                style={{ background: '#ef4444', color: '#fff', flex: 1 }}
-                                                            >
-                                                                Delete Project
-                                                            </button>
-                                                            <button onClick={handleSaveProject} className="save-cloud-btn" style={{ flex: 2 }} disabled={loading}>
-                                                                {loading ? 'Syncing...' : 'Save & Upload to Cloud'}
-                                                            </button>
-                                                        </div>
-                                                    ) : (
-                                                        <button onClick={() => { setRevealStep(null); setRevealingProject(null); setIsEditing(false); }} className="close-audit-btn">Close Vault</button>
-                                                    )}
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-                                )}
                             </section>
 
                             {/* Active Infrastructures */}
@@ -942,7 +628,7 @@ export default function AdminPage() {
                                     <div style={{ display: 'flex', gap: '10px' }}>
                                         <button 
                                             onClick={() => {
-                                                const newProj = { id: 'new-' + Date.now(), title: 'New Project', client: '', websiteUrl: '', hosting: '', hostingEmail: '', githubRepo: '', domainLink: '', domainProvider: '', domainEmail: '', totalValue: '', receivedAmount: '', pendingAmount: '', maintenance: 'No', firebaseProvider: '', firebaseEmail: '', firebaseProjectName: '', owner: '', startDate: '', endDate: '', description: '', paymentMode: '', utrNumber: '' };
+                                                const newProj = { id: 'new-' + Date.now(), title: 'New Project', client: '', websiteUrl: '', hosting: '', hostingEmail: '', githubRepo: '', domainLink: '', domainProvider: '', domainEmail: '', totalValue: '', receivedAmount: '', pendingAmount: '', maintenance: 'No', firebaseProvider: '', firebaseEmail: '', firebaseProjectName: '', owner: '', startDate: '', endDate: '', description: '', paymentMode: '', isForProfit: false };
                                                 setRevealingProject(newProj);
                                                 setEditingData(newProj);
                                                 setIsEditing(true);
@@ -953,34 +639,7 @@ export default function AdminPage() {
                                         >
                                             + Add Project
                                         </button>
-                                        <button 
-                                            onClick={async () => {
-                                                if(confirm("This will populate your database with the 4 projects from your screenshots. Proceed?")) {
-                                                    setLoading(true);
-                                                    try {
-                                                        const { setDoc, doc: fireDoc } = await import("firebase/firestore");
-                                                        for(const p of PROJECTS) {
-                                                            await setDoc(fireDoc(db, "projects", p.id), {
-                                                                ...p,
-                                                                websiteUrl: p.url,
-                                                                totalValue: p.total,
-                                                                receivedAmount: p.received,
-                                                                pendingAmount: p.pending,
-                                                                startDate: p.start,
-                                                                endDate: p.end,
-                                                                domainEmail: 'kushsharma.cor@gmail.com'
-                                                            }, { merge: true });
-                                                        }
-                                                        alert("Database Seeded Successfully!");
-                                                        fetchProjects();
-                                                    } catch (err) { alert("Seed failed: " + err.message); }
-                                                    finally { setLoading(false); }
-                                                }
-                                            }} 
-                                            className="refresh-btn"
-                                        >
-                                            Seed Data
-                                        </button>
+
                                         <button onClick={fetchProjects} className="refresh-btn">Refresh</button>
                                     </div>
                                 </div>
@@ -999,6 +658,226 @@ export default function AdminPage() {
                                 </div>
                             </section>
                         </div>
+
+                        {/* Global Security & Reveal Modal */}
+                        {revealStep && (
+                            <div className="reveal-modal-overlay">
+                                <div className="reveal-modal" style={{ maxWidth: revealStep === 'SHOW' ? '700px' : '450px' }}>
+                                    {revealStep === 'SELECT_ADMIN' && (
+                                        <div className="modal-content">
+                                            <h3>Authorize Access</h3>
+                                            <p>Select an administrator to verify this request:</p>
+                                            <div className="admin-selection-list">
+                                                {admins.map(adm => (
+                                                    <div key={adm.id} className="admin-select-item">
+                                                        <div className="adm-info">
+                                                            <span className="adm-sel-name">{adm.name}</span>
+                                                            <span className="adm-sel-email">{adm.email}</span>
+                                                        </div>
+                                                        <button onClick={() => handleSendOtpToAdmin(adm)} className="send-otp-btn" disabled={loading}>
+                                                            {loading ? '...' : 'Send OTP'}
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <button onClick={() => { setRevealStep(null); setRevealingProject(null); }} className="cancel-btn-full">Cancel</button>
+                                        </div>
+                                    )}
+
+                                    {revealStep === 'VERIFY' && (
+                                        <div className="modal-content">
+                                            <h3>Identity Challenge</h3>
+                                            <p>Verification code sent to <b>{targetAdminForOtp?.email}</b>.</p>
+                                            <input 
+                                                type="text" 
+                                                value={revealOtp} 
+                                                onChange={(e) => setRevealOtp(e.target.value)} 
+                                                placeholder="000000"
+                                                className="reveal-otp-input"
+                                                maxLength={6}
+                                                autoFocus
+                                            />
+                                            <div className="modal-actions">
+                                                <button onClick={() => setRevealStep('SELECT_ADMIN')} className="cancel-btn">Back</button>
+                                                <button onClick={handleVerifyReveal} className="confirm-btn" disabled={loading}>
+                                                    {loading ? 'Verifying...' : 'Unlock Vault'}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {revealStep === 'SHOW' && (revealingProject || editingData) && (
+                                        <div className="project-audit-view">
+                                            <div className="audit-header">
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '15px' }}>
+                                                    <div style={{ textAlign: 'left', flex: 1 }}>
+                                                        <span className="audit-tag">INTERNAL AUDIT</span>
+                                                        {isEditing ? (
+                                                            <input 
+                                                                value={editingData.title || ""} 
+                                                                onChange={(e) => setEditingData({...editingData, title: e.target.value})} 
+                                                                className="audit-input"
+                                                                placeholder="Project Name"
+                                                                style={{ fontSize: '1.2rem', fontWeight: '800', marginTop: '0.5rem', background: 'transparent', border: '1px solid rgba(212, 175, 55, 0.3)', width: '100%' }}
+                                                            />
+                                                        ) : (
+                                                            <h3 style={{ margin: '0.5rem 0 0 0' }}>{revealingProject?.title || editingData?.title}</h3>
+                                                        )}
+                                                    </div>
+                                                    <button onClick={() => setIsEditing(!isEditing)} className="edit-toggle-btn">
+                                                        {isEditing ? 'Cancel Edit' : 'Edit Details'}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="audit-grid">
+                                                <div className="audit-item">
+                                                    <label>Client Entity</label>
+                                                    {isEditing ? (
+                                                        <input value={editingData.client || ""} onChange={(e) => setEditingData({...editingData, client: e.target.value})} className="audit-input" />
+                                                    ) : (
+                                                        <span>{revealingProject?.client || editingData?.client}</span>
+                                                    )}
+                                                </div>
+                                                <div className="audit-item">
+                                                    <label>Website URL</label>
+                                                    {isEditing ? (
+                                                        <input value={editingData.websiteUrl || ""} onChange={(e) => setEditingData({...editingData, websiteUrl: e.target.value})} className="audit-input" />
+                                                    ) : (
+                                                        <a href={revealingProject?.websiteUrl || editingData?.websiteUrl} target="_blank" rel="noreferrer">{revealingProject?.websiteUrl || editingData?.websiteUrl}</a>
+                                                    )}
+                                                </div>
+                                                <div className="audit-item">
+                                                    <label>Hosting Provider & Email</label>
+                                                    {isEditing ? (
+                                                        <div style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
+                                                            <input value={editingData.hosting || ""} onChange={(e) => setEditingData({...editingData, hosting: e.target.value})} className="audit-input" placeholder="Provider" />
+                                                            <input value={editingData.hostingEmail || ""} onChange={(e) => setEditingData({...editingData, hostingEmail: e.target.value})} className="audit-input" placeholder="Hosting Email ID" />
+                                                        </div>
+                                                    ) : (
+                                                        <span>{revealingProject?.hosting || editingData?.hosting} <br/> <small>{revealingProject?.hostingEmail || editingData?.hostingEmail}</small></span>
+                                                    )}
+                                                </div>
+                                                <div className="audit-item">
+                                                    <label>Github Repository</label>
+                                                    {isEditing ? (
+                                                        <input value={editingData.githubRepo || ""} onChange={(e) => setEditingData({...editingData, githubRepo: e.target.value})} className="audit-input" placeholder="Repository URL" />
+                                                    ) : (
+                                                        <a href={revealingProject?.githubRepo || editingData?.githubRepo} target="_blank" rel="noreferrer">{revealingProject?.githubRepo || editingData?.githubRepo || 'N/A'}</a>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            {/* Profit Toggle */}
+                                            <div style={{ margin: '1.5rem 0', textAlign: 'left' }}>
+                                                <label style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#fff', cursor: 'pointer' }}>
+                                                    <input 
+                                                        type="checkbox" 
+                                                        checked={isEditing ? (editingData.isForProfit || false) : (revealingProject?.isForProfit || editingData?.isForProfit || false)}
+                                                        onChange={(e) => isEditing && setEditingData({...editingData, isForProfit: e.target.checked})}
+                                                        disabled={!isEditing}
+                                                    />
+                                                    <span style={{ fontSize: '0.9rem', fontWeight: '600' }}>Made for Profit Project</span>
+                                                </label>
+                                            </div>
+
+                                            {/* Project Finance Box */}
+                                            {((isEditing ? editingData.isForProfit : (revealingProject?.isForProfit || editingData?.isForProfit))) && (
+                                                <div style={{ background: 'rgba(212, 175, 55, 0.05)', border: '1px solid rgba(212, 175, 55, 0.2)', padding: '1.5rem', borderRadius: '20px', marginBottom: '1.5rem', textAlign: 'left' }}>
+                                                    <span style={{ color: '#D4AF37', fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', marginBottom: '1.5rem', display: 'block' }}>Project Finance</span>
+                                                    <div className="audit-grid">
+                                                        <div className="audit-item">
+                                                            <label>Total Valuation</label>
+                                                            {isEditing ? <input value={editingData.totalValue || ""} onChange={(e) => setEditingData({...editingData, totalValue: e.target.value})} className="audit-input" placeholder="₹" /> : <span className="val-amt">₹{revealingProject?.totalValue || editingData?.totalValue}</span>}
+                                                        </div>
+                                                        <div className="audit-item">
+                                                            <label>Payment Mode</label>
+                                                            {isEditing ? <input value={editingData.paymentMode || ""} onChange={(e) => setEditingData({...editingData, paymentMode: e.target.value})} className="audit-input" placeholder="e.g. PhonePe / Bank" /> : <span>{revealingProject?.paymentMode || editingData?.paymentMode}</span>}
+                                                        </div>
+
+                                                        <div className="audit-item">
+                                                            <label>Total Amount Received</label>
+                                                            {isEditing ? <input value={editingData.receivedAmount || ""} onChange={(e) => setEditingData({...editingData, receivedAmount: e.target.value})} className="audit-input" placeholder="₹ Amount" /> : <span className="val-received">₹{revealingProject?.receivedAmount || editingData?.receivedAmount}</span>}
+                                                        </div>
+                                                        <div className="audit-item">
+                                                            <label>Total Pending Amount</label>
+                                                            {isEditing ? <input value={editingData.pendingAmount || ""} onChange={(e) => setEditingData({...editingData, pendingAmount: e.target.value})} className="audit-input" placeholder="₹ Amount" /> : <span className="val-pending">₹{revealingProject?.pendingAmount || editingData?.pendingAmount}</span>}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            <div className="audit-grid">
+                                                <div className="audit-item">
+                                                    <label>Firebase Configuration</label>
+                                                    {isEditing ? (
+                                                        <div style={{ display: 'flex', gap: '8px', flexDirection: 'column' }}>
+                                                            <input value={editingData.firebaseEmail || ""} onChange={(e) => setEditingData({...editingData, firebaseEmail: e.target.value})} className="audit-input" placeholder="Firebase Email" />
+                                                            <input value={editingData.firebaseProjectName || ""} onChange={(e) => setEditingData({...editingData, firebaseProjectName: e.target.value})} className="audit-input" placeholder="Project Name" />
+                                                        </div>
+                                                    ) : (
+                                                        <div>
+                                                            <div>{revealingProject?.firebaseProjectName || editingData?.firebaseProjectName}</div>
+                                                            <small>{revealingProject?.firebaseEmail || editingData?.firebaseEmail}</small>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <div className="audit-item">
+                                                    <label>Project Owner</label>
+                                                    {isEditing ? (
+                                                        <select value={editingData.owner || ""} onChange={(e) => setEditingData({...editingData, owner: e.target.value})} className="audit-input">
+                                                            <option value="">Select Owner</option>
+                                                            {admins.map(adm => (
+                                                                <option key={adm.id} value={adm.name}>{adm.name}</option>
+                                                            ))}
+                                                        </select>
+                                                    ) : (
+                                                        <span>{revealingProject?.owner || editingData?.owner}</span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <div className="audit-item" style={{ marginBottom: '1.5rem' }}>
+                                                <label>Description / Internal Notes</label>
+                                                {isEditing ? (
+                                                    <textarea value={editingData.description || ""} onChange={(e) => setEditingData({...editingData, description: e.target.value})} className="audit-textarea" />
+                                                ) : (
+                                                    <p className="audit-desc">{revealingProject?.description || editingData?.description}</p>
+                                                )}
+                                            </div>
+                                            
+                                            {isEditing ? (
+                                                <div style={{ display: 'flex', gap: '10px' }}>
+                                                    <button 
+                                                        onClick={async () => {
+                                                            if(confirm("Purge this infrastructure record?")) {
+                                                                setLoading(true);
+                                                                try {
+                                                                    const { deleteDoc, doc: fireDoc } = await import("firebase/firestore");
+                                                                    await deleteDoc(fireDoc(db, "projects", editingData.id));
+                                                                    setRevealStep(null);
+                                                                    setRevealingProject(null);
+                                                                    fetchProjects();
+                                                                } catch (err) { alert(err.message); }
+                                                                finally { setLoading(false); }
+                                                            }
+                                                        }} 
+                                                        className="cancel-btn" 
+                                                        style={{ borderColor: '#ef4444', color: '#ef4444' }}
+                                                    >
+                                                        Purge
+                                                    </button>
+                                                    <button onClick={handleSaveProject} className="save-cloud-btn">
+                                                        {loading ? 'Syncing...' : 'Sync to Cloud'}
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <button onClick={() => { setRevealStep(null); setRevealingProject(null); setIsEditing(false); }} className="close-audit-btn">Lock Vault</button>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             )}
