@@ -32,7 +32,8 @@ export async function POST(request) {
         const token = generateOtpToken(emailKey, otp, expiry);
 
         // Send Email with Audit Data
-        const mailRes = await sendOtpEmail(emailKey, otp, { ...auditData, ip });
+        const action = mode?.toUpperCase() || 'LOGIN';
+        const mailRes = await sendOtpEmail(emailKey, otp, { ...auditData, action, ip });
 
         if (mailRes.success) {
             return NextResponse.json({ success: true, message: 'OTP sent', token });
