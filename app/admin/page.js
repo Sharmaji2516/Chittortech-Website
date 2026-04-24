@@ -650,7 +650,14 @@ export default function AdminPage() {
                                         projects.map((proj) => (
                                             <div key={proj.id} className="project-card-mini" onClick={() => handleRequestProjectReveal(proj)} style={{ cursor: 'pointer' }}>
                                                 <h3 className="card-title-mini">{proj.title}</h3>
-                                                <p className="card-domain-mini">{proj.domainLink || proj.websiteUrl || proj.domain}</p>
+                                                <p className="card-domain-mini" style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                                                    {(proj.domainLink || proj.websiteUrl || proj.domain || 'N/A')?.split(/[,\s]+/).filter(l => l.trim() !== '').map((link, idx, arr) => (
+                                                        <span key={idx} style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                                            {arr.length > 1 && <strong style={{ color: '#D4AF37', marginRight: '6px', fontSize: '0.65rem' }}>LINK {idx + 1}:</strong>}
+                                                            {link}
+                                                        </span>
+                                                    ))}
+                                                </p>
                                                 <p className="click-view-text">Click here to view all the data</p>
                                             </div>
                                         ))
@@ -687,7 +694,7 @@ export default function AdminPage() {
                                     {revealStep === 'VERIFY' && (
                                         <div className="modal-content">
                                             <h3>Identity Challenge</h3>
-                                            <p>Verification code sent to <b>{targetAdminForOtp?.email}</b>.</p>
+                                            <p>Verification code sent to <b>{targetAdminForOtp?.email}</b></p>
                                             <input 
                                                 type="text" 
                                                 value={revealOtp} 
@@ -744,7 +751,14 @@ export default function AdminPage() {
                                                     {isEditing ? (
                                                         <input value={editingData.websiteUrl || ""} onChange={(e) => setEditingData({...editingData, websiteUrl: e.target.value})} className="audit-input" />
                                                     ) : (
-                                                        <a href={revealingProject?.websiteUrl || editingData?.websiteUrl} target="_blank" rel="noreferrer">{revealingProject?.websiteUrl || editingData?.websiteUrl}</a>
+                                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                                            {(revealingProject?.websiteUrl || editingData?.websiteUrl)?.split(/[,\s]+/).filter(l => l.trim() !== '').map((link, idx, arr) => (
+                                                                <div key={idx} style={{ fontSize: '0.9rem' }}>
+                                                                    {arr.length > 1 && <strong style={{ color: '#D4AF37', marginRight: '6px', fontSize: '0.75rem' }}>LINK {idx + 1}:</strong>}
+                                                                    <a href={link} target="_blank" rel="noreferrer" style={{ wordBreak: 'break-all' }}>{link}</a>
+                                                                </div>
+                                                            )) || 'N/A'}
+                                                        </div>
                                                     )}
                                                 </div>
                                                 <div className="audit-item">
@@ -755,7 +769,7 @@ export default function AdminPage() {
                                                             <input value={editingData.hostingEmail || ""} onChange={(e) => setEditingData({...editingData, hostingEmail: e.target.value})} className="audit-input" placeholder="Hosting Email ID" />
                                                         </div>
                                                     ) : (
-                                                        <span>{revealingProject?.hosting || editingData?.hosting} <br/> <small>{revealingProject?.hostingEmail || editingData?.hostingEmail}</small></span>
+                                                        <span><strong>Provider:</strong> {revealingProject?.hosting || editingData?.hosting || 'N/A'} <br/> <strong>Email ID:</strong> <small>{revealingProject?.hostingEmail || editingData?.hostingEmail || 'N/A'}</small></span>
                                                     )}
                                                 </div>
                                                 <div className="audit-item">
@@ -763,7 +777,14 @@ export default function AdminPage() {
                                                     {isEditing ? (
                                                         <input value={editingData.githubRepo || ""} onChange={(e) => setEditingData({...editingData, githubRepo: e.target.value})} className="audit-input" placeholder="Repository URL" />
                                                     ) : (
-                                                        <a href={revealingProject?.githubRepo || editingData?.githubRepo} target="_blank" rel="noreferrer">{revealingProject?.githubRepo || editingData?.githubRepo || 'N/A'}</a>
+                                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                                                            {(revealingProject?.githubRepo || editingData?.githubRepo || 'N/A')?.split(/[,\s]+/).filter(l => l.trim() !== '').map((link, idx, arr) => (
+                                                                <div key={idx} style={{ fontSize: '0.9rem' }}>
+                                                                    {arr.length > 1 && <strong style={{ color: '#D4AF37', marginRight: '6px', fontSize: '0.75rem' }}>LINK {idx + 1}:</strong>}
+                                                                    {link === 'N/A' ? <span>N/A</span> : <a href={link} target="_blank" rel="noreferrer" style={{ wordBreak: 'break-all' }}>{link}</a>}
+                                                                </div>
+                                                            ))}
+                                                        </div>
                                                     )}
                                                 </div>
                                             </div>
@@ -788,20 +809,20 @@ export default function AdminPage() {
                                                     <div className="audit-grid">
                                                         <div className="audit-item">
                                                             <label>Total Valuation</label>
-                                                            {isEditing ? <input value={editingData.totalValue || ""} onChange={(e) => setEditingData({...editingData, totalValue: e.target.value})} className="audit-input" placeholder="₹" /> : <span className="val-amt">₹{revealingProject?.totalValue || editingData?.totalValue}</span>}
+                                                            {isEditing ? <input value={editingData.totalValue || ""} onChange={(e) => setEditingData({...editingData, totalValue: e.target.value})} className="audit-input" placeholder="₹" /> : <span className="val-amt">₹{revealingProject?.totalValue || editingData?.totalValue || '0'}</span>}
                                                         </div>
                                                         <div className="audit-item">
                                                             <label>Payment Mode</label>
-                                                            {isEditing ? <input value={editingData.paymentMode || ""} onChange={(e) => setEditingData({...editingData, paymentMode: e.target.value})} className="audit-input" placeholder="e.g. PhonePe / Bank" /> : <span>{revealingProject?.paymentMode || editingData?.paymentMode}</span>}
+                                                            {isEditing ? <input value={editingData.paymentMode || ""} onChange={(e) => setEditingData({...editingData, paymentMode: e.target.value})} className="audit-input" placeholder="e.g. PhonePe / Bank" /> : <span>{revealingProject?.paymentMode || editingData?.paymentMode || 'N/A'}</span>}
                                                         </div>
 
                                                         <div className="audit-item">
                                                             <label>Total Amount Received</label>
-                                                            {isEditing ? <input value={editingData.receivedAmount || ""} onChange={(e) => setEditingData({...editingData, receivedAmount: e.target.value})} className="audit-input" placeholder="₹ Amount" /> : <span className="val-received">₹{revealingProject?.receivedAmount || editingData?.receivedAmount}</span>}
+                                                            {isEditing ? <input value={editingData.receivedAmount || ""} onChange={(e) => setEditingData({...editingData, receivedAmount: e.target.value})} className="audit-input" placeholder="₹ Amount" /> : <span className="val-received">₹{revealingProject?.receivedAmount || editingData?.receivedAmount || '0'}</span>}
                                                         </div>
                                                         <div className="audit-item">
                                                             <label>Total Pending Amount</label>
-                                                            {isEditing ? <input value={editingData.pendingAmount || ""} onChange={(e) => setEditingData({...editingData, pendingAmount: e.target.value})} className="audit-input" placeholder="₹ Amount" /> : <span className="val-pending">₹{revealingProject?.pendingAmount || editingData?.pendingAmount}</span>}
+                                                            {isEditing ? <input value={editingData.pendingAmount || ""} onChange={(e) => setEditingData({...editingData, pendingAmount: e.target.value})} className="audit-input" placeholder="₹ Amount" /> : <span className="val-pending">₹{revealingProject?.pendingAmount || editingData?.pendingAmount || '0'}</span>}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -817,8 +838,8 @@ export default function AdminPage() {
                                                         </div>
                                                     ) : (
                                                         <div>
-                                                            <div>{revealingProject?.firebaseProjectName || editingData?.firebaseProjectName}</div>
-                                                            <small>{revealingProject?.firebaseEmail || editingData?.firebaseEmail}</small>
+                                                            <div><strong>Project Name:</strong> {revealingProject?.firebaseProjectName || editingData?.firebaseProjectName || 'N/A'}</div>
+                                                            <small><strong>Email ID:</strong> {revealingProject?.firebaseEmail || editingData?.firebaseEmail || 'N/A'}</small>
                                                         </div>
                                                     )}
                                                 </div>
@@ -847,24 +868,8 @@ export default function AdminPage() {
                                             
                                             {isEditing ? (
                                                 <div style={{ display: 'flex', gap: '10px' }}>
-                                                    <button 
-                                                        onClick={async () => {
-                                                            if(confirm("Purge this infrastructure record?")) {
-                                                                setLoading(true);
-                                                                try {
-                                                                    const { deleteDoc, doc: fireDoc } = await import("firebase/firestore");
-                                                                    await deleteDoc(fireDoc(db, "projects", editingData.id));
-                                                                    setRevealStep(null);
-                                                                    setRevealingProject(null);
-                                                                    fetchProjects();
-                                                                } catch (err) { alert(err.message); }
-                                                                finally { setLoading(false); }
-                                                            }
-                                                        }} 
-                                                        className="cancel-btn" 
-                                                        style={{ borderColor: '#ef4444', color: '#ef4444' }}
-                                                    >
-                                                        Purge
+                                                    <button onClick={() => setIsEditing(false)} className="cancel-btn">
+                                                        Cancel
                                                     </button>
                                                     <button onClick={handleSaveProject} className="save-cloud-btn">
                                                         {loading ? 'Syncing...' : 'Sync to Cloud'}
@@ -896,7 +901,6 @@ export default function AdminPage() {
                     width: 100%;
                     max-width: 1400px;
                     margin: 0 auto;
-                    overflow-x: hidden;
                 }
                 .dashboard-grid {
                     display: grid;
@@ -904,7 +908,12 @@ export default function AdminPage() {
                     gap: 1.5rem;
                 }
                 @media (max-width: 1024px) {
-                    .dashboard-grid { grid-template-columns: 1fr; }
+                    .dashboard-grid { grid-template-columns: 1fr; gap: 1rem; }
+                }
+                @media (max-width: 640px) {
+                    .dashboard-content { padding: 0.5rem; }
+                    .mgmt-section { padding: 1.25rem 1rem; }
+                    .section-header { flex-direction: column; align-items: flex-start; }
                 }
 
                 .mgmt-section {
@@ -1155,7 +1164,7 @@ export default function AdminPage() {
                 .reveal-modal::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
 
                 .reveal-modal h3 { color: #fff; margin-bottom: 1rem; font-family: var(--font-outfit); }
-                .reveal-modal p { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem; }
+                .reveal-modal p { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; margin-bottom: 1.5rem; word-break: break-word; overflow-wrap: anywhere; }
                 .reveal-otp-input {
                     width: 100%;
                     background: rgba(255,255,255,0.05);
@@ -1168,6 +1177,17 @@ export default function AdminPage() {
                     letter-spacing: 0.5rem;
                     margin-bottom: 1.5rem;
                     outline: none;
+                }
+                @media (max-width: 480px) {
+                    .reveal-modal {
+                        padding: 2rem 1.5rem;
+                        border-radius: 30px;
+                    }
+                    .reveal-otp-input {
+                        font-size: 1.25rem;
+                        letter-spacing: 0.3rem;
+                        padding: 0.75rem;
+                    }
                 }
                 .modal-actions {
                     display: flex;

@@ -1382,7 +1382,6 @@ footer {
     padding: 1rem;
     font-family: var(--font-inter), system-ui, sans-serif;
     position: relative;
-    overflow-x: hidden;
     overflow-y: auto;
 }
 
@@ -1559,7 +1558,7 @@ footer {
     inset: 0;
     background: radial-gradient(circle at 50% -20%, #1a1a2e 0%, #0a0a0f 60%, #050505 100%);
     z-index: 100;
-    padding: clamp(1rem, 5vw, 4rem) 1rem;
+    padding: clamp(1rem, 5vw, 4rem) clamp(0.5rem, 2vw, 1rem);
     overflow-y: auto;
 }
 
