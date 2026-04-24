@@ -46,11 +46,11 @@ export default function TeamPage() {
                 </div>
                 <div className="team-info">
                   <h3>Lav Sharma</h3>
-                  <p className="role">Director</p>
+                  <p className="role">Team Lead</p>
                 </div>
               </div>
               <p className="team-bio">
-                Lav Sharma is the Director and lead AI Full Stack Developer at ChittorTech. A 2025 B.Tech IT graduate from JECRC Foundation with an 8.52 CGPA, he brings deep expertise in full-stack web development, specializing in Node.js, Express.js, and MongoDB. Lav has a passion for building AI-assisted digital platforms, evidenced by his successful deployment of multiple business websites and interactive portals. He also serves as a Technical Contributor for Rajasthan Tourism.
+                Lav Sharma is the Team Lead and lead AI Full Stack Developer at ChittorTech. A 2025 B.Tech IT graduate from JECRC Foundation with an 8.52 CGPA, he brings deep expertise in full-stack web development, specializing in Node.js, Express.js, and MongoDB. Lav has a passion for building AI-assisted digital platforms, evidenced by his successful deployment of multiple business websites and interactive portals. He also serves as a Technical Contributor for Rajasthan Tourism.
               </p>
               <div className="team-contact">
                 <a href="https://www.linkedin.com/in/lav-sharma-a9919b2ab/" className="contact-item" target="_blank" rel="noopener noreferrer">
