@@ -5,32 +5,32 @@ import React from "react";
 export default function AboutPage() {
   return (
     <main style={{ paddingTop: '100px' }}>
-      <section id="about">
-        <div className="container about-grid">
+      <section id="about" style={{ padding: '60px 0' }}>
+        <div className="container" style={{ maxWidth: '800px' }}>
           <div className="about-text-content reveal">
-            <div className="badge-mini"><i className="fas fa-eye"></i> Our Vision</div>
+            <div className="badge-mini"><i className="fas fa-rocket"></i> Our Mission</div>
             <h2 className="display-title">Pioneering <span>Modern Tech</span> from India</h2>
             <p className="about-description">
-              At ChittorTech, we believe in the power of code to transform reality. Approved by the **iStart program**, we specialize in delivering **premium quality work at a minimum cost**. We prioritize **rapid delivery** without compromising on excellence.
+              At ChittorTech, we believe in the power of code to transform reality. Officially approved by the <strong>iStart program</strong>, we specialize in delivering <strong>premium quality work</strong> at a minimum cost. We prioritize <strong>rapid delivery</strong> and agile execution to ensure your vision reaches the market with excellence.
             </p>
             
             <div className="feature-stats-grid">
               <div className="m-feature-card">
-                <div className="m-icon-wrapper blue"><i className="fas fa-hand-holding-dollar"></i></div>
+                <div className="m-icon-wrapper blue"><i className="fas fa-coins"></i></div>
                 <div className="m-feature-info">
                   <h4>Min Cost</h4>
-                  <p>Global Standards</p>
+                  <p>Elite Standards</p>
                 </div>
               </div>
               <div className="m-feature-card">
-                <div className="m-icon-wrapper purple"><i className="fas fa-award"></i></div>
+                <div className="m-icon-wrapper purple"><i className="fas fa-gem"></i></div>
                 <div className="m-feature-info">
                   <h4>High Quality</h4>
                   <p>Premium Code</p>
                 </div>
               </div>
               <div className="m-feature-card">
-                <div className="m-icon-wrapper violet"><i className="fas fa-bolt"></i></div>
+                <div className="m-icon-wrapper violet"><i className="fas fa-bolt-lightning"></i></div>
                 <div className="m-feature-info">
                   <h4>Min Time</h4>
                   <p>Agile Delivery</p>
@@ -38,26 +38,9 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-          
-          <div className="about-image-side reveal">
-            <div className="workplace-wrapper">
-              <div className="workplace-image">
-                <img src="/assets/chittortech_workplace.png" alt="Tech Workplace" />
-                <div className="floating-badge">
-                  <i className="fas fa-microchip"></i>
-                  <span>Innovative Workflow</span>
-                </div>
-              </div>
-              <div className="experience-card reveal">
-                <h3>99%</h3>
-                <p>Client Satisfaction</p>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
-
-      <section id="recognition">
+      <section id="recognition" style={{ padding: '60px 0' }}>
         <div className="container">
           <div className="istart-container reveal">
             <div className="istart-header">

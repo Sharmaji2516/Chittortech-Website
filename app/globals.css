@@ -1693,3 +1693,113 @@ footer {
         border-radius: 24px;
     }
 }
+
+/* About Page Stable Styling */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.badge-mini {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 210, 255, 0.1);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.display-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.about-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.feature-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.m-feature-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    padding: 1.5rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.m-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.m-icon-wrapper.blue { background: rgba(0, 210, 255, 0.1); color: #00d2ff; }
+.m-icon-wrapper.purple { background: rgba(157, 80, 187, 0.1); color: #9d50bb; }
+.m-icon-wrapper.violet { background: rgba(110, 72, 170, 0.1); color: #6e48aa; }
+
+.m-feature-info h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.m-feature-info p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.workplace-image {
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--glass-border);
+}
+
+.workplace-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.experience-card {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary);
+    color: black;
+    padding: 1rem 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.experience-card h3 { font-size: 1.5rem; font-weight: 800; margin: 0; }
+.experience-card p { font-size: 0.7rem; font-weight: 700; margin: 0; text-transform: uppercase; }
+
+@media (max-width: 992px) {
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .feature-stats-grid { grid-template-columns: 1fr; }
+}
