@@ -901,6 +901,7 @@ export default function AdminPage() {
                     width: 100%;
                     max-width: 1400px;
                     margin: 0 auto;
+                    overflow-x: hidden;
                 }
                 .dashboard-grid {
                     display: grid;
@@ -921,6 +922,9 @@ export default function AdminPage() {
                     border: 1px solid rgba(255, 255, 255, 0.05);
                     border-radius: 24px;
                     padding: clamp(1rem, 3vw, 2rem);
+                    width: 92%;
+                    max-width: 600px;
+                    margin: 0 auto 1.5rem auto;
                 }
                 .section-header {
                     display: flex;
@@ -966,14 +970,9 @@ export default function AdminPage() {
                         margin-top: 1rem;
                     }
                 }
-                .req-info {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.25rem;
-                    word-break: break-all;
-                }
-                .req-name { color: #fff; font-weight: 600; font-size: 0.95rem; }
-                .req-email { color: #94a3b8; font-size: 0.8rem; }
+                .req-info { display: flex; flex-direction: column; gap: 0.25rem; overflow: hidden; flex: 1; }
+                .req-name { font-weight: 700; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+                .req-email { font-size: 0.8rem; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
                 .req-date { color: #64748b; font-size: 0.7rem; margin-top: 2px; }
 
                 .refresh-btn {
@@ -1007,12 +1006,21 @@ export default function AdminPage() {
                 .empty-state { color: #64748b; font-size: 0.9rem; text-align: center; padding: 2rem; }
                 .mgmt-hint { color: #64748b; font-size: 0.75rem; margin-top: 1.5rem; text-align: center; }
 
-                .project-grid-dash { display: flex; flex-direction: column; gap: 1rem; }
+                .project-grid-dash { 
+                    display: flex; 
+                    flex-direction: column; 
+                    gap: 1rem; 
+                    width: 100%;
+                    align-items: center;
+                }
                 .project-card-mini {
                     background: rgba(255,255,255,0.03);
                     border: 1px solid rgba(255,255,255,0.05);
                     padding: 1.25rem;
                     border-radius: 16px;
+                    width: 100%;
+                    max-width: 320px;
+                    margin: 0 auto;
                 }
                 .card-status-mini { font-size: 0.65rem; color: #D4AF37; font-weight: 800; }
                 .card-title-mini { font-size: 1.1rem; color: #fff; margin: 0.5rem 0 0.25rem 0; font-family: var(--font-outfit); }
@@ -1289,7 +1297,22 @@ export default function AdminPage() {
                     margin-top: 0.5rem;
                 }
 
-                .project-audit-view { text-align: left; }
+                .project-audit-view { 
+                    text-align: left; 
+                    width: 100%;
+                    max-width: 700px;
+                    margin: 0 auto;
+                    background: rgba(0,0,0,0.2);
+                    padding: 2rem;
+                    border-radius: 24px;
+                    border: 1px solid rgba(255,255,255,0.05);
+                }
+                @media (max-width: 640px) {
+                    .project-audit-view {
+                        padding: 1rem;
+                        border-radius: 16px;
+                    }
+                }
                 .audit-header { margin-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem; }
                 .audit-tag { font-size: 0.6rem; color: #D4AF37; letter-spacing: 2px; font-weight: 800; }
                 .audit-header h3 { font-size: 1.5rem; color: #fff; margin-top: 0.25rem; }
@@ -1300,7 +1323,7 @@ export default function AdminPage() {
                     gap: 1.5rem;
                     margin-bottom: 2rem;
                 }
-                @media (max-width: 480px) { .audit-grid { grid-template-columns: 1fr; } }
+                @media (max-width: 640px) { .audit-grid { grid-template-columns: 1fr; gap: 1rem; } }
                 
                 .audit-item label { display: block; font-size: 0.65rem; color: #64748b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
                 .audit-item span, .audit-item a { color: #fff; font-size: 0.95rem; font-weight: 500; text-decoration: none; }
