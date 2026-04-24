@@ -31,9 +31,9 @@ export default function Navbar() {
       <div className="container nav-content">
         <Link href="/" className="logo" style={{ display: 'flex', alignItems: 'center' }}>
           <img src="/logo.png" alt="ChittorTech Logo" />
-          <span className="desktop-brand-name">CHITTORTECH</span>
+          <span className="desktop-brand-name">ChittorTech</span>
         </Link>
-        <div className="brand-name">CHITTORTECH</div>
+        <div className="brand-name">ChittorTech</div>
 
         <div 
           className={`menu-toggle ${menuActive ? "active" : ""}`} 
