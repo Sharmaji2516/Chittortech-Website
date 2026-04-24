@@ -29,8 +29,9 @@ export default function Navbar() {
   return (
     <nav id="main-nav" className={scrolled ? "scrolled" : ""}>
       <div className="container nav-content">
-        <Link href="/" className="logo">
+        <Link href="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
           <img src="/logo.png" alt="ChittorTech Logo" />
+          <span style={{ fontSize: '1.3rem', fontWeight: 800, letterSpacing: '-0.5px' }}>CHITTORTECH</span>
         </Link>
 
         <div 
