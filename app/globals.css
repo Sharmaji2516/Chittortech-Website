@@ -100,6 +100,7 @@ ul {
 }
 
 .container {
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 1.5rem;
@@ -107,6 +108,10 @@ ul {
 
 @media (min-width: 768px) {
     .container { padding: 0 4rem; }
+}
+
+@media (min-width: 1200px) {
+    .container { padding: 0 8rem; }
 }
 
 @media (min-width: 1200px) {
@@ -695,8 +700,20 @@ nav.scrolled {
 /* Project Cards */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 5rem;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 100%, 350px), 1fr));
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .project-card {
+        min-width: 100% !important;
+        max-width: 100% !important;
+    }
 }
 
 .project-card:nth-child(1) { transition-delay: 0.1s; }
@@ -744,7 +761,7 @@ nav.scrolled {
     border-bottom: 1px solid var(--glass-border);
 }
 
-.project-card:hover .project-img {
+.project-card:hover .project-image-element {
     transform: scale(1.15);
 }
 
@@ -941,6 +958,9 @@ nav.scrolled {
     padding: 4rem;
     border-radius: 30px;
     border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
 }
 
 .form-group {
@@ -1656,8 +1676,8 @@ footer {
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(clamp(280px, 100%, 350px), 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(320px, 100%, 450px), 1fr));
+    gap: 2.5rem;
 }
 
 .project-card {
@@ -2029,18 +2049,16 @@ footer {
 
 /* Success Animation */
 .success-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg-dark);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 10;
     animation: fadeIn 0.5s ease;
+    text-align: center;
+    border-radius: inherit;
 }
 
 .success-icon {

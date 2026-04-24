@@ -77,14 +77,14 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="contact-form reveal" style={{ position: 'relative' }}>
+            <div className="contact-form reveal" style={{ position: 'relative', minHeight: '600px' }}>
               {isSubmitted ? (
                 <div className="success-overlay">
                   <div className="success-icon">
                     <i className="fas fa-circle-check"></i>
                   </div>
                   <h3>Message Sent!</h3>
-                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>We'll get back to you within 2 hours.</p>
+                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>We'll get back to you as soon as possible.</p>
                   <button 
                     onClick={() => setIsSubmitted(false)} 
                     className="btn btn-outline" 
@@ -116,7 +116,7 @@ export default function ContactPage() {
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem' }}>
                     <button type="submit" className="btn btn-primary" style={{ width: '100%', maxWidth: '400px' }}>
-                      Start Your Project
+                      Send Query
                     </button>
                   </div>
                   

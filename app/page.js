@@ -93,14 +93,35 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="cta">
+      <section className="cta-section" style={{ padding: '100px 0', position: 'relative' }}>
         <div className="container">
-          <div className="istart-container cta-container reveal" style={{ textAlign: 'center' }}>
-            <h2 className="cta-heading">Ready to Scale?</h2>
+          <div className="reveal" style={{ 
+            background: 'var(--bg-card)', 
+            padding: '5rem 3rem', 
+            borderRadius: '40px', 
+            border: '1px solid var(--glass-border)',
+            textAlign: 'center',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <h2 className="display-title" style={{ marginBottom: '1.5rem' }}>Ready to Scale Your <span>Vision?</span></h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem' }}>
-              Let's engineer your digital success story together. Get a premium proposal within 24 hours.
+              Let's engineer your digital success story together. Our team is ready to turn your ideas into a high-performance reality with a premium proposal within 24 hours.
             </p>
-            <Link href="/contact" className="btn btn-primary">Start Your Project</Link>
+            <Link href="/contact" className="btn btn-primary" style={{ padding: '1.2rem 3rem', fontSize: '1.1rem' }}>
+              Start Your Project <i className="fas fa-arrow-right" style={{ marginLeft: '10px' }}></i>
+            </Link>
+            
+            {/* Glow effect */}
+            <div style={{ 
+              position: 'absolute', 
+              top: '-50%', 
+              left: '-50%', 
+              width: '200%', 
+              height: '200%', 
+              background: 'radial-gradient(circle, rgba(0, 210, 255, 0.05) 0%, transparent 60%)',
+              pointerEvents: 'none'
+            }}></div>
           </div>
         </div>
       </section>

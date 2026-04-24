@@ -114,6 +114,46 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* High-Conversion CTA Section */}
+      <section className="cta-section" style={{ padding: '100px 0', position: 'relative' }}>
+        <div className="container">
+          <div className="reveal" style={{ 
+            background: 'var(--bg-card)', 
+            padding: '5rem 3rem', 
+            borderRadius: '40px', 
+            border: '1px solid var(--glass-border)',
+            textAlign: 'center',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <h2 className="display-title" style={{ marginBottom: '1.5rem' }}>Start Your <span>Digital Journey</span></h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem' }}>
+              Experience the ChittorTech difference. Let's collaborate to build world-class technology that drives your growth and dominates the market.
+            </p>
+            <a href="/contact" className="btn btn-primary" style={{ 
+              display: 'inline-block',
+              padding: '1.2rem 3rem', 
+              fontSize: '1.1rem',
+              borderRadius: '50px',
+              textDecoration: 'none'
+            }}>
+              Connect With Us <i className="fas fa-paper-plane" style={{ marginLeft: '10px' }}></i>
+            </a>
+            
+            {/* Glow effect */}
+            <div style={{ 
+              position: 'absolute', 
+              top: '-50%', 
+              left: '-50%', 
+              width: '200%', 
+              height: '200%', 
+              background: 'radial-gradient(circle, rgba(0, 210, 255, 0.05) 0%, transparent 60%)',
+              pointerEvents: 'none'
+            }}></div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
