@@ -29,10 +29,11 @@ export default function Navbar() {
   return (
     <nav id="main-nav" className={scrolled ? "scrolled" : ""}>
       <div className="container nav-content">
-        <Link href="/" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+        <Link href="/" className="logo" style={{ display: 'flex', alignItems: 'center' }}>
           <img src="/logo.png" alt="ChittorTech Logo" />
-          <span style={{ fontSize: '1.3rem', fontWeight: 800, letterSpacing: '-0.5px' }}>CHITTORTECH</span>
+          <span className="desktop-brand-name">CHITTORTECH</span>
         </Link>
+        <div className="brand-name">CHITTORTECH</div>
 
         <div 
           className={`menu-toggle ${menuActive ? "active" : ""}`} 
