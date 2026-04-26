@@ -8,10 +8,11 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space
 export const metadata = {
   title: "ChittorTech | Architectural Digital Solutions",
   description: "Specialized in delivering premium, high-end digital experiences for architectural and construction firms.",
+  icons: {
+    icon: "/logo.png",
+  },
 };
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import ClientLayout from "@/components/ClientLayout";
 
 export default function RootLayout({ children }) {
@@ -23,9 +24,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
         <AuthProvider>
           <ClientLayout>
-            <Navbar />
             {children}
-            <Footer />
           </ClientLayout>
         </AuthProvider>
       </body>

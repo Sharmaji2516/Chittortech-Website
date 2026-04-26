@@ -1,8 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import PolicyModal from "./PolicyModal";
 
 export default function ClientLayout({ children }) {
+  const [activeModal, setActiveModal] = useState(null);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollProgress = document.querySelector('.scroll-progress');
@@ -59,7 +64,17 @@ export default function ClientLayout({ children }) {
     <>
       <div className="cursor-glow"></div>
       <div className="scroll-progress"></div>
-      {children}
+      <Navbar />
+      <main>
+        {children}
+      </main>
+      <Footer onModalOpen={setActiveModal} />
+      {activeModal && (
+        <PolicyModal 
+          type={activeModal} 
+          onClose={() => setActiveModal(null)} 
+        />
+      )}
     </>
   );
 }
