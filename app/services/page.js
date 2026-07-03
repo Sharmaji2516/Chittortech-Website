@@ -167,10 +167,28 @@ export default function Services() {
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: '0 0 1.2rem 0', lineHeight: '1.6' }}>
                     We engineered the official **Mewari Achaar** mobile app built in Kotlin. Features fluid Lottie vector animation modules, highly responsive Firestore databases, safe background sync operations, and secure Google Sign-in protocols.
                   </p>
-                  <div style={{ color: 'var(--primary)', display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '0.95rem', fontWeight: '800' }}>
-                    <i className="fas fa-flask"></i>
-                    <span>Currently Under Closed Testing (Launching Soon!)</span>
-                  </div>
+                  <a 
+                    href="https://play.google.com/store/apps/details?id=com.mewari.achaar" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '10px', 
+                      background: '#003ED8', 
+                      color: '#ffffff', 
+                      padding: '12px 24px', 
+                      borderRadius: '50px', 
+                      textDecoration: 'none', 
+                      fontWeight: 700, 
+                      fontSize: '0.9rem',
+                      boxShadow: '0 4px 15px rgba(0,62,216,0.25)',
+                      transition: 'transform 0.2s ease'
+                    }}
+                  >
+                    <i className="fab fa-google-play"></i>
+                    Download on Play Store
+                  </a>
                 </div>
               </div>
               
