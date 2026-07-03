@@ -30,7 +30,7 @@
   background: var(--primary, #00d2ff); /* Fallback to primary */
   background: var(--primary);
   border: 2px solid rgba(255, 255, 255, 0.2); /* High contrast border */
-  color: #060c1b;
+  color: #ffffff;
   font-size: 24px;
   cursor: pointer;
   display: flex;
@@ -356,4 +356,23 @@
   opacity: 1;
   visibility: visible;
   pointer-events: all;
+}
+
+@media (max-width: 768px) {
+  .chatbot-container {
+    bottom: 80px;
+    right: 20px;
+  }
+  .chatbot-fab {
+    width: 55px;
+    height: 55px;
+    font-size: 20px;
+  }
+  .chatbot-window {
+    width: calc(100vw - 30px);
+    height: calc(100dvh - 160px);
+    right: 15px;
+    bottom: 140px;
+    border-radius: 20px;
+  }
 }
