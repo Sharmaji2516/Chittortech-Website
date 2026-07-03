@@ -58,8 +58,8 @@ export default function ProjectsPage() {
       category: "Native Mobile App",
       description: "Premium native Android application built in Kotlin. Features a fluid Lottie-animated user interface, secure Firebase authentication, Firestore cloud sync, Glide image rendering, and background synchronization queues.",
       image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600",
-      link: "#",
-      status: "Closed Testing (Launching Soon)"
+      link: "https://play.google.com/store/apps/details?id=com.mewari.achaar",
+      status: "Live on Play Store"
     },
     {
       title: "MailPulse Elite Engine",
@@ -205,8 +205,11 @@ export default function ProjectsPage() {
                   </p>
                   
                   {proj.status ? (
-                    <div 
-                      className="btn"
+                    <a 
+                      href={proj.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-primary"
                       style={{ 
                         width: '100%', 
                         display: 'flex', 
@@ -218,15 +221,12 @@ export default function ProjectsPage() {
                         fontWeight: '800',
                         textDecoration: 'none',
                         borderRadius: '50px',
-                        cursor: 'default',
-                        border: '1px solid rgba(0, 62, 216, 0.2)',
-                        color: 'var(--primary)',
-                        background: 'rgba(0, 62, 216, 0.03)'
+                        color: '#ffffff'
                       }}
                     >
+                      <i className="fab fa-google-play"></i>
                       <span>{proj.status}</span>
-                      <i className="fas fa-flask"></i>
-                    </div>
+                    </a>
                   ) : (
                     <a 
                       href={proj.link} 

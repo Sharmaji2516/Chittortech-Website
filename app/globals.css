@@ -299,7 +299,7 @@ nav.scrolled {
 .menu-toggle .bar {
     width: 28px;
     height: 3px;
-    background-color: var(--text-main);
+    background-color: #000000;
     border-radius: 3px;
     transition: var(--transition);
 }
@@ -1983,21 +1983,21 @@ footer {
     align-items: center;
     gap: 1rem;
     padding: 0.8rem 1.5rem;
-    background: rgba(0, 255, 135, 0.08);
-    border: 1px solid rgba(0, 255, 135, 0.3);
+    background: rgba(22, 163, 74, 0.08);
+    border: 1px solid rgba(22, 163, 74, 0.3);
     border-radius: 50px;
     margin-bottom: 2.5rem;
     backdrop-filter: blur(10px);
-    box-shadow: 0 0 30px rgba(0, 255, 135, 0.1);
+    box-shadow: 0 0 30px rgba(22, 163, 74, 0.1);
 }
 
 .status-dot {
     width: 12px;
     height: 12px;
-    background: #00ff87;
+    background: #16a34a;
     border-radius: 50%;
     position: relative;
-    box-shadow: 0 0 15px rgba(0, 255, 135, 0.8);
+    box-shadow: 0 0 15px rgba(22, 163, 74, 0.6);
     flex-shrink: 0;
 }
 
@@ -2008,7 +2008,7 @@ footer {
     left: -2px;
     right: -2px;
     bottom: -2px;
-    border: 2px solid #00ff87;
+    border: 2px solid #16a34a;
     border-radius: 50%;
     animation: pulse-green 2s infinite;
 }
@@ -2021,10 +2021,9 @@ footer {
 .status-text {
     font-size: 0.8rem;
     font-weight: 800;
-    color: #ffffff;
+    color: #16a34a;
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(0, 255, 135, 0.3);
 }
 
 /* Form Glow Effects */
@@ -2990,6 +2989,9 @@ nav.scrolled {
     .desktop-layout {
         justify-content: space-between;
     }
+    .menu-toggle {
+        display: none !important;
+    }
 }
 
 /* Ensure new desktop elements hide on mobile */
@@ -3010,6 +3012,9 @@ nav.scrolled {
     .brand-name {
         display: block;
     }
+    .menu-toggle {
+        display: flex !important;
+    }
 }
 
 /* --- Demo Modal Styles --- */
@@ -3028,8 +3033,7 @@ nav.scrolled {
     animation: fadeIn 0.3s ease;
 }
 
-/* Mobile Menu Styles */
-.menu-toggle { display: flex; }
+
 
 .nav-links {
     position: fixed;
