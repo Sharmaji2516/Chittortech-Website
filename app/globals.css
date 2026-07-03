@@ -1,5 +1,4 @@
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
     /* CACHE_BUST: 2026-05-13_03:30 */
