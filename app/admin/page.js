@@ -842,15 +842,15 @@ Warm regards,`;
             <style jsx global>{`
                 :root {
                     --gold: #D4AF37;
-                    --dark-bg: #0A0A0F;
-                    --card-bg: rgba(255, 255, 255, 0.03);
-                    --border: rgba(255, 255, 255, 0.08);
+                    --dark-bg: #f8fafc;
+                    --card-bg: #ffffff;
+                    --border: rgba(0, 62, 216, 0.1);
                 }
 
                 .admin-page {
                     min-height: 100vh;
                     background: var(--dark-bg);
-                    color: #fff;
+                    color: #09090b;
                     font-family: 'Outfit', sans-serif;
                     position: relative;
                     overflow-x: hidden;
@@ -902,7 +902,7 @@ Warm regards,`;
                 }
 
                 .error-card h3 {
-                    color: #fff;
+                    color: #09090b;
                     font-size: 1.5rem;
                     margin-bottom: 1rem;
                     letter-spacing: 2px;
@@ -938,7 +938,7 @@ Warm regards,`;
                     display: none;
                     position: fixed;
                     inset: 0;
-                    background: #0A0A0F;
+                    background: #f8fafc;
                     z-index: 99999;
                     align-items: center;
                     justify-content: center;
@@ -972,7 +972,7 @@ Warm regards,`;
 
                 .guard-logo { width: 60px; opacity: 0.5; margin-bottom: 2rem; }
                 .guard-icon { color: var(--gold); margin-bottom: 1.5rem; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4)); }
-                .guard-content h2 { font-size: 1.5rem; letter-spacing: 4px; color: #fff; margin-bottom: 1rem; font-weight: 800; }
+                .guard-content h2 { font-size: 1.5rem; letter-spacing: 4px; color: #09090b; margin-bottom: 1rem; font-weight: 800; }
                 .guard-content p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; }
                 .preview-footer { margin-top: 1rem; position: relative; bottom: 40px; }
                 .guard-footer { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; opacity: 0.8; }
@@ -980,7 +980,9 @@ Warm regards,`;
                 .bg-gradient {
                     position: fixed;
                     inset: 0;
-                    background: radial-gradient(circle at 50% -20%, rgba(212, 175, 55, 0.08), transparent 70%);
+                    background: 
+                        radial-gradient(circle at 15% 50%, rgba(0, 62, 216, 0.08), transparent 25%),
+                        radial-gradient(circle at 85% 30%, rgba(0, 62, 216, 0.05), transparent 25%);
                     pointer-events: none;
                 }
 
@@ -995,16 +997,16 @@ Warm regards,`;
                 }
 
                 .auth-card {
-                    background: rgba(10, 10, 15, 0.7);
-                    backdrop-filter: blur(25px);
-                    border: 1px solid var(--border);
-                    padding: 2.5rem 2.5rem;
-                    border-radius: 40px;
+                    background: #ffffff;
+                    backdrop-filter: blur(20px);
+                    border: 1px solid rgba(0, 62, 216, 0.1);
+                    padding: 3rem 2.5rem;
+                    border-radius: 24px;
                     width: 100%;
-                    max-width: 460px;
+                    max-width: 440px;
                     text-align: center;
                     position: relative;
-                    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 40px rgba(212, 175, 55, 0.05);
+                    box-shadow: 0 25px 50px -12px rgba(0, 62, 216, 0.15), 0 0 0 1px rgba(0, 62, 216, 0.05);
                 }
 
                 .back-btn {
@@ -1034,46 +1036,70 @@ Warm regards,`;
 
                 .back-btn :global(svg) { width: 14px; height: 14px; }
 
-                .shahi-logo { width: 80px; margin-bottom: 1.5rem; filter: drop-shadow(0 0 20px rgba(255,255,255,0.1)); }
-                .logo-section h1 { font-size: 2rem; letter-spacing: 3px; margin-bottom: 0.5rem; font-weight: 800; }
-                .logo-section h1 span { color: var(--gold); }
-                .logo-section p { color: #64748b; font-size: 0.75rem; margin-bottom: 2rem; letter-spacing: 1px; text-transform: uppercase; }
+                .shahi-logo { display: block; width: 70px; margin: 0 auto 1.5rem auto; filter: drop-shadow(0 4px 10px rgba(0,62,216,0.15)); }
+                .logo-section h1 { font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 0.5rem; font-weight: 800; color: #09090b; }
+                .logo-section h1 span { color: #003ED8; }
+                .logo-section p { color: #64748b; font-size: 0.75rem; margin-bottom: 2.5rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; }
 
                 .input-group {
-                    background: rgba(255, 255, 255, 0.05);
-                    border: 1px solid var(--border);
-                    border-radius: 16px;
-                    padding: 1rem;
+                    background: #ffffff;
+                    border: 1px solid #e2e8f0;
+                    border-radius: 12px;
+                    padding: 1rem 1.25rem;
                     display: flex;
                     align-items: center;
                     gap: 1rem;
-                    margin-bottom: 1rem;
+                    margin-bottom: 1.25rem;
+                    box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.02);
+                    transition: all 0.3s ease;
+                }
+                
+                .input-group:focus-within {
+                    border-color: #003ED8;
+                    box-shadow: 0 0 0 4px rgba(0, 62, 216, 0.1);
+                    transform: translateY(-1px);
+                }
+                
+                .input-group svg {
+                    color: #94a3b8;
+                    transition: color 0.3s ease;
+                }
+                
+                .input-group:focus-within svg {
+                    color: #003ED8;
                 }
 
                 .input-group input {
                     background: transparent;
                     border: none;
-                    color: var(--text-main);
+                    color: #09090b;
                     width: 100%;
                     outline: none;
+                    font-size: 0.95rem;
+                    font-weight: 500;
+                }
+                
+                .input-group input::placeholder {
+                    color: #94a3b8;
                 }
 
                 .shahi-btn {
                     width: 100%;
-                    background: var(--primary);
+                    background: linear-gradient(135deg, #003ED8, #001F6B);
                     color: #ffffff;
                     border: none;
-                    padding: 1.25rem;
-                    border-radius: 16px;
-                    font-weight: 800;
+                    padding: 1.15rem;
+                    border-radius: 12px;
+                    font-weight: 700;
                     font-size: 1rem;
                     cursor: pointer;
-                    transition: all 0.3s;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                     margin-top: 1rem;
+                    box-shadow: 0 10px 25px -5px rgba(0, 62, 216, 0.4);
                 }
 
                 .shahi-btn:hover {
-                    box-shadow: var(--shadow-glow);
+                    box-shadow: 0 15px 35px -5px rgba(0, 62, 216, 0.5);
                     transform: translateY(-2px);
                 }
 

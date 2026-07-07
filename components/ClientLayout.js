@@ -12,6 +12,7 @@ export default function ClientLayout({ children }) {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
 
   const pathname = usePathname();
+  const isAdminPage = pathname?.startsWith('/admin');
 
   useEffect(() => {
     // Hide the loader after a short delay on hard refresh to prevent FOUC
@@ -146,10 +147,12 @@ export default function ClientLayout({ children }) {
       <main>
         {children}
       </main>
-      <Footer onModalOpen={setActiveModal} />
-      <Suspense fallback={null}>
-        <ChatBot onModalOpen={setActiveModal} />
-      </Suspense>
+      {!isAdminPage && <Footer onModalOpen={setActiveModal} />}
+      {!isAdminPage && (
+        <Suspense fallback={null}>
+          <ChatBot onModalOpen={setActiveModal} />
+        </Suspense>
+      )}
       {activeModal && (
         <PolicyModal 
           type={activeModal} 

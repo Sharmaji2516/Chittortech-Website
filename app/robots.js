@@ -1,150 +1,78 @@
 export default function robots() {
   const baseUrl = "https://www.chittortech.online";
 
-  /**
-   * ============================================================
-   * CHITTORTECH ENTERPRISE ROBOTS CONFIGURATION
-   * ============================================================
-   *
-   * Optimized For:
-   * ✔ Googlebot
-   * ✔ Bingbot
-   * ✔ AI Crawlers
-   * ✔ SEO Crawl Efficiency
-   * ✔ Security
-   * ✔ Crawl Budget Optimization
-   * ✔ Production Deployment
-   *
-   * ============================================================
-   */
-
   return {
     rules: [
-      /**
-       * ========================================================
-       * MAIN SEARCH ENGINE RULES
-       * ========================================================
-       */
-
       {
         userAgent: "*",
-
         allow: [
           "/",
+          "/services",
+          "/about",
+          "/projects",
+          "/reviews"
         ],
-
         disallow: [
-          /**
-           * ====================================================
-           * PRIVATE / SYSTEM ROUTES
-           * ====================================================
-           */
-
           "/admin/",
-
           "/api/",
-
           "/dashboard/",
-
           "/private/",
-
           "/tmp/",
-
           "/_next/",
-
-          /**
-           * ====================================================
-           * SECURITY / INTERNAL FILES
-           * ====================================================
-           */
-
           "/config/",
-
           "/server/",
-
           "/internal/",
-
-          /**
-           * ====================================================
-           * DUPLICATE / LOW SEO VALUE
-           * ====================================================
-           */
-
           "/thank-you",
-
           "/success",
+          "/*.json$",
         ],
+        crawlDelay: 2, // Conserve resources for unknown bots
       },
-
-      /**
-       * ========================================================
-       * GOOGLEBOT PRIORITY ACCESS
-       * ========================================================
-       */
-
       {
         userAgent: "Googlebot",
-
         allow: "/",
+        disallow: ["/admin/", "/api/"],
       },
-
-      /**
-       * ========================================================
-       * BINGBOT PRIORITY ACCESS
-       * ========================================================
-       */
-
       {
         userAgent: "Bingbot",
-
         allow: "/",
+        disallow: ["/admin/", "/api/"],
+        crawlDelay: 1, // Let Bing crawl faster
       },
-
-      /**
-       * ========================================================
-       * AI SEARCH ENGINE CRAWLERS
-       * ========================================================
-       */
-
+      {
+        userAgent: "YandexBot",
+        allow: "/",
+        disallow: ["/admin/", "/api/"],
+        crawlDelay: 5, // Throttle Yandex slightly
+      },
+      {
+        userAgent: "Baiduspider",
+        allow: "/",
+        disallow: ["/admin/", "/api/"],
+        crawlDelay: 5,
+      },
       {
         userAgent: "GPTBot",
-
         allow: "/",
       },
-
       {
         userAgent: "ChatGPT-User",
-
         allow: "/",
       },
-
       {
         userAgent: "Google-Extended",
-
         allow: "/",
       },
-
       {
         userAgent: "ClaudeBot",
-
         allow: "/",
       },
+      {
+        userAgent: "PerplexityBot",
+        allow: "/",
+      }
     ],
-
-    /**
-     * ==========================================================
-     * SITEMAP LOCATION
-     * ==========================================================
-     */
-
     sitemap: `${baseUrl}/sitemap.xml`,
-
-    /**
-     * ==========================================================
-     * HOST DECLARATION
-     * ==========================================================
-     */
-
     host: baseUrl,
   };
 }

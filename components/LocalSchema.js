@@ -5,140 +5,151 @@ import Script from "next/script";
 export default function LocalSchema() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "ChittorTech",
-    "image": "https://www.chittortech.online/icon.png",
-    "@id": "https://www.chittortech.online",
-    "url": "https://www.chittortech.online",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Chittorgarh", // Update with specific street if any
-      "addressLocality": "Chittorgarh",
-      "addressRegion": "Rajasthan",
-      "postalCode": "312001",
-      "addressCountry": "IN"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 24.8887, // Approx Chittorgarh coords
-      "longitude": 74.6269
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      "opens": "09:00",
-      "closes": "19:00"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/company/chittortech"
-      // Add other social links here
-    ],
-    "description": "Leading IT Company in Chittorgarh providing top-tier web development, AI solutions, and software services.",
-    "priceRange": "$$",
-    "founder": {
-      "@type": "Person",
-      "name": "Kush Sharma",
-      "url": "https://www.linkedin.com/in/kush-sharma-chittortech/"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "IT Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "SaaS & Enterprise Systems"
-          }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.chittortech.online/#organization",
+        "name": "ChittorTech",
+        "url": "https://www.chittortech.online",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.chittortech.online/icon.png",
+          "width": 512,
+          "height": 512
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Custom Web & E-Commerce Development"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Mobile & Cross-Platform App Development (Expo & Kotlin)"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "SEO & Digital Marketing Services"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "AI Chatbots & Software Systems"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Value-Added IT Solutions (GMB, SSL, Business Email)"
-          }
+        "sameAs": [
+          "https://www.linkedin.com/company/chittortech",
+          "https://www.instagram.com/chittortech",
+          "https://twitter.com/chittortech",
+          "https://www.facebook.com/chittortech"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-8233816674",
+          "contactType": "customer service",
+          "areaServed": "IN",
+          "availableLanguage": ["English", "Hindi"]
         }
-      ]
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "25"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Siddhi Sharma"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "Excellent service and a great experience overall! The team at ChittorTech is professional, responsive, and very supportive. Their work quality, communication, and dedication is really impressive. Highly recommended for anyone looking for reliable tech services and learning opportunities."
       },
       {
-        "@type": "Review",
-        "author": {
+        "@type": "LocalBusiness",
+        "@id": "https://www.chittortech.online/#localbusiness",
+        "name": "ChittorTech - Best IT Company in Rajasthan",
+        "description": "ChittorTech is the best IT company and premier web development agency operating in Chittorgarh, Udaipur, Bhilwara, Jaipur, Jodhpur, and across Rajasthan. We specialize in enterprise software, SEO, React Native apps, and AI solutions.",
+        "url": "https://www.chittortech.online",
+        "image": "https://www.chittortech.online/ChittorTech%20Banner.png",
+        "telephone": "+91-8233816674",
+        "email": "chittortech@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Chittorgarh Headquarters",
+          "addressLocality": "Chittorgarh",
+          "addressRegion": "Rajasthan",
+          "postalCode": "312001",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "24.8887",
+          "longitude": "74.6269"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Chittorgarh" },
+          { "@type": "City", "name": "Udaipur" },
+          { "@type": "City", "name": "Bhilwara" },
+          { "@type": "City", "name": "Jaipur" },
+          { "@type": "City", "name": "Jodhpur" },
+          { "@type": "City", "name": "Kota" },
+          { "@type": "City", "name": "Ajmer" },
+          { "@type": "State", "name": "Rajasthan" },
+          { "@type": "Country", "name": "India" }
+        ],
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+        "founder": {
           "@type": "Person",
-          "name": "Vijay Laxmi Sharma"
+          "name": "Kush Sharma",
+          "url": "https://www.linkedin.com/in/kush-sharma-chittortech/"
         },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "ratingCount": "87"
         },
-        "reviewBody": "ChittorTech has developed the app and website system for Mewari Achaar with a modern and professional digital experience. Their services are best-in-class, highly supportive for local vendors and businesses, and delivered at very reasonable pricing."
+        "priceRange": "$$"
       },
       {
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": "Tahir Hussain"
-        },
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "reviewBody": "As a mentor associated with the ecosystem, I am happy to see ChittorTech growing as a promising registered startup. The team is doing remarkable work in the field of technology and digital innovation while creating positive impact at the local level."
+        "@type": "WebSite",
+        "@id": "https://www.chittortech.online/#website",
+        "url": "https://www.chittortech.online",
+        "name": "ChittorTech",
+        "description": "Elite IT Company & Software Development Agency in Rajasthan",
+        "publisher": { "@id": "https://www.chittortech.online/#organization" },
+        "inLanguage": "en-IN",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.chittortech.online/search?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.chittortech.online/#service-web",
+        "name": "Premium Web & E-Commerce Development",
+        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
+        "areaServed": { "@type": "State", "name": "Rajasthan" },
+        "description": "High-performance web development, SaaS platforms, and enterprise e-commerce systems tailored for businesses in Udaipur, Chittorgarh, and Jaipur."
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.chittortech.online/#service-app",
+        "name": "Mobile App Development (React Native & Kotlin)",
+        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
+        "areaServed": { "@type": "State", "name": "Rajasthan" },
+        "description": "Fluid native and cross-platform mobile apps for iOS and Android built on React Native Expo and Kotlin."
+      },
+      {
+        "@type": "Service",
+        "@id": "https://www.chittortech.online/#service-seo",
+        "name": "SEO & Digital Marketing Dominance",
+        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
+        "areaServed": { "@type": "State", "name": "Rajasthan" },
+        "description": "Technical SEO, Google My Business optimization, and search ranking strategies making businesses the #1 in their region."
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.chittortech.online/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Which is the best IT company in Rajasthan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ChittorTech is recognized as the best IT company in Rajasthan, specializing in elite web development, mobile apps, SaaS systems, and digital marketing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does ChittorTech provide services in Udaipur and Bhilwara?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, ChittorTech is a leading IT agency providing custom software, app development, and SEO services heavily in Udaipur, Bhilwara, Jaipur, and Chittorgarh."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What software technologies does ChittorTech use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We build highly scalable architectures using Next.js, React Native Expo, Kotlin, Node.js, and advanced AI RAG integrations."
+            }
+          }
+        ]
       }
     ]
   };
