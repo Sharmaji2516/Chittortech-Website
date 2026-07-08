@@ -88,6 +88,9 @@ export default function AdminPage() {
         recipientEmail: "",
         internID: "",
         role: "Full Stack Web Developer",
+        universityName: "",
+        gainedSkills: "",
+        signatoryName: "",
         startDate: "",
         endDate: "",
         tenure: "3 Months",
@@ -99,7 +102,9 @@ export default function AdminPage() {
     useEffect(() => {
         let content = "";
         if (activeTab === TABS.CERTIFICATES) {
-            content = `for their exceptional performance, dedication, and successful completion of their tenure as a ${formData.role}. Throughout their internship at ChittorTech, they demonstrated remarkable technical proficiency, a proactive learning attitude, and a strong commitment to delivering high-quality solutions.`;
+            content = `student of ${formData.universityName || "[ University Name ]"}, has successfully completed a summer internship in the field of ${formData.role || "[ Field Name ]"} from ${formData.startDate || "[ Start Date ]"} to ${formData.endDate || "[ End Date ]"} under guidance of ChittorTech.
+
+During the period of their internship program with us, they had been exposed to ${formData.gainedSkills || "[ Gained Skills ]"}.`;
         } else if (activeTab === TABS.APPRECIATION) {
             content = `in recognition of their outstanding contribution and meritorious service as a ${formData.role} at ChittorTech. Your dedication to excellence, innovative approach to problem-solving, and collaborative spirit have been instrumental in our projects.`;
         } else if (activeTab === TABS.LORS) {
@@ -134,7 +139,7 @@ We look forward to a mutually beneficial association and welcoming you to Chitto
 Warm regards,`;
         }
         setDocContent(content);
-    }, [activeTab, formData.role, formData.recipientName, formData.startDate, formData.date, formData.tenure, isModalOpen]);
+    }, [activeTab, formData.role, formData.recipientName, formData.startDate, formData.endDate, formData.date, formData.tenure, formData.universityName, formData.gainedSkills, formData.signatoryName, isModalOpen]);
 
     useEffect(() => {
         const savedLogin = sessionStorage.getItem("adminLoggedIn");
@@ -184,59 +189,70 @@ Warm regards,`;
         const pageWidth = isLandscape ? 297 : 210;
         const pageHeight = isLandscape ? 210 : 297;
 
-        // 1. Background (Parchment/Cream)
-        doc.setFillColor(252, 249, 242);
-        doc.rect(0, 0, pageWidth, pageHeight, 'F');
-
-        // 2. Watermark
-        doc.setGState(new doc.GState({ opacity: 0.03 }));
-        doc.addImage("/logo.png", "PNG", (pageWidth - 100)/2, (pageHeight - 100)/2, 100, 100);
-        doc.setGState(new doc.GState({ opacity: 1 }));
-
         if (isLandscape) {
-            // --- LANDSCAPE DESIGN (Certificate/Appreciation) ---
-            // Ornate Gold Border
-            doc.setDrawColor(212, 175, 55); 
-            doc.setLineWidth(2);
-            doc.rect(8, 8, pageWidth - 16, pageHeight - 16);
-            doc.setLineWidth(0.5);
-            doc.rect(10, 10, pageWidth - 20, pageHeight - 20);
-
-            // Corner Ornaments (Simulated)
-            doc.setLineWidth(1.5);
-            const corners = [
-                [8, 8, 20, 20], [pageWidth-28, 8, 20, 20],
-                [8, pageHeight-28, 20, 20], [pageWidth-28, pageHeight-28, 20, 20]
-            ];
-            corners.forEach(c => doc.rect(c[0], c[1], c[2], c[2]));
-
-            // Content
-            doc.addImage("/logo.png", "PNG", (pageWidth - 40)/2, 12, 40, 40);
+            // 1. Draw the beautiful border image as full background
+            doc.addImage("/certificate-template.webp", "WEBP", 0, 0, pageWidth, pageHeight);
             
-            doc.setTextColor(26, 43, 72); // Deep Navy
+            // 2. Draw a pale background rectangle over the inner text area to hide the original template text 
+            // but leave the borders visible around the edges.
+            doc.setFillColor(247, 249, 250);
+            doc.rect(20, 20, pageWidth - 40, pageHeight - 40, 'F');
+            
+
+            const deepBlue = [27, 54, 93];
+
+            // --- HEADER ---
+            doc.addImage("/logo.png", "PNG", pageWidth/2 - 12.5, 20, 25, 25);
+
+            // --- TITLE ---
             doc.setFont("times", "bold");
             doc.setFontSize(36);
-            doc.text(data.type === TABS.CERTIFICATES ? "CERTIFICATE OF INTERNSHIP" : "CERTIFICATE OF APPRECIATION", pageWidth/2, 65, { align: "center" });
+            doc.text("CERTIFICATE OF INTERNSHIP", pageWidth/2, 60, { align: "center" });
 
-            doc.setFontSize(16);
-            doc.setFont("times", "italic");
-            doc.text("This prestigious recognition is proudly presented to", pageWidth/2, 80, { align: "center" });
+            // --- SUBTITLE ---
+            doc.setFontSize(14);
+            doc.setFont("helvetica", "normal");
+            doc.setTextColor(50, 50, 50);
+            doc.text("This is to certify that", pageWidth/2, 78, { align: "center" });
 
-            doc.setTextColor(212, 175, 55); // Shahi Gold
+            // --- RECIPIENT NAME ---
+            doc.setTextColor(...deepBlue);
             doc.setFontSize(32);
-            doc.setFont("times", "bold");
+            doc.setFont("times", "normal");
             doc.text(data.recipientName.toUpperCase(), pageWidth/2, 98, { align: "center" });
-
-            doc.setTextColor(26, 43, 72);
-            doc.setFontSize(13);
-            doc.setFont("times", "normal");
             
-            const splitDesc = doc.splitTextToSize(data.docContent || "", pageWidth - 80);
-            doc.text(splitDesc, pageWidth/2, 112, { align: "center" });
+            // Dotted underline
+            doc.setDrawColor(...deepBlue);
+            doc.setLineDashPattern([1, 1.5], 0);
+            doc.setLineWidth(0.5);
+            const nameWidth = doc.getTextWidth(data.recipientName.toUpperCase());
+            doc.line((pageWidth - nameWidth - 20)/2, 102, (pageWidth + nameWidth + 20)/2, 102);
+            doc.setLineDashPattern([], 0); // reset dash
 
-            doc.setFont("times", "normal");
+            // --- BODY CONTENT ---
+            doc.setTextColor(60, 60, 60);
             doc.setFontSize(12);
-            doc.text(`at ChittorTech from ${data.startDate}${data.endDate ? ' to ' + data.endDate : ''}.`, pageWidth/2, 145, { align: "center" });
+            doc.setFont("helvetica", "normal");
+            
+            const splitDesc = doc.splitTextToSize(data.docContent || "", pageWidth - 60);
+            doc.text(splitDesc, pageWidth/2, 118, { align: "center", lineHeightFactor: 1.6 });
+
+            // --- FOOTER ---
+            const footerY = 165;
+            
+            // Left: Signatory Name
+            doc.setTextColor(...deepBlue);
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(11);
+            doc.text(data.signatoryName || "Full Name", 60, footerY, { align: "center" });
+
+            // Right: Reference Number
+            doc.setTextColor(...deepBlue);
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(10);
+            doc.setTextColor(80, 80, 80);
+            doc.text(`ID: ${data.internID || "N/A"}`, pageWidth - 60, footerY + 6, { align: "center" });
+            doc.text(`Date: ${data.date ? new Date(data.date).toLocaleDateString() : new Date().toLocaleDateString()}`, pageWidth - 60, footerY + 12, { align: "center" });
 
         } else {
             // --- PORTRAIT DESIGN (LOR/Offer Letter/Shahi Letterhead) ---
@@ -392,15 +408,7 @@ Warm regards,`;
             doc.text("www.chittortech.online", pageWidth/2, pageHeight - 5, { align: "center" });
         }
 
-        // Certification Footer
-        doc.setTextColor(26, 43, 72);
-        doc.setFontSize(10);
-        doc.setFont("times", "bold");
-        const footerY = pageHeight - 15;
-        if (isLandscape) {
-            doc.text(`Certificate ID: ${data.internID}`, pageWidth/2, footerY, { align: "center" });
-        }
-        doc.setFont("times", "normal");
+        // No extra footer text needed for landscape
 
         doc.save(`${data.recipientName}_${data.type.replace('_', '')}.pdf`);
     };
@@ -622,6 +630,9 @@ Warm regards,`;
                                     recipientEmail: "",
                                     internID: "",
                                     role: "Full Stack Web Developer",
+                                    universityName: "",
+                                    gainedSkills: "",
+                                    signatoryName: "",
                                     startDate: "",
                                     endDate: "",
                                     tenure: "3 Months",
@@ -691,10 +702,24 @@ Warm regards,`;
                                                 <input type="email" value={formData.recipientEmail} onChange={e => setFormData({...formData, recipientEmail: e.target.value})} required />
                                             </div>
                                             {activeTab === TABS.CERTIFICATES && (
-                                                <div className="modal-field">
-                                                    <label>Intern ID</label>
-                                                    <input type="text" placeholder="CT-2026-001" value={formData.internID} onChange={e => setFormData({...formData, internID: e.target.value})} required />
-                                                </div>
+                                                <>
+                                                    <div className="modal-field">
+                                                        <label>Intern ID</label>
+                                                        <input type="text" placeholder="CT-2026-001" value={formData.internID} onChange={e => setFormData({...formData, internID: e.target.value})} required />
+                                                    </div>
+                                                    <div className="modal-field">
+                                                        <label>University Name</label>
+                                                        <input type="text" placeholder="e.g. Mewar University" value={formData.universityName} onChange={e => setFormData({...formData, universityName: e.target.value})} required />
+                                                    </div>
+                                                    <div className="modal-field">
+                                                        <label>Gained Skills</label>
+                                                        <input type="text" placeholder="e.g. React, Next.js, Firebase" value={formData.gainedSkills} onChange={e => setFormData({...formData, gainedSkills: e.target.value})} required />
+                                                    </div>
+                                                    <div className="modal-field">
+                                                        <label>Signatory Full Name</label>
+                                                        <input type="text" placeholder="e.g. Lav Sharma" value={formData.signatoryName} onChange={e => setFormData({...formData, signatoryName: e.target.value})} required />
+                                                    </div>
+                                                </>
                                             )}
                                             <div className="modal-field">
                                                 <label>Role</label>
@@ -794,25 +819,26 @@ Warm regards,`;
                                                     </div>
                                                 </div>
                                             ) : (
-                                                <div className="preview-inner-border">
-                                                        <img src="/logo.png" alt="Logo" className="preview-logo-fixed" />
-                                                        <h1 className="preview-title-fixed">CERTIFICATE OF INTERNSHIP</h1>
-                                                        <p className="preview-label">This prestigious recognition is proudly presented to</p>
-                                                        <h2 className="preview-name-fixed">{formData.recipientName.toUpperCase()}</h2>
-                                                        <div className="preview-body-text">
-                                                            <p>{docContent}</p>
+                                                <div className="preview-inner-border-new">
+                                                        <div className="preview-header-new">
+                                                            <img src="/logo.png" alt="Logo" className="preview-logo-new" />
                                                         </div>
-                                                        <div className="preview-footer-block">
-                                                            <p>at <b>ChittorTech</b></p>
-                                                            <p className="date-sub">from <b>{formData.startDate}</b> to <b>{formData.endDate}</b></p>
+                                                        <h1 className="preview-title-new">CERTIFICATE OF INTERNSHIP</h1>
+                                                        <p className="preview-label-new">This is to certify that</p>
+                                                        <h2 className="preview-name-new">{formData.recipientName.toUpperCase()}</h2>
+                                                        <div className="preview-body-text-new">
+                                                            <p style={{ whiteSpace: "pre-line" }}>{docContent}</p>
                                                         </div>
                                                         
-                                                        <div className="preview-signatures centered">
-                                                        {/* Manual Seal/Signature Area */}
-                                                    </div>
-                                                     <div className="preview-footer">
-                                                         <p style={{ fontWeight: 'bold', color: '#1A2B48', fontSize: '1.1rem' }}>Certificate ID: {formData.internID}</p>
-                                                     </div>
+                                                        <div className="preview-footer-new">
+                                                            <div className="footer-col-new" style={{ paddingTop: '10px' }}>
+                                                                <p><strong>{formData.signatoryName || "Full Name"}</strong></p>
+                                                            </div>
+                                                            <div className="footer-col-new" style={{ paddingTop: '10px' }}>
+                                                                <p className="sub-text-new">ID: {formData.internID || "N/A"}</p>
+                                                                <p className="sub-text-new">Date: {formData.date ? new Date(formData.date).toLocaleDateString() : new Date().toLocaleDateString()}</p>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                             )}
                                         </div>

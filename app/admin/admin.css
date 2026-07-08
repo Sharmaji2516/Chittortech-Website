@@ -21,7 +21,7 @@
     font-family: 'Outfit', sans-serif;
     position: relative;
     overflow-x: hidden;
-    padding-top: 40px;
+    padding-top: 160px; /* Increased to account for the fixed global navbar */
 }
 
 /* Shahi Security Overlay / Biometric Warning */
@@ -811,6 +811,13 @@
     flex-shrink: 0; /* Stop collapsing inside scroll container */
 }
 
+.certificate-preview.landscape {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
 .certificate-preview.portrait {
     max-width: 560px;
     min-height: 720px;
@@ -995,4 +1002,215 @@
         transform: scale(0.48);
         margin-bottom: -370px;
     }
+}
+
+/* Guard Styles */
+.desktop-only-guard {
+    display: none;
+}
+
+.desktop-only-guard.active {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    background: var(--bg-light);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.guard-content {
+    background: #ffffff;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    box-shadow: var(--shadow-premium);
+    max-width: 400px;
+    width: 100%;
+}
+
+.guard-logo {
+    width: 80px;
+    height: auto;
+    margin: 0 auto 1.5rem;
+    display: block;
+}
+
+.guard-icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.guard-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+.desktop-only-guard h2 {
+    color: var(--dark-navy);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.desktop-only-guard p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.guard-footer {
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 700;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* New Certificate Preview Styles (Deep Blue Theme) */
+.preview-inner-border-new {
+    width: 100%;
+    height: 100%;
+    background-image: url('/certificate-template.webp');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    outline: none;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.preview-inner-border-new::before {
+    content: "";
+    position: absolute;
+    top: 8%;
+    bottom: 8%;
+    left: 6%;
+    right: 6%;
+    background-color: #F7F9FA;
+    z-index: 0;
+}
+
+.preview-inner-border-new > * {
+    position: relative;
+    z-index: 1;
+}
+
+.preview-header-new {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    margin-top: 2rem;
+}
+
+.preview-logo-new {
+    width: 50px;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.preview-tagline {
+    font-size: 0.85rem;
+    color: #1B365D;
+    font-family: 'Helvetica', sans-serif;
+    letter-spacing: 1px;
+}
+
+.preview-title-new {
+    font-size: 2.2rem;
+    font-family: 'Times', serif;
+    font-weight: bold;
+    color: #1B365D;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.preview-label-new {
+    font-size: 1rem;
+    color: #444;
+    font-family: 'Helvetica', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.preview-name-new {
+    font-size: 2.2rem;
+    font-family: 'Times', serif;
+    color: #1B365D;
+    margin-bottom: 0.5rem;
+    border-bottom: 2px dashed #1B365D;
+    padding-bottom: 5px;
+    min-width: 70%;
+    text-align: center;
+}
+
+.preview-body-text-new {
+    width: 90%;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    font-family: 'Helvetica', sans-serif;
+    margin-bottom: 2rem;
+}
+
+.preview-footer-new {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: auto;
+}
+
+.footer-col-new {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.signature-line-new {
+    width: 80%;
+    border-bottom: 1.5px dashed #1B365D;
+    margin-bottom: 0.5rem;
+}
+
+.footer-col-new p {
+    margin: 0;
+    color: #1B365D;
+    font-family: 'Helvetica', sans-serif;
+    font-size: 0.95rem;
+}
+
+.footer-col-new .sub-text-new {
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 0.2rem;
+}
+
+.qr-box-new {
+    width: 60px;
+    height: 60px;
+    border: 1.5px solid #1B365D;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.55rem;
+    color: #1B365D;
+    font-weight: bold;
 }
