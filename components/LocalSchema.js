@@ -36,7 +36,8 @@ export default function LocalSchema() {
           "https://www.instagram.com/chittortech",
           "https://twitter.com/chittortech",
           "https://www.facebook.com/chittortech",
-          "https://github.com/Sharmaji2516"
+          "https://github.com/Sharmaji2516",
+          "https://www.crunchbase.com/organization/chittortech"
         ],
         "contactPoint": [
           {
