@@ -11,8 +11,8 @@ export default function Footer({ onModalOpen }) {
       width: '100%',
       background: '#ffffff',
       borderTop: '1px solid rgba(0, 62, 216, 0.08)',
-      paddingTop: '80px',
-      paddingBottom: '48px',
+      paddingTop: 'clamp(40px, 8vw, 80px)',
+      paddingBottom: 'clamp(30px, 6vw, 48px)',
       overflow: 'hidden',
       zIndex: 10
     }}>

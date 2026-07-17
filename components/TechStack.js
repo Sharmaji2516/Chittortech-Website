@@ -32,7 +32,7 @@ const allTech = [...row1, ...row2];
 
 export default function TechStack() {
   return (
-    <section className="tech-stack-section" style={{ padding: '80px 0', background: '#fbfbfb', borderTop: '1px solid rgba(0, 62, 216, 0.05)', borderBottom: '1px solid rgba(0, 62, 216, 0.05)', overflow: 'hidden' }}>
+    <section className="tech-stack-section" style={{ padding: 'clamp(40px, 6vw, 80px) 0', background: '#fbfbfb', borderTop: '1px solid rgba(0, 62, 216, 0.05)', borderBottom: '1px solid rgba(0, 62, 216, 0.05)', overflow: 'hidden' }}>
       <div className="container" style={{ textAlign: 'center', marginBottom: '40px' }}>
         <h2 style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '3px', color: 'var(--text-muted)', fontWeight: '800' }}>
           Powered by Industry-Leading Technologies

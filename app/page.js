@@ -101,7 +101,7 @@ export default function Home() {
         </div>
       </header>
 
-      <section id="featured-services" style={{ padding: '120px 0', background: 'transparent', position: 'relative' }}>
+      <section id="featured-services" style={{ padding: 'clamp(50px, 8vw, 120px) 0', background: 'transparent', position: 'relative' }}>
         <div className="container">
           <div style={{ 
             display: 'flex', 

@@ -60,9 +60,9 @@ const reviews = [
 
 export default function ReviewMarquee() {
   return (
-    <section id="home-reviews" style={{ background: 'transparent', overflow: 'hidden', paddingBottom: '60px' }}>
+    <section id="home-reviews" style={{ background: 'transparent', overflow: 'hidden', paddingTop: 'clamp(40px, 6vw, 80px)', paddingBottom: 'clamp(40px, 6vw, 60px)' }}>
       <div className="container" style={{ textAlign: 'center' }}>
-        <h2 className="section-title reveal" style={{ marginBottom: '4rem', color: 'var(--text-main)' }}>What People Say</h2>
+        <h2 className="section-title reveal" style={{ marginBottom: 'clamp(2rem, 4vw, 4rem)', color: 'var(--text-main)' }}>What People Say</h2>
       </div>
 
       <div style={{ position: 'relative', display: 'flex', width: '100%', overflow: 'hidden', padding: '10px 0' }}>
@@ -112,7 +112,7 @@ export default function ReviewMarquee() {
         </div>
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: '4rem' }} className="reveal">
+      <div style={{ textAlign: 'center', marginTop: 'clamp(2.5rem, 5vw, 4rem)' }} className="reveal">
         <Link href="/reviews" className="btn btn-outline" style={{ borderRadius: '50px' }}>View All Reviews</Link>
       </div>
 
