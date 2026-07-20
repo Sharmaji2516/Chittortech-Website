@@ -42,7 +42,7 @@ export default function LocalSchema() {
         "contactPoint": [
           {
             "@type": "ContactPoint",
-            "telephone": "+91-8233816674",
+            "telephone": "+91-7597451057",
             "contactType": "customer service",
             "areaServed": ["IN", "Rajasthan"],
             "availableLanguage": ["English", "Hindi"],
@@ -90,7 +90,7 @@ export default function LocalSchema() {
           "https://www.chittortech.online/icon.png"
         ],
         "logo": "https://www.chittortech.online/icon.png",
-        "telephone": "+91-8233816674",
+        "telephone": "+91-7597451057",
         "email": "chittortech@gmail.com",
         "address": {
           "@type": "PostalAddress",
@@ -163,38 +163,60 @@ export default function LocalSchema() {
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "ChittorTech IT Services",
+          "name": "ChittorTech Global IT Services",
           "itemListElement": [
             {
               "@type": "Offer",
+              "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
               "itemOffered": {
                 "@type": "Service",
-                "name": "Website Development",
-                "description": "Custom, high-performance websites using Next.js & React for businesses in Rajasthan."
+                "name": "Offshore Web App Development (Next.js / React)",
+                "description": "Custom high-performance web applications for US, UK, Canada, UAE, Australia & European clients. Built with Next.js 16, React 19, Tailwind CSS v4, and Firebase. Starting from $500 USD."
               }
             },
             {
               "@type": "Offer",
+              "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
               "itemOffered": {
                 "@type": "Service",
-                "name": "Mobile App Development",
-                "description": "React Native (Expo) & Kotlin Android apps for iOS and Android platforms."
+                "name": "Cross-Platform Mobile App Engineering (React Native / Kotlin)",
+                "description": "Offshore iOS and Android mobile app development using React Native (Expo) and Kotlin for international clients. Offline support, push notifications, and Play Store/App Store publishing. Starting from $1,000 USD."
               }
             },
             {
               "@type": "Offer",
+              "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
               "itemOffered": {
                 "@type": "Service",
-                "name": "E-Commerce Development",
-                "description": "Full-featured online stores with payment gateway integration for Rajasthan businesses."
+                "name": "Custom AI & RAG Solutions (OpenAI / Groq / Llama 3)",
+                "description": "Bespoke AI chatbots, document Q&A systems, and LLM-powered business automation using OpenAI GPT-4o, Groq, and Llama 3. Integrated with custom vector databases and REST APIs. Starting from $800 USD."
               }
             },
             {
               "@type": "Offer",
+              "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
               "itemOffered": {
                 "@type": "Service",
-                "name": "AI Chatbot Development",
-                "description": "Custom RAG-powered AI chatbots using LangChain, OpenAI & Groq for business automation."
+                "name": "SaaS MVP Development",
+                "description": "End-to-end SaaS MVP architecture, multi-tenant systems, billing integrations, and admin dashboards. Ideal for US and UK startup founders looking to launch fast. Starting from $1,500 USD."
+              }
+            },
+            {
+              "@type": "Offer",
+              "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
+              "itemOffered": {
+                "@type": "Service",
+                "name": "E-Commerce Solutions",
+                "description": "Full-featured international e-commerce stores with Stripe, PayPal, Razorpay, Cashfree payment gateways, multi-currency support, inventory management, and automated invoicing."
+              }
+            },
+            {
+              "@type": "Offer",
+              "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Dedicated Remote Developers & Staff Augmentation",
+                "description": "Hire dedicated full-stack, mobile, or AI developers from India on hourly or monthly contract basis. Transparent communication, daily standups, and GitHub-based delivery. Starting from $15/hr USD."
               }
             }
           ]
@@ -296,9 +318,17 @@ export default function LocalSchema() {
         "serviceType": "Artificial Intelligence Solutions",
         "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
         "areaServed": [
+          { "@type": "Place", "name": "World" },
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "United Kingdom" },
+          { "@type": "Country", "name": "Canada" },
+          { "@type": "Country", "name": "United Arab Emirates" },
+          { "@type": "Country", "name": "Australia" },
+          { "@type": "Country", "name": "Germany" },
+          { "@type": "Country", "name": "Singapore" },
           { "@type": "Country", "name": "India" }
         ],
-        "description": "Bespoke RAG-powered AI chatbots using LangChain, OpenAI GPT, and Groq. Integrated with Firebase and REST APIs for intelligent business automation.",
+        "description": "Bespoke RAG-powered AI chatbots using LangChain, OpenAI GPT-4o, and Groq. Custom vector database integrations and REST APIs for business automation. Serving international clients in USA, UK, UAE, Canada, and Australia.",
         "url": "https://www.chittortech.online/services"
       },
       {
@@ -314,6 +344,53 @@ export default function LocalSchema() {
         ],
         "description": "Technical SEO, Google My Business optimization, and local search ranking strategies to make businesses the #1 result in their region across Rajasthan.",
         "url": "https://www.chittortech.online/services"
+      },
+
+      // ============================================
+      // OFFSHORE & INTERNATIONAL SERVICE SCHEMAS
+      // ============================================
+      {
+        "@type": ["Service", "ProfessionalService"],
+        "@id": "https://www.chittortech.online/#service-offshore-web",
+        "name": "Offshore Web Development for USA, UK & Europe",
+        "serviceType": "Offshore Software Development",
+        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
+        "areaServed": [
+          { "@type": "Place", "name": "World" },
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "United Kingdom" },
+          { "@type": "Country", "name": "Canada" },
+          { "@type": "Country", "name": "United Arab Emirates" },
+          { "@type": "Country", "name": "Australia" },
+          { "@type": "Country", "name": "Germany" },
+          { "@type": "Country", "name": "Singapore" },
+          { "@type": "Country", "name": "Saudi Arabia" },
+          { "@type": "Country", "name": "Qatar" }
+        ],
+        "description": "ChittorTech provides world-class offshore web and mobile application development for international clients in the USA, UK, Canada, UAE (Dubai), Australia, Germany, and Singapore. We offer dedicated remote developers, fixed-price project models, and hourly engagement starting from $15/hr.",
+        "url": "https://www.chittortech.online/contact",
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "15",
+          "priceSpecification": {
+            "@type": "UnitPriceSpecification",
+            "priceCurrency": "USD",
+            "price": "15",
+            "unitText": "HOUR"
+          },
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": ["Service", "ProfessionalService"],
+        "@id": "https://www.chittortech.online/#service-staff-augmentation",
+        "name": "Dedicated Remote Developers & Staff Augmentation",
+        "serviceType": "IT Staff Augmentation",
+        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
+        "areaServed": { "@type": "Place", "name": "World" },
+        "description": "Hire dedicated full-stack, mobile, or AI developers from ChittorTech India on hourly or monthly contracts. Transparent GitHub-based delivery, daily standups, and timezone-compatible communication.",
+        "url": "https://www.chittortech.online/contact"
       },
 
       // ============================================
@@ -407,6 +484,38 @@ export default function LocalSchema() {
             "acceptedAnswer": {
               "@type": "Answer",
               "text": "ChittorTech serves businesses in Bhilwara with elite web development, mobile app development, and digital marketing services. As the leading IT agency in the Mewar division, we help Bhilwara-based businesses go digital and scale online."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can ChittorTech build web and mobile apps for clients in the USA and UK?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, ChittorTech is a premier offshore software development agency serving international clients in the USA, United Kingdom, Canada, UAE (Dubai & Abu Dhabi), Australia, Germany, and Singapore. We offer fixed-price project contracts, hourly developer hiring starting from $15/hr USD, and provide transparent GitHub-based delivery with daily standup reports."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I hire a dedicated React Native or Next.js developer from India?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ChittorTech offers dedicated developer hiring for international clients. You can hire an expert Next.js, React, React Native, Kotlin, or AI developer from our team on an hourly or monthly contract. Contact us via WhatsApp (+91 7597451057) or email (contact@chittortech.online) to discuss your project requirements and budget."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does ChittorTech develop AI chatbots for businesses in Dubai and UAE?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, ChittorTech builds custom AI chatbots and RAG (Retrieval-Augmented Generation) systems for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE. Our AI solutions use OpenAI GPT-4o, Groq, and Llama 3 and can be integrated with your existing website, WhatsApp Business, or CRM platforms."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the pricing models for outsourcing web development to ChittorTech?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ChittorTech offers three engagement models: (1) Fixed Price Project – ideal for well-defined projects starting from $500 USD for websites, (2) Hourly Developer Hire – dedicated developers starting from $15/hr USD, and (3) Monthly Retainer – full-time dedicated developer at competitive monthly rates. All projects include free consultation, transparent milestones, and source code ownership. Contact us at contact@chittortech.online."
             }
           }
         ]
