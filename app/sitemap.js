@@ -88,7 +88,9 @@ export default async function sitemap() {
     priority: route.priority,
     alternates: {
       languages: {
+        "x-default": `${BASE_URL}${route.path}`,
         "en-IN": `${BASE_URL}${route.path}`,
+        "en-US": `${BASE_URL}${route.path}`,
       },
     },
   }));
