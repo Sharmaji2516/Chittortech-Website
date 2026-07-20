@@ -26,11 +26,11 @@ export default function Home() {
       link: "/services/mobile-app-development"
     },
     {
-      title: "E-Commerce & Shopify Plus",
-      icon: "fa-cart-shopping",
-      color: "#7c3aed",
-      description: "Scale online retail globally with custom Shopify Plus stores, headless Next.js Commerce platforms, and multi-currency payment integrations.",
-      link: "/services/e-commerce-solutions"
+      title: "AI Chatbots & LLM Automation",
+      icon: "fa-robot",
+      color: "#059669",
+      description: "Automate 85% of customer support with custom OpenAI GPT-4o, private RAG vector document search (Pinecone/Qdrant), and bilingual WhatsApp AI bots.",
+      link: "/services/ai-integration"
     },
     {
       title: "Custom Software & ERP Systems",
@@ -38,13 +38,6 @@ export default function Home() {
       color: "#0284c7",
       description: "Enterprise multi-branch ERP platforms, custom CRM lead dashboards, SaaS MVP platforms, and automated workflow engines.",
       link: "/services/custom-software-development"
-    },
-    {
-      title: "AI Chatbots & LLM Automation",
-      icon: "fa-robot",
-      color: "#059669",
-      description: "Automate 85% of customer support with custom OpenAI GPT-4o, private RAG vector document search (Pinecone/Qdrant), and bilingual WhatsApp AI bots.",
-      link: "/services/ai-integration"
     }
   ];
 
