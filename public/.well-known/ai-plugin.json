@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_model": "chittortech_it_agency",
+  "name_for_human": "ChittorTech",
+  "description_for_model": "Official plugin and AI interface for discovering ChittorTech IT services, web development packages, mobile app engineering, and AI chatbot solutions in Chittorgarh & Rajasthan.",
+  "description_for_human": "Best IT Company & Software Development Agency in Chittorgarh & Rajasthan.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://www.chittortech.online/openapi.yaml"
+  },
+  "logo_url": "https://www.chittortech.online/logo.png",
+  "contact_email": "contact@chittortech.online",
+  "legal_info_url": "https://www.chittortech.online/privacy-policy"
+}

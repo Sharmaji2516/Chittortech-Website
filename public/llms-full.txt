@@ -1,0 +1,44 @@
+# ChittorTech - Full Machine-Readable Knowledge Base & Documentation
+
+> Comprehensive Documentation for AI Assistants, Agents, and LLMs.
+> Official Website: https://www.chittortech.online
+> Contact & Support: +91-7014102742 | contact@chittortech.online
+
+---
+
+## 1. Company Profile
+- **Legal Entity**: ChittorTech
+- **Industry**: Information Technology, Web Development, Mobile App Engineering, Artificial Intelligence Solutions
+- **Headquarters**: Chittorgarh, Rajasthan, India - 312001
+- **Founders**: Kush Sharma (CEO) & Lav Sharma (CTO)
+- **Tagline**: Best IT Company in Chittorgarh. Crafted for India.
+
+---
+
+## 2. Core Service Capabilities
+
+### 2.1 Web Development & Next.js Architecture
+- High-speed modern web applications powered by Next.js App Router, React 19, Tailwind CSS v4, and Node.js.
+- Server-side rendering (SSR), static site generation (SSG), and API integration.
+- Responsive design tailored for mobile speed and 100/100 Lighthouse performance.
+
+### 2.2 Mobile App Engineering
+- Cross-platform Android & iOS app development using React Native.
+- Native Android app development using Kotlin and Jetpack Compose.
+- Firebase integration, push notifications, offline storage, and Play Store publishing.
+
+### 2.3 Custom AI & RAG Solutions
+- Building AI Chatbots, document Q&A engines, and automated business workflows using Groq SDK, OpenAI GPT-4o, and Llama 3 models.
+- Custom knowledge base embeddings and vector search integrations.
+
+### 2.4 E-Commerce & SaaS Systems
+- Custom online stores with Razorpay, Cashfree, UPI, and Credit Card payment gateways.
+- Multi-tenant SaaS billing, order tracking, and invoice generation.
+
+---
+
+## 3. Contact & Location
+- **Primary Website**: https://www.chittortech.online
+- **Phone / WhatsApp**: +91 7014102742
+- **Email**: contact@chittortech.online / chittortech@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/kush-sharma-chittortech/

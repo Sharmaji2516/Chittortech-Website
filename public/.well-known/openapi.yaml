@@ -1,0 +1,20 @@
+openapi: 3.0.1
+info:
+  title: ChittorTech IT Agency Catalog & Agent API
+  description: Machine-readable API specification for AI agents to query web development, mobile app engineering, and AI chatbot services by ChittorTech.
+  version: v1
+servers:
+  - url: https://www.chittortech.online
+paths:
+  /llms.txt:
+    get:
+      summary: Retrieve machine-readable context for LLMs about ChittorTech services.
+      responses:
+        '200':
+          description: Returns Markdown documentation about services, founders, and contact info.
+  /llms-full.txt:
+    get:
+      summary: Retrieve comprehensive knowledge base for AI agents.
+      responses:
+        '200':
+          description: Returns full IT agency documentation.

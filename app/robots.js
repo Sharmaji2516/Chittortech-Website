@@ -16,6 +16,9 @@ export default function robots() {
           "/internship",
           "/internship/apply",
           "/verify",
+          "/llms.txt",
+          "/llms-full.txt",
+          "/.well-known/llms.txt",
         ],
         disallow: [
           "/admin/",
