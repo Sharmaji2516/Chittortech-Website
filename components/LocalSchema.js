@@ -107,32 +107,29 @@ export default function LocalSchema() {
         },
         "hasMap": "https://maps.google.com/?q=Chittorgarh,Rajasthan,India",
         "areaServed": [
+          { "@type": "Place", "name": "World" },
+          { "@type": "Country", "name": "United States", "sameAs": "https://en.wikipedia.org/wiki/United_States" },
+          { "@type": "Country", "name": "United Kingdom", "sameAs": "https://en.wikipedia.org/wiki/United_Kingdom" },
+          { "@type": "Country", "name": "Canada", "sameAs": "https://en.wikipedia.org/wiki/Canada" },
+          { "@type": "Country", "name": "United Arab Emirates", "sameAs": "https://en.wikipedia.org/wiki/United_Arab_Emirates" },
+          { "@type": "Country", "name": "Australia", "sameAs": "https://en.wikipedia.org/wiki/Australia" },
+          { "@type": "Country", "name": "Germany", "sameAs": "https://en.wikipedia.org/wiki/Germany" },
+          { "@type": "Country", "name": "Singapore", "sameAs": "https://en.wikipedia.org/wiki/Singapore" },
+          { "@type": "Country", "name": "Saudi Arabia", "sameAs": "https://en.wikipedia.org/wiki/Saudi_Arabia" },
+          { "@type": "Country", "name": "Qatar", "sameAs": "https://en.wikipedia.org/wiki/Qatar" },
+          { "@type": "Country", "name": "India", "sameAs": "https://en.wikipedia.org/wiki/India" },
           { "@type": "City", "name": "Chittorgarh", "sameAs": "https://en.wikipedia.org/wiki/Chittorgarh" },
           { "@type": "City", "name": "Udaipur", "sameAs": "https://en.wikipedia.org/wiki/Udaipur" },
           { "@type": "City", "name": "Bhilwara", "sameAs": "https://en.wikipedia.org/wiki/Bhilwara" },
           { "@type": "City", "name": "Jaipur", "sameAs": "https://en.wikipedia.org/wiki/Jaipur" },
-          { "@type": "City", "name": "Jodhpur" },
-          { "@type": "City", "name": "Kota" },
-          { "@type": "City", "name": "Ajmer" },
-          { "@type": "City", "name": "Rajsamand" },
-          { "@type": "City", "name": "Nathdwara" },
-          { "@type": "City", "name": "Pratapgarh" },
-          { "@type": "City", "name": "Dungarpur" },
-          { "@type": "State", "name": "Rajasthan", "sameAs": "https://en.wikipedia.org/wiki/Rajasthan" },
-          { "@type": "Country", "name": "India" }
+          { "@type": "State", "name": "Rajasthan", "sameAs": "https://en.wikipedia.org/wiki/Rajasthan" }
         ],
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "09:00",
-            "closes": "20:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Saturday",
-            "opens": "10:00",
-            "closes": "18:00"
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
           }
         ],
         "founder": {
@@ -152,9 +149,9 @@ export default function LocalSchema() {
           "ratingCount": "87",
           "reviewCount": "87"
         },
-        "priceRange": "₹₹",
-        "currenciesAccepted": "INR",
-        "paymentAccepted": "UPI, Bank Transfer, Cash",
+        "priceRange": "$$",
+        "currenciesAccepted": "USD, GBP, EUR, AED, CAD, AUD, INR",
+        "paymentAccepted": "Credit Card, Debit Card, Wire Transfer, International Cards, PayPal, UPI, Net Banking",
         "isAccessibleForFree": false,
         "knowsAbout": [
           "Web Development Rajasthan",
