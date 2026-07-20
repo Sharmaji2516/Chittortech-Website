@@ -113,6 +113,24 @@ export default function Footer({ onModalOpen }) {
             </ul>
           </div>
 
+          {/* Global Markets */}
+          <div>
+            <h4 style={{
+              fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+              color: '#09090b',
+              fontWeight: 700,
+              fontSize: '0.8rem',
+              textTransform: 'uppercase',
+              letterSpacing: '1.2px',
+              marginBottom: '20px'
+            }}>Global Markets</h4>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <li><Link href="/offshore-software-development-usa" style={{ color: '#52525b', fontSize: '0.875rem', textDecoration: 'none' }}>US Offshore Tech</Link></li>
+              <li><Link href="/hire-react-native-developers" style={{ color: '#52525b', fontSize: '0.875rem', textDecoration: 'none' }}>Hire React Native Devs</Link></li>
+              <li><Link href="/custom-ai-solutions-dubai-uae" style={{ color: '#52525b', fontSize: '0.875rem', textDecoration: 'none' }}>Dubai AI Solutions</Link></li>
+            </ul>
+          </div>
+
           {/* Company */}
           <div>
             <h4 style={{
