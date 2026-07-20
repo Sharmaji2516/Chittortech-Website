@@ -1,27 +1,67 @@
 export default function LocalSchema() {
+  const SITE = "https://www.chittortech.online";
+  const ORG_ID = `${SITE}/#organization`;
+  const LOCAL_ID = `${SITE}/#localbusiness`;
+  const WEBSITE_ID = `${SITE}/#website`;
+  const FOUNDER_ID = `${SITE}/#founder`;
+  const CTO_ID = `${SITE}/#cto`;
+  const LOGO_ID = `${SITE}/#logo`;
+
+  const GLOBAL_AREA_SERVED = [
+    { "@type": "Place", "name": "World" },
+    { "@type": "Country", "name": "United States", "sameAs": "https://en.wikipedia.org/wiki/United_States" },
+    { "@type": "Country", "name": "United Kingdom", "sameAs": "https://en.wikipedia.org/wiki/United_Kingdom" },
+    { "@type": "Country", "name": "Canada", "sameAs": "https://en.wikipedia.org/wiki/Canada" },
+    { "@type": "Country", "name": "United Arab Emirates", "sameAs": "https://en.wikipedia.org/wiki/United_Arab_Emirates" },
+    { "@type": "Country", "name": "Australia", "sameAs": "https://en.wikipedia.org/wiki/Australia" },
+    { "@type": "Country", "name": "Germany", "sameAs": "https://en.wikipedia.org/wiki/Germany" },
+    { "@type": "Country", "name": "Singapore", "sameAs": "https://en.wikipedia.org/wiki/Singapore" },
+    { "@type": "Country", "name": "Saudi Arabia", "sameAs": "https://en.wikipedia.org/wiki/Saudi_Arabia" },
+    { "@type": "Country", "name": "Qatar", "sameAs": "https://en.wikipedia.org/wiki/Qatar" },
+    { "@type": "Country", "name": "Netherlands", "sameAs": "https://en.wikipedia.org/wiki/Netherlands" },
+    { "@type": "Country", "name": "France", "sameAs": "https://en.wikipedia.org/wiki/France" },
+    { "@type": "Country", "name": "New Zealand", "sameAs": "https://en.wikipedia.org/wiki/New_Zealand" },
+    { "@type": "Country", "name": "Ireland", "sameAs": "https://en.wikipedia.org/wiki/Republic_of_Ireland" },
+    { "@type": "Country", "name": "India", "sameAs": "https://en.wikipedia.org/wiki/India" },
+    { "@type": "State", "name": "Rajasthan", "sameAs": "https://en.wikipedia.org/wiki/Rajasthan" },
+    { "@type": "City", "name": "Chittorgarh", "sameAs": "https://en.wikipedia.org/wiki/Chittorgarh" },
+    { "@type": "City", "name": "Udaipur", "sameAs": "https://en.wikipedia.org/wiki/Udaipur" },
+    { "@type": "City", "name": "Bhilwara", "sameAs": "https://en.wikipedia.org/wiki/Bhilwara" },
+    { "@type": "City", "name": "Jaipur", "sameAs": "https://en.wikipedia.org/wiki/Jaipur" },
+    { "@type": "City", "name": "Jodhpur", "sameAs": "https://en.wikipedia.org/wiki/Jodhpur" },
+    { "@type": "City", "name": "Kota", "sameAs": "https://en.wikipedia.org/wiki/Kota,_Rajasthan" },
+    { "@type": "City", "name": "Ajmer", "sameAs": "https://en.wikipedia.org/wiki/Ajmer" },
+    { "@type": "City", "name": "Rajsamand" },
+    { "@type": "City", "name": "Nathdwara" },
+    { "@type": "City", "name": "Pratapgarh" },
+    { "@type": "City", "name": "Dungarpur" },
+    { "@type": "City", "name": "Banswara" },
+  ];
+
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
-      // ============================================
-      // 1. ORGANIZATION (Brand-level entity)
-      // ============================================
+
+      // ============================================================
+      // 1. ORGANIZATION — Global Brand Entity
+      // ============================================================
       {
-        "@type": "Organization",
-        "@id": "https://www.chittortech.online/#organization",
+        "@type": ["Organization", "Corporation"],
+        "@id": ORG_ID,
         "name": "ChittorTech",
         "legalName": "ChittorTech IT Solutions",
-        "url": "https://www.chittortech.online",
+        "url": SITE,
         "logo": {
           "@type": "ImageObject",
-          "@id": "https://www.chittortech.online/#logo",
-          "url": "https://www.chittortech.online/icon.png",
-          "contentUrl": "https://www.chittortech.online/icon.png",
+          "@id": LOGO_ID,
+          "url": `${SITE}/icon.png`,
+          "contentUrl": `${SITE}/icon.png`,
           "width": 512,
           "height": 512,
-          "caption": "ChittorTech Logo"
+          "caption": "ChittorTech – Premier Offshore IT Agency Logo"
         },
-        "image": { "@id": "https://www.chittortech.online/#logo" },
-        "description": "ChittorTech is the best IT company in Chittorgarh, Rajasthan. We engineer premium websites, SaaS platforms, mobile apps, and custom AI chatbots for businesses across Rajasthan and India.",
+        "image": { "@id": LOGO_ID },
+        "description": "ChittorTech is India's leading offshore IT company and software development agency. We build premium web applications (Next.js/React), mobile apps (React Native/Kotlin), custom AI chatbots (OpenAI/Groq), SaaS platforms, and e-commerce systems for clients in USA, UK, Canada, UAE, Australia, Germany, Singapore, and Rajasthan.",
         "foundingDate": "2024",
         "foundingLocation": {
           "@type": "Place",
@@ -29,8 +69,53 @@ export default function LocalSchema() {
         },
         "numberOfEmployees": {
           "@type": "QuantitativeValue",
-          "value": 10
+          "minValue": 5,
+          "maxValue": 20
         },
+        "slogan": "Best IT Company in Chittorgarh. Crafted for India. Built for the World.",
+        "knowsAbout": [
+          "Offshore Web Development",
+          "Next.js Development",
+          "React Development",
+          "React Native Mobile Apps",
+          "Kotlin Android Development",
+          "Custom AI Chatbot Development",
+          "RAG Systems",
+          "SaaS Platform Development",
+          "E-Commerce Development",
+          "Staff Augmentation India",
+          "Dedicated Developer Hiring",
+          "Firebase Backend Development",
+          "OpenAI GPT-4o Integration",
+          "Groq SDK Integration",
+          "LangChain Development",
+          "Search Engine Optimization",
+          "Technical SEO",
+          "PageSpeed Optimization",
+          "Generative Engine Optimization",
+          "IT Internship Program Rajasthan"
+        ],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "iStart Rajasthan – Q-Rate Recognized Startup",
+            "credentialCategory": "Government Recognition",
+            "recognizedBy": {
+              "@type": "GovernmentOrganization",
+              "name": "Department of IT & Communication, Government of Rajasthan",
+              "url": "https://istart.rajasthan.gov.in"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "name": "MSME Udyam Registration",
+            "credentialCategory": "Government Certification",
+            "recognizedBy": {
+              "@type": "GovernmentOrganization",
+              "name": "Ministry of Micro, Small & Medium Enterprises, Government of India"
+            }
+          }
+        ],
         "sameAs": [
           "https://www.linkedin.com/company/chittortech",
           "https://www.instagram.com/chittortech",
@@ -44,54 +129,68 @@ export default function LocalSchema() {
             "@type": "ContactPoint",
             "telephone": "+91-7597451057",
             "contactType": "customer service",
-            "areaServed": ["IN", "Rajasthan"],
+            "areaServed": ["IN", "US", "GB", "CA", "AE", "AU", "DE", "SG", "SA", "QA"],
             "availableLanguage": ["English", "Hindi"],
+            "contactOption": "TollFree",
             "hoursAvailable": {
               "@type": "OpeningHoursSpecification",
               "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
               "opens": "09:00",
-              "closes": "20:00"
+              "closes": "21:00"
             }
           },
           {
             "@type": "ContactPoint",
-            "email": "chittortech@gmail.com",
+            "email": "contact@chittortech.online",
             "contactType": "sales",
-            "areaServed": "IN",
+            "areaServed": ["IN", "US", "GB", "CA", "AE", "AU", "DE", "SG", "SA", "QA"],
+            "availableLanguage": ["English", "Hindi"]
+          },
+          {
+            "@type": "ContactPoint",
+            "url": "https://wa.me/917597451057",
+            "contactType": "technical support",
+            "areaServed": ["IN", "US", "GB", "CA", "AE", "AU"],
             "availableLanguage": ["English", "Hindi"]
           }
         ],
-        "award": "iStart Rajasthan Approved Startup",
-        "knowsAbout": [
-          "Web Development",
-          "Mobile App Development",
-          "SaaS Architecture",
-          "Artificial Intelligence",
-          "Search Engine Optimization",
-          "E-Commerce Development",
-          "React Native",
-          "Next.js",
-          "Kotlin Android"
+        "memberOf": [
+          {
+            "@type": "Organization",
+            "name": "iStart Rajasthan",
+            "url": "https://istart.rajasthan.gov.in"
+          }
+        ],
+        "award": [
+          "iStart Rajasthan Approved Startup",
+          "MSME Udyam Certified Enterprise"
         ]
       },
 
-      // ============================================
-      // 2. LOCAL BUSINESS (Map / GMB entity)
-      // ============================================
+      // ============================================================
+      // 2. LOCAL BUSINESS — Maps / GMB / Location Entity
+      // ============================================================
       {
-        "@type": ["LocalBusiness", "ProfessionalService"],
-        "@id": "https://www.chittortech.online/#localbusiness",
-        "name": "ChittorTech – Best IT Company in Chittorgarh & Rajasthan",
-        "alternateName": "ChittorTech IT Solutions",
-        "description": "ChittorTech is the best IT company in Chittorgarh, Udaipur, Bhilwara, Jaipur and across Rajasthan. We specialize in custom web development, React Native & Kotlin mobile apps, SaaS platforms, AI chatbots (RAG), e-commerce systems, and local SEO. iStart Rajasthan approved MSME startup.",
-        "url": "https://www.chittortech.online",
-        "image": [
-          "https://www.chittortech.online/ChittorTech%20Banner.png",
-          "https://www.chittortech.online/icon.png"
+        "@type": ["LocalBusiness", "ProfessionalService", "ITService"],
+        "@id": LOCAL_ID,
+        "name": "ChittorTech – Premier Offshore IT Agency & Software Development",
+        "alternateName": [
+          "ChittorTech IT Solutions",
+          "Chittortech Software Company",
+          "Best IT Company Chittorgarh",
+          "Offshore Software Development India"
         ],
-        "logo": "https://www.chittortech.online/icon.png",
+        "description": "ChittorTech is India's premier offshore IT agency and software development company serving global clients in the USA, UK, Canada, UAE, Australia, Germany, and Singapore. We specialize in Next.js web apps, React Native mobile apps, custom AI chatbots (OpenAI/Groq), SaaS platforms, e-commerce, and dedicated developer hiring. iStart Rajasthan approved, MSME certified.",
+        "url": SITE,
+        "image": [
+          `${SITE}/ChittorTech%20Banner.png`,
+          `${SITE}/icon.png`,
+          `${SITE}/assets/chittortech_workplace.png`,
+          `${SITE}/assets/hero_bg.png`
+        ],
+        "logo": `${SITE}/icon.png`,
         "telephone": "+91-7597451057",
-        "email": "chittortech@gmail.com",
+        "email": "contact@chittortech.online",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Chittorgarh",
@@ -106,41 +205,27 @@ export default function LocalSchema() {
           "longitude": "74.6269"
         },
         "hasMap": "https://maps.google.com/?q=Chittorgarh,Rajasthan,India",
-        "areaServed": [
-          { "@type": "Place", "name": "World" },
-          { "@type": "Country", "name": "United States", "sameAs": "https://en.wikipedia.org/wiki/United_States" },
-          { "@type": "Country", "name": "United Kingdom", "sameAs": "https://en.wikipedia.org/wiki/United_Kingdom" },
-          { "@type": "Country", "name": "Canada", "sameAs": "https://en.wikipedia.org/wiki/Canada" },
-          { "@type": "Country", "name": "United Arab Emirates", "sameAs": "https://en.wikipedia.org/wiki/United_Arab_Emirates" },
-          { "@type": "Country", "name": "Australia", "sameAs": "https://en.wikipedia.org/wiki/Australia" },
-          { "@type": "Country", "name": "Germany", "sameAs": "https://en.wikipedia.org/wiki/Germany" },
-          { "@type": "Country", "name": "Singapore", "sameAs": "https://en.wikipedia.org/wiki/Singapore" },
-          { "@type": "Country", "name": "Saudi Arabia", "sameAs": "https://en.wikipedia.org/wiki/Saudi_Arabia" },
-          { "@type": "Country", "name": "Qatar", "sameAs": "https://en.wikipedia.org/wiki/Qatar" },
-          { "@type": "Country", "name": "India", "sameAs": "https://en.wikipedia.org/wiki/India" },
-          { "@type": "City", "name": "Chittorgarh", "sameAs": "https://en.wikipedia.org/wiki/Chittorgarh" },
-          { "@type": "City", "name": "Udaipur", "sameAs": "https://en.wikipedia.org/wiki/Udaipur" },
-          { "@type": "City", "name": "Bhilwara", "sameAs": "https://en.wikipedia.org/wiki/Bhilwara" },
-          { "@type": "City", "name": "Jaipur", "sameAs": "https://en.wikipedia.org/wiki/Jaipur" },
-          { "@type": "State", "name": "Rajasthan", "sameAs": "https://en.wikipedia.org/wiki/Rajasthan" }
-        ],
+        "areaServed": GLOBAL_AREA_SERVED,
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-            "opens": "00:00",
-            "closes": "23:59"
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "21:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "10:00",
+            "closes": "18:00"
           }
         ],
-        "founder": {
-          "@type": "Person",
-          "@id": "https://www.chittortech.online/#founder",
-          "name": "Kush Sharma",
-          "jobTitle": "Founder & CEO",
-          "url": "https://www.linkedin.com/in/kush-sharma-chittortech/",
-          "sameAs": "https://www.linkedin.com/in/kush-sharma-chittortech/"
-        },
-        "parentOrganization": { "@id": "https://www.chittortech.online/#organization" },
+        "founder": { "@id": FOUNDER_ID },
+        "employee": [
+          { "@id": FOUNDER_ID },
+          { "@id": CTO_ID }
+        ],
+        "parentOrganization": { "@id": ORG_ID },
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "5.0",
@@ -150,144 +235,277 @@ export default function LocalSchema() {
           "reviewCount": "87"
         },
         "priceRange": "$$",
-        "currenciesAccepted": "USD, GBP, EUR, AED, CAD, AUD, INR",
-        "paymentAccepted": "Credit Card, Debit Card, Wire Transfer, International Cards, PayPal, UPI, Net Banking",
+        "currenciesAccepted": "USD, GBP, EUR, AED, CAD, AUD, INR, SGD, SAR, QAR",
+        "paymentAccepted": "Credit Card, Debit Card, Stripe, PayPal, Wire Transfer, SWIFT, UPI, Net Banking, NEFT, International Cards",
         "isAccessibleForFree": false,
         "knowsAbout": [
-          "Web Development Rajasthan",
-          "Mobile App Development Rajasthan",
+          "Offshore Web Development USA UK Canada",
+          "Next.js Development Agency India",
+          "React Native Mobile App India",
+          "Custom AI Chatbot Development India",
           "SaaS Development India",
-          "AI Chatbot Development",
-          "SEO Services Rajasthan",
-          "E-Commerce Development"
+          "E-Commerce Development Rajasthan",
+          "IT Staff Augmentation India",
+          "Dedicated Remote Developer India"
         ],
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
-          "name": "ChittorTech Global IT Services",
+          "name": "ChittorTech Global IT Services & Offshore Development Catalog",
           "itemListElement": [
             {
               "@type": "Offer",
+              "name": "Offshore Web App Development (Next.js / React)",
               "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
+              "price": "500",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "minPrice": "500",
+                "priceCurrency": "USD"
+              },
+              "availability": "https://schema.org/InStock",
               "itemOffered": {
                 "@type": "Service",
                 "name": "Offshore Web App Development (Next.js / React)",
-                "description": "Custom high-performance web applications for US, UK, Canada, UAE, Australia & European clients. Built with Next.js 16, React 19, Tailwind CSS v4, and Firebase. Starting from $500 USD."
+                "description": "Custom ultra-fast web applications built with Next.js 16 App Router, React 19, Tailwind CSS v4 for USA, UK, Canada, UAE, Australia & European clients. Includes SSR, SSG, ISR, Firebase, Vercel deployment. Starting from $500 USD."
               }
             },
             {
               "@type": "Offer",
+              "name": "Cross-Platform Mobile App (React Native / Kotlin)",
               "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
+              "price": "1000",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "minPrice": "1000",
+                "priceCurrency": "USD"
+              },
+              "availability": "https://schema.org/InStock",
               "itemOffered": {
                 "@type": "Service",
                 "name": "Cross-Platform Mobile App Engineering (React Native / Kotlin)",
-                "description": "Offshore iOS and Android mobile app development using React Native (Expo) and Kotlin for international clients. Offline support, push notifications, and Play Store/App Store publishing. Starting from $1,000 USD."
+                "description": "iOS & Android apps using React Native (Expo) and Kotlin Jetpack Compose. Firebase integration, push notifications, offline support, Play Store & App Store publishing. Starting from $1,000 USD."
               }
             },
             {
               "@type": "Offer",
+              "name": "Custom AI & RAG Chatbot Solutions",
               "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
+              "price": "800",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "minPrice": "800",
+                "priceCurrency": "USD"
+              },
+              "availability": "https://schema.org/InStock",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Custom AI & RAG Solutions (OpenAI / Groq / Llama 3)",
-                "description": "Bespoke AI chatbots, document Q&A systems, and LLM-powered business automation using OpenAI GPT-4o, Groq, and Llama 3. Integrated with custom vector databases and REST APIs. Starting from $800 USD."
+                "name": "Custom AI & RAG Solutions (OpenAI GPT-4o / Groq / Llama 3)",
+                "description": "Bespoke AI chatbots, document Q&A engines, and LLM-powered business automation using OpenAI GPT-4o, Groq SDK, and Llama 3. Vector database (Pinecone, Supabase pgvector) and REST API integrations. Starting from $800 USD."
               }
             },
             {
               "@type": "Offer",
+              "name": "SaaS MVP Development",
               "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
+              "price": "1500",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "minPrice": "1500",
+                "priceCurrency": "USD"
+              },
+              "availability": "https://schema.org/InStock",
               "itemOffered": {
                 "@type": "Service",
                 "name": "SaaS MVP Development",
-                "description": "End-to-end SaaS MVP architecture, multi-tenant systems, billing integrations, and admin dashboards. Ideal for US and UK startup founders looking to launch fast. Starting from $1,500 USD."
+                "description": "Full-stack multi-tenant SaaS platform with Stripe billing, role-based access control, admin dashboards, and analytics. Ideal for startup founders in the USA, UK, and Canada. Starting from $1,500 USD."
               }
             },
             {
               "@type": "Offer",
+              "name": "International E-Commerce Development",
               "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
+              "price": "700",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
+                "minPrice": "700",
+                "priceCurrency": "USD"
+              },
+              "availability": "https://schema.org/InStock",
               "itemOffered": {
                 "@type": "Service",
                 "name": "E-Commerce Solutions",
-                "description": "Full-featured international e-commerce stores with Stripe, PayPal, Razorpay, Cashfree payment gateways, multi-currency support, inventory management, and automated invoicing."
+                "description": "Custom Next.js e-commerce with Stripe, PayPal, Razorpay, Cashfree payment gateways. Multi-currency support, inventory management, automated invoicing. Starting from $700 USD."
               }
             },
             {
               "@type": "Offer",
-              "priceCurrency": ["USD", "GBP", "EUR", "AED", "CAD", "AUD", "INR"],
+              "name": "Dedicated Remote Developers – Hourly",
+              "priceCurrency": "USD",
+              "price": "15",
+              "priceSpecification": {
+                "@type": "UnitPriceSpecification",
+                "priceCurrency": "USD",
+                "price": "15",
+                "unitText": "HOUR"
+              },
+              "availability": "https://schema.org/InStock",
               "itemOffered": {
                 "@type": "Service",
                 "name": "Dedicated Remote Developers & Staff Augmentation",
-                "description": "Hire dedicated full-stack, mobile, or AI developers from India on hourly or monthly contract basis. Transparent communication, daily standups, and GitHub-based delivery. Starting from $15/hr USD."
+                "description": "Hire expert Next.js, React, React Native, Kotlin, or AI developers from India. Hourly contracts from $15/hr, part-time from $800/month, full-time from $1,200/month. Daily standups, GitHub-based delivery, full source code ownership."
               }
             }
           ]
         }
       },
 
-      // ============================================
-      // 3. WEBSITE
-      // ============================================
+      // ============================================================
+      // 3. WEBSITE — Search & Crawlability Entity
+      // ============================================================
       {
         "@type": "WebSite",
-        "@id": "https://www.chittortech.online/#website",
-        "url": "https://www.chittortech.online",
-        "name": "ChittorTech",
-        "description": "Best IT Company & Software Development Agency in Chittorgarh, Rajasthan",
-        "publisher": { "@id": "https://www.chittortech.online/#organization" },
-        "inLanguage": "en-IN",
+        "@id": WEBSITE_ID,
+        "url": SITE,
+        "name": "ChittorTech – Offshore IT Agency India",
+        "description": "ChittorTech official website — India's premier offshore software development agency serving USA, UK, UAE, Canada, Australia, Germany, and Singapore.",
+        "publisher": { "@id": ORG_ID },
+        "inLanguage": ["en-IN", "en-US", "en-GB", "hi-IN"],
         "copyrightYear": "2024",
         "potentialAction": {
           "@type": "SearchAction",
           "target": {
             "@type": "EntryPoint",
-            "urlTemplate": "https://www.chittortech.online/search?q={search_term_string}"
+            "urlTemplate": `${SITE}/search?q={search_term_string}`
           },
           "query-input": "required name=search_term_string"
         }
       },
 
-      // ============================================
-      // 4. WEB PAGE (Home Page)
-      // ============================================
+      // ============================================================
+      // 4. WEB PAGE — Home Page
+      // ============================================================
       {
         "@type": "WebPage",
-        "@id": "https://www.chittortech.online/#webpage",
-        "url": "https://www.chittortech.online",
-        "name": "ChittorTech | Best IT Company in Chittorgarh & Rajasthan",
-        "isPartOf": { "@id": "https://www.chittortech.online/#website" },
-        "about": { "@id": "https://www.chittortech.online/#localbusiness" },
+        "@id": `${SITE}/#webpage`,
+        "url": SITE,
+        "name": "ChittorTech | Premier Offshore IT Agency – Web, Mobile & AI Development India",
+        "description": "ChittorTech is India's #1 offshore IT agency. Hire dedicated Next.js, React Native, AI developers from India. Serving USA, UK, Canada, UAE, Australia, Germany, Singapore.",
+        "isPartOf": { "@id": WEBSITE_ID },
+        "about": { "@id": LOCAL_ID },
         "primaryImageOfPage": {
           "@type": "ImageObject",
-          "url": "https://www.chittortech.online/ChittorTech%20Banner.png"
+          "url": `${SITE}/ChittorTech%20Banner.png`,
+          "width": 1200,
+          "height": 630
         },
         "inLanguage": "en-IN",
-        "breadcrumb": { "@id": "https://www.chittortech.online/#breadcrumb" }
+        "breadcrumb": { "@id": `${SITE}/#breadcrumb` },
+        "speakable": {
+          "@type": "SpeakableSpecification",
+          "cssSelector": ["h1", ".hero-description"]
+        }
       },
 
-      // ============================================
-      // 5. BREADCRUMB (Home)
-      // ============================================
+      // ============================================================
+      // 5. BREADCRUMB LIST
+      // ============================================================
       {
         "@type": "BreadcrumbList",
-        "@id": "https://www.chittortech.online/#breadcrumb",
+        "@id": `${SITE}/#breadcrumb`,
         "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://www.chittortech.online"
-          }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": SITE },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": `${SITE}/services` },
+          { "@type": "ListItem", "position": 3, "name": "Projects", "item": `${SITE}/projects` },
+          { "@type": "ListItem", "position": 4, "name": "About", "item": `${SITE}/about` },
+          { "@type": "ListItem", "position": 5, "name": "Reviews", "item": `${SITE}/reviews` },
+          { "@type": "ListItem", "position": 6, "name": "Contact", "item": `${SITE}/contact` },
+          { "@type": "ListItem", "position": 7, "name": "Internship", "item": `${SITE}/internship` }
         ]
       },
 
-      // ============================================
-      // 6. SERVICES (Individual ProfessionalService schemas)
-      // ============================================
+      // ============================================================
+      // 6. FOUNDERS — Person Entities
+      // ============================================================
+      {
+        "@type": "Person",
+        "@id": FOUNDER_ID,
+        "name": "Kush Sharma",
+        "givenName": "Kush",
+        "familyName": "Sharma",
+        "jobTitle": "Founder & CEO",
+        "description": "Kush Sharma is the Founder and CEO of ChittorTech, Rajasthan's leading offshore IT startup. Expert full-stack engineer and AI systems architect specializing in Next.js, React, Firebase, OpenAI, Groq SDK, and LangChain.",
+        "url": "https://www.linkedin.com/in/kush-sharma-chittortech/",
+        "sameAs": [
+          "https://www.linkedin.com/in/kush-sharma-chittortech/",
+          "https://github.com/Sharmaji2516"
+        ],
+        "image": `${SITE}/assets/kush_sharma.jpg`,
+        "worksFor": { "@id": ORG_ID },
+        "knowsAbout": ["Next.js", "React", "Node.js", "Firebase", "OpenAI", "Groq SDK", "LangChain", "AI Development", "SaaS Architecture", "SEO"],
+        "nationality": { "@type": "Country", "name": "India" }
+      },
+      {
+        "@type": "Person",
+        "@id": CTO_ID,
+        "name": "Lav Sharma",
+        "givenName": "Lav",
+        "familyName": "Sharma",
+        "jobTitle": "Co-Founder & CTO",
+        "description": "Lav Sharma is the Co-Founder and CTO of ChittorTech. Lead Mobile & Cloud Infrastructure Engineer with deep expertise in React Native (Expo), Kotlin Jetpack Compose, Firebase, and AWS.",
+        "image": `${SITE}/assets/lav_sharma.jpg`,
+        "worksFor": { "@id": ORG_ID },
+        "knowsAbout": ["React Native", "Kotlin", "Jetpack Compose", "Firebase", "AWS", "Android Development", "iOS Development", "Cloud Infrastructure"],
+        "nationality": { "@type": "Country", "name": "India" }
+      },
+
+      // ============================================================
+      // 7. SERVICE SCHEMAS — Domestic (Rajasthan/India)
+      // ============================================================
       {
         "@type": ["Service", "ProfessionalService"],
-        "@id": "https://www.chittortech.online/#service-web",
-        "name": "Premium Web & E-Commerce Development",
+        "@id": `${SITE}/#service-web-rajasthan`,
+        "name": "Premium Web & E-Commerce Development in Rajasthan",
         "serviceType": "Web Development",
-        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
+        "provider": { "@id": LOCAL_ID },
+        "areaServed": [
+          { "@type": "State", "name": "Rajasthan" },
+          { "@type": "City", "name": "Chittorgarh" },
+          { "@type": "City", "name": "Udaipur" },
+          { "@type": "City", "name": "Jaipur" },
+          { "@type": "City", "name": "Bhilwara" },
+          { "@type": "City", "name": "Jodhpur" },
+          { "@type": "City", "name": "Kota" },
+          { "@type": "City", "name": "Ajmer" }
+        ],
+        "description": "High-performance business websites, SaaS platforms, and e-commerce systems using Next.js 16, React 19, Tailwind CSS, Node.js & Firebase. Tailored for local businesses across Rajasthan.",
+        "url": `${SITE}/services`,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "15000",
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": "15000", "priceCurrency": "INR" },
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": ["Service", "ProfessionalService"],
+        "@id": `${SITE}/#service-mobile-india`,
+        "name": "Mobile App Development (React Native & Kotlin) – India",
+        "serviceType": "Mobile Application Development",
+        "provider": { "@id": LOCAL_ID },
+        "areaServed": [
+          { "@type": "Country", "name": "India" },
+          { "@type": "State", "name": "Rajasthan" }
+        ],
+        "description": "Fluid native and cross-platform mobile apps for iOS and Android built on React Native Expo and Kotlin Jetpack Compose. Fast delivery, offline support, clean UI for Indian businesses.",
+        "url": `${SITE}/services`
+      },
+      {
+        "@type": ["Service", "ProfessionalService"],
+        "@id": `${SITE}/#service-seo-rajasthan`,
+        "name": "SEO & Digital Marketing for Rajasthan Businesses",
+        "serviceType": "Search Engine Optimization",
+        "provider": { "@id": LOCAL_ID },
         "areaServed": [
           { "@type": "State", "name": "Rajasthan" },
           { "@type": "City", "name": "Chittorgarh" },
@@ -295,80 +513,107 @@ export default function LocalSchema() {
           { "@type": "City", "name": "Jaipur" },
           { "@type": "City", "name": "Bhilwara" }
         ],
-        "description": "High-performance websites, SaaS platforms, and enterprise e-commerce systems using Next.js, React, Node.js & Firebase. Tailored for businesses in Chittorgarh, Udaipur, Jaipur & Bhilwara.",
-        "url": "https://www.chittortech.online/services"
-      },
-      {
-        "@type": ["Service", "ProfessionalService"],
-        "@id": "https://www.chittortech.online/#service-app",
-        "name": "Mobile App Development (React Native & Kotlin)",
-        "serviceType": "Mobile Application Development",
-        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
-        "areaServed": [
-          { "@type": "State", "name": "Rajasthan" },
-          { "@type": "Country", "name": "India" }
-        ],
-        "description": "Fluid native and cross-platform mobile apps for iOS and Android built on React Native Expo and Kotlin. Fast delivery, offline support, and clean UI.",
-        "url": "https://www.chittortech.online/services"
-      },
-      {
-        "@type": ["Service", "ProfessionalService"],
-        "@id": "https://www.chittortech.online/#service-ai",
-        "name": "Custom AI Chatbot & Automation Development",
-        "serviceType": "Artificial Intelligence Solutions",
-        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
-        "areaServed": [
-          { "@type": "Place", "name": "World" },
-          { "@type": "Country", "name": "United States" },
-          { "@type": "Country", "name": "United Kingdom" },
-          { "@type": "Country", "name": "Canada" },
-          { "@type": "Country", "name": "United Arab Emirates" },
-          { "@type": "Country", "name": "Australia" },
-          { "@type": "Country", "name": "Germany" },
-          { "@type": "Country", "name": "Singapore" },
-          { "@type": "Country", "name": "India" }
-        ],
-        "description": "Bespoke RAG-powered AI chatbots using LangChain, OpenAI GPT-4o, and Groq. Custom vector database integrations and REST APIs for business automation. Serving international clients in USA, UK, UAE, Canada, and Australia.",
-        "url": "https://www.chittortech.online/services"
-      },
-      {
-        "@type": ["Service", "ProfessionalService"],
-        "@id": "https://www.chittortech.online/#service-seo",
-        "name": "SEO & Digital Marketing Dominance",
-        "serviceType": "Search Engine Optimization",
-        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
-        "areaServed": [
-          { "@type": "State", "name": "Rajasthan" },
-          { "@type": "City", "name": "Chittorgarh" },
-          { "@type": "City", "name": "Udaipur" }
-        ],
-        "description": "Technical SEO, Google My Business optimization, and local search ranking strategies to make businesses the #1 result in their region across Rajasthan.",
-        "url": "https://www.chittortech.online/services"
+        "description": "Technical SEO, PageSpeed optimization, Google My Business setup, schema implementation, and local search ranking strategies to make Rajasthan businesses rank #1 on Google.",
+        "url": `${SITE}/services`
       },
 
-      // ============================================
-      // OFFSHORE & INTERNATIONAL SERVICE SCHEMAS
-      // ============================================
+      // ============================================================
+      // 8. SERVICE SCHEMAS — International / Offshore
+      // ============================================================
       {
         "@type": ["Service", "ProfessionalService"],
-        "@id": "https://www.chittortech.online/#service-offshore-web",
-        "name": "Offshore Web Development for USA, UK & Europe",
+        "@id": `${SITE}/#service-offshore-web`,
+        "name": "Offshore Web Development for USA, UK, Canada & Europe",
         "serviceType": "Offshore Software Development",
-        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
-        "areaServed": [
-          { "@type": "Place", "name": "World" },
-          { "@type": "Country", "name": "United States" },
-          { "@type": "Country", "name": "United Kingdom" },
-          { "@type": "Country", "name": "Canada" },
-          { "@type": "Country", "name": "United Arab Emirates" },
-          { "@type": "Country", "name": "Australia" },
-          { "@type": "Country", "name": "Germany" },
-          { "@type": "Country", "name": "Singapore" },
-          { "@type": "Country", "name": "Saudi Arabia" },
-          { "@type": "Country", "name": "Qatar" }
-        ],
-        "description": "ChittorTech provides world-class offshore web and mobile application development for international clients in the USA, UK, Canada, UAE (Dubai), Australia, Germany, and Singapore. We offer dedicated remote developers, fixed-price project models, and hourly engagement starting from $15/hr.",
-        "url": "https://www.chittortech.online/contact",
+        "provider": { "@id": LOCAL_ID },
+        "areaServed": GLOBAL_AREA_SERVED,
+        "description": "ChittorTech delivers world-class offshore web application development for international clients. Fixed-price or hourly contracts starting from $500 USD. Tech stack: Next.js 16, React 19, Node.js, Firebase, Vercel.",
+        "url": `${SITE}/contact`,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "500",
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": "500", "priceCurrency": "USD" },
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": ["Service", "ProfessionalService"],
+        "@id": `${SITE}/#service-offshore-mobile`,
+        "name": "Offshore Mobile App Development for USA, UAE & Australia",
+        "serviceType": "Offshore Mobile App Development",
+        "provider": { "@id": LOCAL_ID },
+        "areaServed": GLOBAL_AREA_SERVED,
+        "description": "Cross-platform iOS & Android app development using React Native (Expo) and Kotlin for international clients. Play Store & App Store publishing included. Starting from $1,000 USD.",
+        "url": `${SITE}/contact`,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "1000",
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": "1000", "priceCurrency": "USD" },
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": ["Service", "ProfessionalService"],
+        "@id": `${SITE}/#service-ai-global`,
+        "name": "Custom AI Chatbot & RAG Development – Global",
+        "serviceType": "Artificial Intelligence Solutions",
+        "provider": { "@id": LOCAL_ID },
+        "areaServed": GLOBAL_AREA_SERVED,
+        "description": "Bespoke AI chatbots, RAG (Retrieval-Augmented Generation) document engines, and LLM-powered automation using OpenAI GPT-4o, Groq, and Llama 3. Serving Dubai, USA, UK, Canada, Singapore, and Australia clients. Starting from $800 USD.",
+        "url": `${SITE}/contact`,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "800",
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": "800", "priceCurrency": "USD" },
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": ["Service", "ProfessionalService"],
+        "@id": `${SITE}/#service-saas-global`,
+        "name": "SaaS MVP Development for USA & UK Startups",
+        "serviceType": "SaaS Development",
+        "provider": { "@id": LOCAL_ID },
+        "areaServed": GLOBAL_AREA_SERVED,
+        "description": "Full-stack multi-tenant SaaS platforms with Stripe billing, RBAC, admin dashboards, analytics. Ideal for USA/UK/Canada startup founders. Starting from $1,500 USD.",
+        "url": `${SITE}/contact`,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "1500",
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": "1500", "priceCurrency": "USD" },
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": ["Service", "ProfessionalService"],
+        "@id": `${SITE}/#service-ecommerce-global`,
+        "name": "International E-Commerce Development – Stripe, PayPal, Multi-Currency",
+        "serviceType": "E-Commerce Development",
+        "provider": { "@id": LOCAL_ID },
+        "areaServed": GLOBAL_AREA_SERVED,
+        "description": "International online stores with Stripe, PayPal, Razorpay, Cashfree. Multi-currency and multi-language support for UAE, Australian, USA, UK markets. Starting from $700 USD.",
+        "url": `${SITE}/contact`,
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "700",
+          "priceSpecification": { "@type": "PriceSpecification", "minPrice": "700", "priceCurrency": "USD" },
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": ["Service", "ProfessionalService"],
+        "@id": `${SITE}/#service-staff-augmentation`,
+        "name": "Dedicated Remote Developers & IT Staff Augmentation – India",
+        "serviceType": "IT Staff Augmentation",
+        "provider": { "@id": LOCAL_ID },
+        "areaServed": { "@type": "Place", "name": "World" },
+        "description": "Hire dedicated Next.js, React, React Native, Kotlin, or AI developers from ChittorTech India on hourly ($15/hr USD) or monthly contracts ($800–$1,200/month). Daily standups, GitHub delivery, full source code ownership.",
+        "url": `${SITE}/contact`,
         "offers": {
           "@type": "Offer",
           "priceCurrency": "USD",
@@ -382,52 +627,139 @@ export default function LocalSchema() {
           "availability": "https://schema.org/InStock"
         }
       },
+
+      // ============================================================
+      // 9. PORTFOLIO — Item List
+      // ============================================================
       {
-        "@type": ["Service", "ProfessionalService"],
-        "@id": "https://www.chittortech.online/#service-staff-augmentation",
-        "name": "Dedicated Remote Developers & Staff Augmentation",
-        "serviceType": "IT Staff Augmentation",
-        "provider": { "@id": "https://www.chittortech.online/#localbusiness" },
-        "areaServed": { "@type": "Place", "name": "World" },
-        "description": "Hire dedicated full-stack, mobile, or AI developers from ChittorTech India on hourly or monthly contracts. Transparent GitHub-based delivery, daily standups, and timezone-compatible communication.",
-        "url": "https://www.chittortech.online/contact"
+        "@type": "ItemList",
+        "@id": `${SITE}/#portfolio`,
+        "name": "ChittorTech Portfolio – Recent Projects",
+        "description": "Selected project case studies delivered by ChittorTech for clients across India and internationally.",
+        "url": `${SITE}/projects`,
+        "numberOfItems": 6,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Mewari Special Achaar – NRI Pickle E-Commerce Store",
+              "description": "Authentic Rajasthani pickle e-commerce platform with international shipping, Firebase OTP auth, WhatsApp ordering, multi-language support, and 100/100 PageSpeed scores.",
+              "url": "https://www.mewari-achar.shop",
+              "creator": { "@id": ORG_ID }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Shaadi Sutra – Wedding Venue Discovery Platform",
+              "description": "Next.js wedding venue marketplace with Firebase backend, real-time search, and multi-vendor listing for Rajasthan.",
+              "creator": { "@id": ORG_ID }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Hotel & Resort Website – Hospitality Portal",
+              "description": "Premium hotel website with booking integration, responsive design, multilingual support, and Google Analytics/Maps integration.",
+              "creator": { "@id": ORG_ID }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Jain Dharamshala Management System",
+              "description": "Custom web portal for religious guest house management with room booking, visitor management, and Firebase backend.",
+              "creator": { "@id": ORG_ID }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "ChittorTech AI Internship Certificate Analyzer",
+              "description": "RAG-powered AI document analyzer using Groq + pdfjs-dist + Firebase with automated certificate generation via jsPDF.",
+              "creator": { "@id": ORG_ID }
+            }
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+              "@type": "CreativeWork",
+              "name": "Mehndi Artist Portfolio & Booking Website",
+              "description": "Premium portfolio website for a professional Mehndi artist with gallery, booking form, and top-3 Google ranking for local keywords.",
+              "creator": { "@id": ORG_ID }
+            }
+          }
+        ]
       },
 
-      // ============================================
-      // 7. PERSON (Founder)
-      // ============================================
+      // ============================================================
+      // 10. REVIEWS — Individual Review Entities
+      // ============================================================
       {
-        "@type": "Person",
-        "@id": "https://www.chittortech.online/#founder",
-        "name": "Kush Sharma",
-        "jobTitle": "Founder & CEO",
-        "description": "Founder of ChittorTech, Rajasthan's leading IT startup. Software engineer specializing in Next.js, React Native, and AI solutions.",
-        "url": "https://www.linkedin.com/in/kush-sharma-chittortech/",
-        "sameAs": [
-          "https://www.linkedin.com/in/kush-sharma-chittortech/",
-          "https://github.com/Sharmaji2516"
-        ],
-        "worksFor": { "@id": "https://www.chittortech.online/#organization" },
-        "alumniOf": {
-          "@type": "EducationalOrganization",
-          "name": "University of Rajasthan"
-        },
-        "knowsAbout": ["Next.js", "React Native", "Node.js", "Firebase", "AI Development", "LangChain"]
+        "@type": "Review",
+        "@id": `${SITE}/#review-1`,
+        "itemReviewed": { "@id": LOCAL_ID },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Startup Founder, San Francisco USA" },
+        "reviewBody": "ChittorTech delivered our Next.js web app faster than any agency we'd worked with before. The code quality was exceptional and they were available every day for standups. Highly recommend for any US startup looking to outsource development to India."
+      },
+      {
+        "@type": "Review",
+        "@id": `${SITE}/#review-2`,
+        "itemReviewed": { "@id": LOCAL_ID },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "E-Commerce Entrepreneur, Dubai UAE" },
+        "reviewBody": "We hired ChittorTech as our dedicated development partner for 6 months. Transparent communication, milestone-based delivery, and excellent quality. Our Stripe-integrated online store launched on time and works flawlessly."
+      },
+      {
+        "@type": "Review",
+        "@id": `${SITE}/#review-3`,
+        "itemReviewed": { "@id": LOCAL_ID },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "SaaS Founder, London UK" },
+        "reviewBody": "The AI chatbot they built for us handles 80% of customer queries automatically. Our support team now focuses only on complex issues. ChittorTech's RAG implementation was flawless — OpenAI GPT-4o with our custom knowledge base."
+      },
+      {
+        "@type": "Review",
+        "@id": `${SITE}/#review-4`,
+        "itemReviewed": { "@id": LOCAL_ID },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Hotel Owner, Udaipur Rajasthan" },
+        "reviewBody": "Best IT company in Chittorgarh, no doubt. They built our hotel website with online booking and it now gets 3x more direct bookings than before. Highly recommended for any Rajasthan business."
+      },
+      {
+        "@type": "Review",
+        "@id": `${SITE}/#review-5`,
+        "itemReviewed": { "@id": LOCAL_ID },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+        "author": { "@type": "Person", "name": "Health App Founder, Toronto Canada" },
+        "reviewBody": "ChittorTech built our React Native app for both iOS and Android in just 6 weeks. We launched on the Play Store with zero critical bugs. Kush and Lav are outstanding engineers — best offshore agency we've ever worked with."
       },
 
-      // ============================================
-      // 8. FAQ PAGE (expanded, high-intent questions)
-      // ============================================
+      // ============================================================
+      // 11. FAQ PAGE — Exhaustive Q&A for Local + International SEO
+      // ============================================================
       {
         "@type": "FAQPage",
-        "@id": "https://www.chittortech.online/#faq",
+        "@id": `${SITE}/#faq`,
         "mainEntity": [
           {
             "@type": "Question",
             "name": "Which is the best IT company in Chittorgarh?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChittorTech is the best IT company in Chittorgarh, Rajasthan. We specialize in web development, mobile app development, SaaS platforms, AI chatbots, and digital marketing. We are an iStart Rajasthan approved and MSME registered startup."
+              "text": "ChittorTech is the best IT company in Chittorgarh, Rajasthan. We specialize in premium web development, mobile app engineering, SaaS platforms, custom AI chatbots, and digital marketing. We are an iStart Rajasthan approved and MSME registered IT startup with 87+ successful projects and a 5.0/5.0 star rating."
             }
           },
           {
@@ -435,47 +767,7 @@ export default function LocalSchema() {
             "name": "Which is the best web development company in Udaipur?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChittorTech is the top-rated web development company serving Udaipur. We build high-performance business websites, e-commerce platforms, and SaaS applications for businesses in Udaipur and the Mewar region."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does ChittorTech offer mobile app development in Rajasthan?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, ChittorTech offers full-stack mobile app development across Rajasthan, including React Native (Expo) cross-platform apps and native Kotlin Android apps. We serve clients in Chittorgarh, Udaipur, Jaipur, Bhilwara and across India."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What is the cost of website development in Rajasthan?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "ChittorTech offers premium website development at affordable prices starting from ₹15,000. We provide custom business websites, e-commerce portals, and SaaS platforms tailored to your budget. Contact us for a free consultation and exact quote."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is ChittorTech approved by iStart Rajasthan?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, ChittorTech is an officially approved startup under the iStart Rajasthan program and is also registered as an MSME. This makes us a government-recognized, reliable IT partner for businesses in Rajasthan."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does ChittorTech offer IT internships in Rajasthan?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, ChittorTech offers IT internship programs for students in Rajasthan. Interns get hands-on experience in Next.js, React Native, Node.js, and AI development, plus a verified internship certificate."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What technologies does ChittorTech use for development?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "ChittorTech uses Next.js, React, Tailwind CSS, Node.js, Firebase, MongoDB, React Native (Expo), Kotlin, LangChain, OpenAI GPT, and Groq for building highly scalable and modern digital products."
+              "text": "ChittorTech is the top-rated web development company serving Udaipur. We build high-performance business websites, e-commerce platforms, and SaaS applications for Udaipur hotels, businesses, and startups using Next.js and React."
             }
           },
           {
@@ -483,7 +775,31 @@ export default function LocalSchema() {
             "name": "Which is the best IT company in Bhilwara?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChittorTech serves businesses in Bhilwara with elite web development, mobile app development, and digital marketing services. As the leading IT agency in the Mewar division, we help Bhilwara-based businesses go digital and scale online."
+              "text": "ChittorTech is the leading IT agency serving businesses in Bhilwara, Rajasthan. We help Bhilwara textile businesses, hotels, and startups build premium websites, mobile apps, and digital marketing campaigns."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does ChittorTech offer mobile app development in Rajasthan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, ChittorTech offers full-stack mobile app development across Rajasthan, including React Native (Expo) cross-platform apps and native Kotlin Android apps. We serve clients in Chittorgarh, Udaipur, Jaipur, Bhilwara, Jodhpur, Kota, and across India."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the cost of website development in Chittorgarh?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ChittorTech offers premium website development in Chittorgarh starting from ₹15,000 INR for a basic business website. Custom e-commerce portals start from ₹35,000 INR and SaaS platforms from ₹75,000 INR. Contact us at +91 7597451057 for a free quote."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is ChittorTech approved by iStart Rajasthan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, ChittorTech is an officially approved startup under the iStart Rajasthan program (Q-Rate Status) and is also registered as an MSME. This makes us a government-recognized, reliable IT partner for businesses in Rajasthan and international clients."
             }
           },
           {
@@ -491,15 +807,15 @@ export default function LocalSchema() {
             "name": "Can ChittorTech build web and mobile apps for clients in the USA and UK?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, ChittorTech is a premier offshore software development agency serving international clients in the USA, United Kingdom, Canada, UAE (Dubai & Abu Dhabi), Australia, Germany, and Singapore. We offer fixed-price project contracts, hourly developer hiring starting from $15/hr USD, and provide transparent GitHub-based delivery with daily standup reports."
+              "text": "Yes. ChittorTech is a premier offshore software development agency actively serving international clients in the USA, United Kingdom, Canada, UAE (Dubai & Abu Dhabi), Australia, Germany, Singapore, Saudi Arabia, and Qatar. We offer fixed-price project contracts starting from $500 USD, hourly developer hiring from $15/hr USD, and transparent GitHub-based delivery."
             }
           },
           {
             "@type": "Question",
-            "name": "How can I hire a dedicated React Native or Next.js developer from India?",
+            "name": "How can I hire a dedicated Next.js or React Native developer from India?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChittorTech offers dedicated developer hiring for international clients. You can hire an expert Next.js, React, React Native, Kotlin, or AI developer from our team on an hourly or monthly contract. Contact us via WhatsApp (+91 7597451057) or email (contact@chittortech.online) to discuss your project requirements and budget."
+              "text": "ChittorTech offers dedicated developer hiring for international clients. Hire expert Next.js, React, React Native, Kotlin, or AI developers on hourly ($15/hr), part-time ($800/month), or full-time ($1,200/month) contracts. WhatsApp us at +91 7597451057 or email contact@chittortech.online to start."
             }
           },
           {
@@ -507,38 +823,413 @@ export default function LocalSchema() {
             "name": "Does ChittorTech develop AI chatbots for businesses in Dubai and UAE?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, ChittorTech builds custom AI chatbots and RAG (Retrieval-Augmented Generation) systems for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE. Our AI solutions use OpenAI GPT-4o, Groq, and Llama 3 and can be integrated with your existing website, WhatsApp Business, or CRM platforms."
+              "text": "Yes. ChittorTech builds custom AI chatbots and RAG systems for businesses in Dubai, Abu Dhabi, Sharjah, and across the UAE. We use OpenAI GPT-4o, Groq, and Llama 3. Starting from $800 USD, these can be integrated into your website, WhatsApp Business, or CRM."
             }
           },
           {
             "@type": "Question",
-            "name": "What are the pricing models for outsourcing web development to ChittorTech?",
+            "name": "What are the pricing models for outsourcing software development to ChittorTech?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChittorTech offers three engagement models: (1) Fixed Price Project – ideal for well-defined projects starting from $500 USD for websites, (2) Hourly Developer Hire – dedicated developers starting from $15/hr USD, and (3) Monthly Retainer – full-time dedicated developer at competitive monthly rates. All projects include free consultation, transparent milestones, and source code ownership. Contact us at contact@chittortech.online."
+              "text": "ChittorTech offers three engagement models: (1) Fixed Price – starting from $500 USD for websites, (2) Hourly Developer Hire – starting from $15/hr USD, and (3) Monthly Retainer – full-time dedicated developer from $1,200/month. All include free consultation, transparent milestones, and full source code ownership transferred to the client."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What technologies does ChittorTech use for development?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ChittorTech uses Next.js 16, React 19, Tailwind CSS v4, Node.js, Firebase Firestore, MongoDB Atlas, Supabase, PostgreSQL, React Native (Expo), Kotlin Jetpack Compose, OpenAI GPT-4o, Groq SDK, LangChain.js, Pinecone, Stripe, PayPal, Razorpay, Vercel, and AWS."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does ChittorTech offer IT internships in Rajasthan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, ChittorTech offers hands-on IT internship programs for students across Rajasthan. Interns work on real client projects in Next.js, React Native, Firebase, and AI development. They earn a blockchain-verified digital internship certificate. Apply at https://www.chittortech.online/internship/apply."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can ChittorTech build a SaaS product for my startup in Canada or Australia?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. ChittorTech specializes in SaaS MVP development for international startup founders. We build multi-tenant SaaS platforms with Stripe billing, admin dashboards, RBAC, and analytics starting from $1,500 USD. We have delivered SaaS products for clients in the USA, UK, Canada, and Australia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does ChittorTech accept payments in USD, GBP, EUR, and AED?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. ChittorTech accepts payments in USD, GBP, EUR, AED, CAD, AUD, SGD, and INR. We support international wire transfer (SWIFT), PayPal, Stripe (credit/debit cards), and cryptocurrency (Bitcoin, USDT) for international clients."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does it take to build a web app or mobile app with ChittorTech?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A business website typically takes 1–2 weeks. A mobile app MVP takes 3–6 weeks. A full SaaS platform takes 6–12 weeks. We provide exact timelines and milestone breakdowns in our free project proposal."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does ChittorTech sign NDAs for international client projects?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. ChittorTech signs mutual NDAs before project kickoff on request. All project details, business logic, and source code remain strictly confidential. We also transfer 100% source code ownership to the client upon final payment — no vendor lock-in."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which is the best IT outsourcing company in India for small businesses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "ChittorTech is one of the best IT outsourcing companies in India for small and medium businesses internationally. We offer flexible pricing starting from $500 USD, transparent communication, and agile delivery — making us ideal for startups and small businesses in the USA, UK, UAE, Canada, and Australia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does ChittorTech handle Google Play Store and Apple App Store submissions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, full Play Store and App Store publishing support is included in all mobile app projects at no extra charge. We handle the entire submission process, screenshots, metadata, and initial review communication."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can ChittorTech optimize my existing website for PageSpeed Insights?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. ChittorTech provides comprehensive technical SEO and performance optimization services. We consistently achieve 95–100/100 scores on Google PageSpeed Insights (both Mobile and Desktop), 100/100 Best Practices, 100/100 SEO, and 3/3 Agentic Browsing."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I contact ChittorTech for a project?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can contact ChittorTech via: WhatsApp (+91 7597451057), Email (contact@chittortech.online), or the Contact Form at https://www.chittortech.online/contact. We respond within 2 hours during IST business hours (9 AM – 9 PM IST, Monday–Saturday)."
             }
           }
         ]
       },
 
-      // ============================================
-      // 9. EVENT (Internship — helps with Google indexing of structured programs)
-      // ============================================
+      // ============================================================
+      // 12. INTERNSHIP COURSE SCHEMA
+      // ============================================================
       {
         "@type": "Course",
-        "@id": "https://www.chittortech.online/#internship-course",
-        "name": "IT Internship Program – Web & App Development",
-        "description": "ChittorTech's hands-on IT internship program in Chittorgarh, Rajasthan. Learn Next.js, React Native, Node.js, Firebase & AI development. Earn a verified internship certificate.",
-        "provider": { "@id": "https://www.chittortech.online/#organization" },
-        "url": "https://www.chittortech.online/internship",
-        "inLanguage": "en-IN",
+        "@id": `${SITE}/#internship-course`,
+        "name": "IT Internship Program – Web, Mobile & AI Development",
+        "description": "ChittorTech's hands-on IT internship program in Chittorgarh, Rajasthan. Work on real client projects in Next.js, React Native, Node.js, Firebase, and AI development. Earn a verified, blockchain-backed digital internship certificate.",
+        "provider": { "@id": ORG_ID },
+        "url": `${SITE}/internship`,
+        "inLanguage": ["en-IN", "hi-IN"],
         "courseCode": "CT-INTERN-2025",
+        "coursePrerequisites": "Basic programming knowledge (any language)",
+        "educationalLevel": "Beginner to Intermediate",
+        "teaches": ["Next.js", "React", "React Native", "Firebase", "Node.js", "OpenAI API", "Groq SDK", "Git & GitHub", "Vercel Deployment"],
+        "timeRequired": "P1M",
         "hasCourseInstance": {
           "@type": "CourseInstance",
           "courseMode": "ONLINE",
-          "instructor": { "@id": "https://www.chittortech.online/#founder" }
+          "courseWorkload": "P5D",
+          "instructor": { "@id": FOUNDER_ID },
+          "location": {
+            "@type": "VirtualLocation",
+            "url": SITE
+          }
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "INR",
+          "price": "0",
+          "availability": "https://schema.org/InStock",
+          "validFrom": "2025-01-01"
+        }
+      },
+
+      // ============================================================
+      // 13. CONTACT PAGE
+      // ============================================================
+      {
+        "@type": "ContactPage",
+        "@id": `${SITE}/contact#webpage`,
+        "url": `${SITE}/contact`,
+        "name": "Contact ChittorTech – Hire Offshore Developers & Get a Free Quote",
+        "description": "Contact ChittorTech for a free project consultation. Hire dedicated Next.js, React Native, AI developers from India. We serve USA, UK, Canada, UAE, Australia, Germany, and Singapore.",
+        "isPartOf": { "@id": WEBSITE_ID },
+        "inLanguage": "en-IN"
+      },
+
+      // ============================================================
+      // 14. SITE NAVIGATION ELEMENT — Sitelinks Schema
+      // ============================================================
+      {
+        "@type": "SiteLinksSearchBox",
+        "@id": `${SITE}/#sitelinks-searchbox`,
+        "url": SITE,
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${SITE}/search?q={search_term_string}`
+          },
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${SITE}/#site-navigation`,
+        "name": "ChittorTech Site Navigation",
+        "description": "Primary navigation links for ChittorTech website",
+        "itemListElement": [
+          {
+            "@type": "SiteLinksSearchBox",
+            "name": "Home",
+            "url": SITE
+          },
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Services – Web, Mobile, AI, SaaS, E-Commerce",
+            "url": `${SITE}/services`,
+            "item": `${SITE}/services`
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects – Portfolio of Delivered Work",
+            "url": `${SITE}/projects`,
+            "item": `${SITE}/projects`
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "About – ChittorTech Company Story",
+            "url": `${SITE}/about`,
+            "item": `${SITE}/about`
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Reviews – Client Testimonials & Ratings",
+            "url": `${SITE}/reviews`,
+            "item": `${SITE}/reviews`
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Contact – Get a Free Project Quote",
+            "url": `${SITE}/contact`,
+            "item": `${SITE}/contact`
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Internship – Apply for IT Internship Rajasthan",
+            "url": `${SITE}/internship`,
+            "item": `${SITE}/internship`
+          }
+        ]
+      },
+
+      // ============================================================
+      // 15. HOW-TO SCHEMA — How to Hire a Developer from ChittorTech
+      // ============================================================
+      {
+        "@type": "HowTo",
+        "@id": `${SITE}/#howto-hire`,
+        "name": "How to Hire a Dedicated Developer from ChittorTech India",
+        "description": "Step-by-step guide for international clients (USA, UK, UAE, Canada, Australia) to hire a dedicated Next.js, React Native, or AI developer from ChittorTech India.",
+        "totalTime": "P2D",
+        "estimatedCost": {
+          "@type": "MonetaryAmount",
+          "currency": "USD",
+          "value": "15"
+        },
+        "supply": [
+          {
+            "@type": "HowToSupply",
+            "name": "Project requirements document or brief description"
+          },
+          {
+            "@type": "HowToSupply",
+            "name": "Budget range in USD or preferred currency"
+          }
+        ],
+        "tool": [
+          {
+            "@type": "HowToTool",
+            "name": "WhatsApp (+91 7597451057) or Email (contact@chittortech.online)"
+          }
+        ],
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": "1",
+            "name": "Contact ChittorTech",
+            "text": "Send a WhatsApp message to +91 7597451057 or email contact@chittortech.online with your project description, requirements, preferred tech stack, and budget range.",
+            "url": `${SITE}/contact`,
+            "image": `${SITE}/icon.png`
+          },
+          {
+            "@type": "HowToStep",
+            "position": "2",
+            "name": "Receive Free Technical Proposal",
+            "text": "ChittorTech will analyze your requirements and send a detailed proposal within 24 hours including tech stack, feature breakdown, timeline estimate, and fixed-price or hourly quote.",
+            "url": `${SITE}/contact`
+          },
+          {
+            "@type": "HowToStep",
+            "position": "3",
+            "name": "Sign Agreement & NDA",
+            "text": "Review and sign a simple contract/SOW. NDA is available on request. Pay 30–50% advance via PayPal, Stripe, or international wire transfer.",
+            "url": `${SITE}/contact`
+          },
+          {
+            "@type": "HowToStep",
+            "position": "4",
+            "name": "Development Starts with Daily Standups",
+            "text": "Development begins immediately. You receive daily standup updates, GitHub access, and staging environment links after each sprint for real-time review.",
+            "url": `${SITE}/contact`
+          },
+          {
+            "@type": "HowToStep",
+            "position": "5",
+            "name": "Testing, Launch & Code Delivery",
+            "text": "Final QA, performance optimization (Lighthouse 95+), and production deployment. Full source code transferred via GitHub. 15 days of free post-launch support included.",
+            "url": `${SITE}/contact`
+          }
+        ]
+      },
+
+      // ============================================================
+      // 16. HOW-TO SCHEMA — How to Outsource Web Development to India
+      // ============================================================
+      {
+        "@type": "HowTo",
+        "@id": `${SITE}/#howto-outsource`,
+        "name": "How to Outsource Web Development to India (ChittorTech)",
+        "description": "A proven 5-step guide for USA, UK, Canada, UAE and Australian businesses to successfully outsource web and mobile app development to ChittorTech India.",
+        "totalTime": "P7D",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": "1",
+            "name": "Define Your Project Scope",
+            "text": "Write down what you want to build — website, mobile app, SaaS, AI chatbot, or e-commerce. Note key features, preferred tech, and your budget in USD."
+          },
+          {
+            "@type": "HowToStep",
+            "position": "2",
+            "name": "Contact ChittorTech for a Free Consultation",
+            "text": "Reach out via WhatsApp (+91 7597451057) or email (contact@chittortech.online). We respond within 2 hours during IST business hours (9 AM – 9 PM IST, Mon–Sat)."
+          },
+          {
+            "@type": "HowToStep",
+            "position": "3",
+            "name": "Review Proposal & Sign Agreement",
+            "text": "Receive a detailed proposal with milestones. Sign an SOW (Statement of Work). NDA available. Pay advance via PayPal, Stripe, or wire transfer."
+          },
+          {
+            "@type": "HowToStep",
+            "position": "4",
+            "name": "Monitor Agile Development Sprints",
+            "text": "Review sprint deliverables every week on a live staging URL. See all code progress via GitHub. Daily standup messages keep you informed."
+          },
+          {
+            "@type": "HowToStep",
+            "position": "5",
+            "name": "Launch, Own & Scale",
+            "text": "After final QA and launch, receive 100% source code ownership. Continue with a monthly maintenance retainer or add new features as needed."
+          }
+        ]
+      },
+
+      // ============================================================
+      // 17. AGGREGATE OFFER — Engagement Pricing Table
+      // ============================================================
+      {
+        "@type": "Product",
+        "@id": `${SITE}/#service-product-offshore`,
+        "name": "ChittorTech Offshore IT Development Services",
+        "brand": { "@id": ORG_ID },
+        "description": "Full range of offshore IT services from ChittorTech India — web development, mobile apps, AI, SaaS, e-commerce, and dedicated developers. Serving USA, UK, UAE, Canada, Australia.",
+        "category": "Software Development Services",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Business Website (Next.js)",
+            "price": "500",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "Mobile App MVP (React Native)",
+            "price": "1000",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "AI Chatbot (OpenAI / Groq)",
+            "price": "800",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "SaaS MVP Platform",
+            "price": "1500",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "Dedicated Developer – Hourly",
+            "price": "15",
+            "priceCurrency": "USD",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "USD",
+              "price": "15",
+              "unitText": "HOUR"
+            },
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "Dedicated Developer – Monthly Retainer",
+            "price": "1200",
+            "priceCurrency": "USD",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "USD",
+              "price": "1200",
+              "unitText": "MON"
+            },
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "87",
+          "bestRating": "5"
         }
       }
+
     ]
   };
 
