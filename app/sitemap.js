@@ -43,6 +43,24 @@ export default async function sitemap() {
       lastModified: CURRENT_DATE,
     },
     {
+      path: "/offshore-software-development-usa",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/hire-react-native-developers",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/custom-ai-solutions-dubai-uae",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
       path: "/contact",
       priority: 0.95,
       changeFrequency: "monthly",

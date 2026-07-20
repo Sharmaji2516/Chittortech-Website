@@ -160,15 +160,8 @@ export const metadata = {
     canonical: "https://www.chittortech.online",
     languages: {
       "x-default": "https://www.chittortech.online",
-      "en-US": "https://www.chittortech.online",
-      "en-GB": "https://www.chittortech.online",
-      "en-CA": "https://www.chittortech.online",
-      "en-AE": "https://www.chittortech.online",
-      "en-AU": "https://www.chittortech.online",
-      "en-DE": "https://www.chittortech.online",
-      "en-SG": "https://www.chittortech.online",
       "en-IN": "https://www.chittortech.online",
-      "hi-IN": "https://www.chittortech.online",
+      "en": "https://www.chittortech.online",
     }
   },
   openGraph: {
@@ -238,12 +231,7 @@ export default function RootLayout({ children }) {
         <link 
           rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-          media="print" 
-          onLoad="this.media='all'" 
         />
-        <noscript>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-        </noscript>
         <LocalSchema />
       </head>
       <body className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
