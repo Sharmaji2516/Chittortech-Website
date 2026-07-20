@@ -12,46 +12,39 @@ export default function Home() {
 
   const featuredServices = [
     {
-      title: "Business & Corporate Websites",
+      title: "Web Development & Next.js 15",
       icon: "fa-globe",
-      color: "#00d2ff",
-      description: "Professional, lightning-fast, and fully mobile-responsive website architectures tailored for corporate brands and startups to establish a dominant online presence.",
-      link: "/services"
+      color: "#003ED8",
+      description: "Professional, lightning-fast, and fully mobile-responsive website architectures built on Next.js 15 with 100/100 Lighthouse performance scores.",
+      link: "/services/web-development"
     },
     {
       title: "Mobile App Development",
       icon: "fa-mobile-screen-button",
-      color: "#ff9933",
-      description: "High-performance native Android & iOS mobile applications engineered on Expo (React Native) and Kotlin for fluid user experience and offline support.",
-      link: "/services"
+      color: "#002FA3",
+      description: "High-performance cross-platform iOS & Android mobile applications engineered on React Native Expo SDK 51 with 60 FPS fluid native UI.",
+      link: "/services/mobile-app-development"
     },
     {
-      title: "E-Commerce Solutions",
+      title: "E-Commerce & Shopify Plus",
       icon: "fa-cart-shopping",
-      color: "#9d50bb",
-      description: "Scale retail globally with robust e-commerce architectures, real-time stock sync systems, and secure multi-currency payment gateway integrations.",
-      link: "/services"
+      color: "#7c3aed",
+      description: "Scale online retail globally with custom Shopify Plus stores, headless Next.js Commerce platforms, and multi-currency payment integrations.",
+      link: "/services/e-commerce-solutions"
     },
     {
-      title: "Digital Marketing & Growth",
-      icon: "fa-chart-line",
-      color: "#00ff88",
-      description: "Explosive lead generation campaigns, optimized Meta/Google Ad management, and high-performance search engine optimization to dominate google rankings.",
-      link: "/services"
-    },
-    {
-      title: "Creative Graphics & Branding",
-      icon: "fa-paint-brush",
-      color: "#ff9933",
-      description: "Bespoke visual brand identities, vector logos, and engaging social creatives tailored to give your business a modern premium corporate voice.",
-      link: "/services"
-    },
-    {
-      title: "Custom Software & Web Apps",
+      title: "Custom Software & ERP Systems",
       icon: "fa-code",
-      color: "#ff4b2b",
-      description: "Tailor-made software architectures, enterprise CRMs, admin workflows, and custom API systems engineered for absolute performance.",
-      link: "/services"
+      color: "#0284c7",
+      description: "Enterprise multi-branch ERP platforms, custom CRM lead dashboards, SaaS MVP platforms, and automated workflow engines.",
+      link: "/services/custom-software-development"
+    },
+    {
+      title: "AI Chatbots & LLM Automation",
+      icon: "fa-robot",
+      color: "#059669",
+      description: "Automate 85% of customer support with custom OpenAI GPT-4o, private RAG vector document search (Pinecone/Qdrant), and bilingual WhatsApp AI bots.",
+      link: "/services/ai-integration"
     }
   ];
 

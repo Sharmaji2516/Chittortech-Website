@@ -1664,13 +1664,13 @@ export default function LocalSchema() {
           },
           {
             "@type": "Offer",
-            "name": "Dedicated Developer  Hourly",
-            "price": "15",
+            "name": "Dedicated Developer Hourly",
+            "price": "7",
             "priceCurrency": "USD",
             "priceSpecification": {
               "@type": "UnitPriceSpecification",
               "priceCurrency": "USD",
-              "price": "15",
+              "price": "7",
               "unitText": "HOUR"
             },
             "availability": "https://schema.org/InStock",
@@ -1678,15 +1678,87 @@ export default function LocalSchema() {
           },
           {
             "@type": "Offer",
-            "name": "Dedicated Developer  Monthly Retainer",
-            "price": "1200",
+            "name": "Dedicated Developer Monthly Retainer",
+            "price": "800",
             "priceCurrency": "USD",
             "priceSpecification": {
               "@type": "UnitPriceSpecification",
               "priceCurrency": "USD",
-              "price": "1200",
+              "price": "800",
               "unitText": "MON"
             },
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "Web Development Services",
+            "url": `${SITE}/services/web-development`,
+            "price": "300",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "Mobile App Development Services",
+            "url": `${SITE}/services/mobile-app-development`,
+            "price": "800",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "E-Commerce Solutions Services",
+            "url": `${SITE}/services/e-commerce-solutions`,
+            "price": "400",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "Custom Software & ERP Development",
+            "url": `${SITE}/services/custom-software-development`,
+            "price": "1200",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "AI & LLM Integration Services",
+            "url": `${SITE}/services/ai-integration`,
+            "price": "600",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "Offshore Software Development USA",
+            "url": `${SITE}/offshore-software-development-usa`,
+            "price": "7",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "Hire React Native Developers India",
+            "url": `${SITE}/hire-react-native-developers`,
+            "price": "7",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": { "@id": ORG_ID }
+          },
+          {
+            "@type": "Offer",
+            "name": "Custom AI Chatbot Development Dubai UAE",
+            "url": `${SITE}/custom-ai-solutions-dubai-uae`,
+            "price": "600",
+            "priceCurrency": "USD",
             "availability": "https://schema.org/InStock",
             "seller": { "@id": ORG_ID }
           }
