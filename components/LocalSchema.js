@@ -8,10 +8,10 @@ export default function LocalSchema() {
   const LOGO_ID = `${SITE}/#logo`;
 
   const GLOBAL_AREA_SERVED = [
-    // ── Global Catch-All ──────────────────────────────────────
+    //  Global Catch-All 
     { "@type": "Place", "name": "World" },
 
-    // ── A ────────────────────────────────────────────────────
+    //  A 
     { "@type": "Country", "name": "Afghanistan" },
     { "@type": "Country", "name": "Albania" },
     { "@type": "Country", "name": "Algeria" },
@@ -24,7 +24,7 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Austria" },
     { "@type": "Country", "name": "Azerbaijan" },
 
-    // ── B ────────────────────────────────────────────────────
+    //  B 
     { "@type": "Country", "name": "Bahamas" },
     { "@type": "Country", "name": "Bahrain" },
     { "@type": "Country", "name": "Bangladesh" },
@@ -43,7 +43,7 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Burkina Faso" },
     { "@type": "Country", "name": "Burundi" },
 
-    // ── C ────────────────────────────────────────────────────
+    //  C 
     { "@type": "Country", "name": "Cabo Verde" },
     { "@type": "Country", "name": "Cambodia" },
     { "@type": "Country", "name": "Cameroon" },
@@ -62,13 +62,13 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Cyprus" },
     { "@type": "Country", "name": "Czech Republic" },
 
-    // ── D ────────────────────────────────────────────────────
+    //  D 
     { "@type": "Country", "name": "Denmark" },
     { "@type": "Country", "name": "Djibouti" },
     { "@type": "Country", "name": "Dominica" },
     { "@type": "Country", "name": "Dominican Republic" },
 
-    // ── E ────────────────────────────────────────────────────
+    //  E 
     { "@type": "Country", "name": "East Timor" },
     { "@type": "Country", "name": "Ecuador" },
     { "@type": "Country", "name": "Egypt" },
@@ -79,12 +79,12 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Eswatini" },
     { "@type": "Country", "name": "Ethiopia" },
 
-    // ── F ────────────────────────────────────────────────────
+    //  F 
     { "@type": "Country", "name": "Fiji" },
     { "@type": "Country", "name": "Finland" },
     { "@type": "Country", "name": "France" },
 
-    // ── G ────────────────────────────────────────────────────
+    //  G 
     { "@type": "Country", "name": "Gabon" },
     { "@type": "Country", "name": "Gambia" },
     { "@type": "Country", "name": "Georgia" },
@@ -97,12 +97,12 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Guinea-Bissau" },
     { "@type": "Country", "name": "Guyana" },
 
-    // ── H ────────────────────────────────────────────────────
+    //  H 
     { "@type": "Country", "name": "Haiti" },
     { "@type": "Country", "name": "Honduras" },
     { "@type": "Country", "name": "Hungary" },
 
-    // ── I ────────────────────────────────────────────────────
+    //  I 
     { "@type": "Country", "name": "Iceland" },
     { "@type": "Country", "name": "India", "sameAs": "https://en.wikipedia.org/wiki/India" },
     { "@type": "Country", "name": "Indonesia" },
@@ -112,12 +112,12 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Israel" },
     { "@type": "Country", "name": "Italy" },
 
-    // ── J ────────────────────────────────────────────────────
+    //  J 
     { "@type": "Country", "name": "Jamaica" },
     { "@type": "Country", "name": "Japan" },
     { "@type": "Country", "name": "Jordan" },
 
-    // ── K ────────────────────────────────────────────────────
+    //  K 
     { "@type": "Country", "name": "Kazakhstan" },
     { "@type": "Country", "name": "Kenya" },
     { "@type": "Country", "name": "Kiribati" },
@@ -127,7 +127,7 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Kuwait" },
     { "@type": "Country", "name": "Kyrgyzstan" },
 
-    // ── L ────────────────────────────────────────────────────
+    //  L 
     { "@type": "Country", "name": "Laos" },
     { "@type": "Country", "name": "Latvia" },
     { "@type": "Country", "name": "Lebanon" },
@@ -138,7 +138,7 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Lithuania" },
     { "@type": "Country", "name": "Luxembourg" },
 
-    // ── M ────────────────────────────────────────────────────
+    //  M 
     { "@type": "Country", "name": "Madagascar" },
     { "@type": "Country", "name": "Malawi" },
     { "@type": "Country", "name": "Malaysia" },
@@ -158,7 +158,7 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Mozambique" },
     { "@type": "Country", "name": "Myanmar" },
 
-    // ── N ────────────────────────────────────────────────────
+    //  N 
     { "@type": "Country", "name": "Namibia" },
     { "@type": "Country", "name": "Nauru" },
     { "@type": "Country", "name": "Nepal" },
@@ -170,10 +170,10 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "North Macedonia" },
     { "@type": "Country", "name": "Norway" },
 
-    // ── O ────────────────────────────────────────────────────
+    //  O 
     { "@type": "Country", "name": "Oman" },
 
-    // ── P ────────────────────────────────────────────────────
+    //  P 
     { "@type": "Country", "name": "Pakistan" },
     { "@type": "Country", "name": "Palau" },
     { "@type": "Country", "name": "Palestine" },
@@ -185,15 +185,15 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Poland" },
     { "@type": "Country", "name": "Portugal" },
 
-    // ── Q ────────────────────────────────────────────────────
+    //  Q 
     { "@type": "Country", "name": "Qatar", "sameAs": "https://en.wikipedia.org/wiki/Qatar" },
 
-    // ── R ────────────────────────────────────────────────────
+    //  R 
     { "@type": "Country", "name": "Romania" },
     { "@type": "Country", "name": "Russia" },
     { "@type": "Country", "name": "Rwanda" },
 
-    // ── S ────────────────────────────────────────────────────
+    //  S 
     { "@type": "Country", "name": "Saint Kitts and Nevis" },
     { "@type": "Country", "name": "Saint Lucia" },
     { "@type": "Country", "name": "Saint Vincent and the Grenadines" },
@@ -219,7 +219,7 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Switzerland" },
     { "@type": "Country", "name": "Syria" },
 
-    // ── T ────────────────────────────────────────────────────
+    //  T 
     { "@type": "Country", "name": "Taiwan" },
     { "@type": "Country", "name": "Tajikistan" },
     { "@type": "Country", "name": "Tanzania" },
@@ -232,7 +232,7 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Turkmenistan" },
     { "@type": "Country", "name": "Tuvalu" },
 
-    // ── U ────────────────────────────────────────────────────
+    //  U 
     { "@type": "Country", "name": "Uganda" },
     { "@type": "Country", "name": "Ukraine" },
     { "@type": "Country", "name": "United Arab Emirates", "sameAs": "https://en.wikipedia.org/wiki/United_Arab_Emirates" },
@@ -241,18 +241,18 @@ export default function LocalSchema() {
     { "@type": "Country", "name": "Uruguay" },
     { "@type": "Country", "name": "Uzbekistan" },
 
-    // ── V ────────────────────────────────────────────────────
+    //  V 
     { "@type": "Country", "name": "Vanuatu" },
     { "@type": "Country", "name": "Vatican City" },
     { "@type": "Country", "name": "Venezuela" },
     { "@type": "Country", "name": "Vietnam" },
 
-    // ── Y–Z ──────────────────────────────────────────────────
+    //  YZ 
     { "@type": "Country", "name": "Yemen" },
     { "@type": "Country", "name": "Zambia" },
     { "@type": "Country", "name": "Zimbabwe" },
 
-    // ── India – States & Key Cities ──────────────────────────
+    //  India  States & Key Cities 
     { "@type": "State", "name": "Rajasthan", "sameAs": "https://en.wikipedia.org/wiki/Rajasthan" },
     { "@type": "City", "name": "Chittorgarh", "sameAs": "https://en.wikipedia.org/wiki/Chittorgarh" },
     { "@type": "City", "name": "Udaipur", "sameAs": "https://en.wikipedia.org/wiki/Udaipur" },
@@ -414,7 +414,7 @@ export default function LocalSchema() {
     { "@type": "City", "name": "Darwin" }, { "@type": "City", "name": "Sunshine Coast" }, { "@type": "City", "name": "Toowoomba" },
     // --- Germany --
     { "@type": "State", "name": "Bavaria" }, { "@type": "State", "name": "North Rhine-Westphalia" },
-    { "@type": "State", "name": "Baden-W�rttemberg" }, { "@type": "State", "name": "Lower Saxony" }, { "@type": "State", "name": "Hesse" },
+    { "@type": "State", "name": "Baden-Wrttemberg" }, { "@type": "State", "name": "Lower Saxony" }, { "@type": "State", "name": "Hesse" },
     { "@type": "City", "name": "Hamburg" }, { "@type": "City", "name": "Munich" }, { "@type": "City", "name": "Cologne" },
     { "@type": "City", "name": "Frankfurt" }, { "@type": "City", "name": "Stuttgart" }, { "@type": "City", "name": "Dusseldorf" },
     { "@type": "City", "name": "Dortmund" }, { "@type": "City", "name": "Leipzig" }, { "@type": "City", "name": "Dresden" },
@@ -444,7 +444,7 @@ export default function LocalSchema() {
     { "@type": "City", "name": "Luxembourg City" }, { "@type": "City", "name": "Ghent" },
     { "@type": "City", "name": "Aarhus" }, { "@type": "City", "name": "Espoo" }, { "@type": "City", "name": "Tampere" },
     { "@type": "City", "name": "Turku" }, { "@type": "City", "name": "Stavanger" }, { "@type": "City", "name": "Trondheim" },
-    { "@type": "City", "name": "Uppsala" }, { "@type": "City", "name": "Link�ping" },
+    { "@type": "City", "name": "Uppsala" }, { "@type": "City", "name": "Linkping" },
     // --- East Asia --
     { "@type": "City", "name": "Tokyo" }, { "@type": "City", "name": "Osaka" }, { "@type": "City", "name": "Kyoto" },
     { "@type": "City", "name": "Yokohama" }, { "@type": "City", "name": "Nagoya" }, { "@type": "City", "name": "Sapporo" },
@@ -512,7 +512,7 @@ export default function LocalSchema() {
     "@graph": [
 
       // ============================================================
-      // 1. ORGANIZATION — Global Brand Entity
+      // 1. ORGANIZATION  Global Brand Entity
       // ============================================================
       {
         "@type": ["Organization", "Corporation"],
@@ -527,7 +527,7 @@ export default function LocalSchema() {
           "contentUrl": `${SITE}/icon.png`,
           "width": 512,
           "height": 512,
-          "caption": "ChittorTech – Premier Offshore IT Agency Logo"
+          "caption": "ChittorTech  Premier Offshore IT Agency Logo"
         },
         "image": { "@id": LOGO_ID },
         "description": "ChittorTech is India's leading offshore IT company and software development agency. We build premium web applications (Next.js/React), mobile apps (React Native/Kotlin), custom AI chatbots (OpenAI/Groq), SaaS platforms, and e-commerce systems for clients in USA, UK, Canada, UAE, Australia, Germany, Singapore, and Rajasthan.",
@@ -567,7 +567,7 @@ export default function LocalSchema() {
         "hasCredential": [
           {
             "@type": "EducationalOccupationalCredential",
-            "name": "iStart Rajasthan – Q-Rate Recognized Startup",
+            "name": "iStart Rajasthan  Q-Rate Recognized Startup",
             "credentialCategory": "Government Recognition",
             "recognizedBy": {
               "@type": "GovernmentOrganization",
@@ -610,7 +610,7 @@ export default function LocalSchema() {
           },
           {
             "@type": "ContactPoint",
-            "email": ["contact@chittortech.online", "chittortech@gmail.com"],
+            "email": "chittortech@gmail.com",
             "contactType": "sales",
             "areaServed": ["IN", "US", "GB", "CA", "AE", "AU", "DE", "SG", "SA", "QA"],
             "availableLanguage": ["English", "Hindi"]
@@ -637,12 +637,12 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 2. LOCAL BUSINESS — Maps / GMB / Location Entity
+      // 2. LOCAL BUSINESS  Maps / GMB / Location Entity
       // ============================================================
       {
         "@type": ["LocalBusiness", "ProfessionalService", "ITService"],
         "@id": LOCAL_ID,
-        "name": "ChittorTech – Premier Offshore IT Agency & Software Development",
+        "name": "ChittorTech  Premier Offshore IT Agency & Software Development",
         "alternateName": [
           "ChittorTech IT Solutions",
           "Chittortech Software Company",
@@ -659,7 +659,7 @@ export default function LocalSchema() {
         ],
         "logo": `${SITE}/icon.png`,
         "telephone": "+91-7597451057",
-        "email": ["contact@chittortech.online", "chittortech@gmail.com"],
+        "email": "chittortech@gmail.com",
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Chittorgarh",
@@ -808,7 +808,7 @@ export default function LocalSchema() {
             },
             {
               "@type": "Offer",
-              "name": "Dedicated Remote Developers – Hourly",
+              "name": "Dedicated Remote Developers  Hourly",
               "priceCurrency": "USD",
               "price": "15",
               "priceSpecification": {
@@ -829,14 +829,14 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 3. WEBSITE — Search & Crawlability Entity
+      // 3. WEBSITE  Search & Crawlability Entity
       // ============================================================
       {
         "@type": "WebSite",
         "@id": WEBSITE_ID,
         "url": SITE,
-        "name": "ChittorTech – Offshore IT Agency India",
-        "description": "ChittorTech official website — India's premier offshore software development agency serving USA, UK, UAE, Canada, Australia, Germany, and Singapore.",
+        "name": "ChittorTech  Offshore IT Agency India",
+        "description": "ChittorTech official website  India's premier offshore software development agency serving USA, UK, UAE, Canada, Australia, Germany, and Singapore.",
         "publisher": { "@id": ORG_ID },
         "inLanguage": ["en-IN", "en-US", "en-GB", "hi-IN"],
         "copyrightYear": "2024",
@@ -851,13 +851,13 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 4. WEB PAGE — Home Page
+      // 4. WEB PAGE  Home Page
       // ============================================================
       {
         "@type": "WebPage",
         "@id": `${SITE}/#webpage`,
         "url": SITE,
-        "name": "ChittorTech | Premier Offshore IT Agency – Web, Mobile & AI Development India",
+        "name": "ChittorTech | Premier Offshore IT Agency  Web, Mobile & AI Development India",
         "description": "ChittorTech is India's #1 offshore IT agency. Hire dedicated Next.js, React Native, AI developers from India. Serving USA, UK, Canada, UAE, Australia, Germany, Singapore.",
         "isPartOf": { "@id": WEBSITE_ID },
         "about": { "@id": LOCAL_ID },
@@ -893,7 +893,7 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 6. FOUNDERS — Person Entities
+      // 6. FOUNDERS  Person Entities
       // ============================================================
       {
         "@type": "Person",
@@ -928,7 +928,7 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 7. SERVICE SCHEMAS — Domestic (Rajasthan/India)
+      // 7. SERVICE SCHEMAS  Domestic (Rajasthan/India)
       // ============================================================
       {
         "@type": ["Service", "ProfessionalService"],
@@ -959,7 +959,7 @@ export default function LocalSchema() {
       {
         "@type": ["Service", "ProfessionalService"],
         "@id": `${SITE}/#service-mobile-india`,
-        "name": "Mobile App Development (React Native & Kotlin) – India",
+        "name": "Mobile App Development (React Native & Kotlin)  India",
         "serviceType": "Mobile Application Development",
         "provider": { "@id": LOCAL_ID },
         "areaServed": [
@@ -987,7 +987,7 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 8. SERVICE SCHEMAS — International / Offshore
+      // 8. SERVICE SCHEMAS  International / Offshore
       // ============================================================
       {
         "@type": ["Service", "ProfessionalService"],
@@ -1026,7 +1026,7 @@ export default function LocalSchema() {
       {
         "@type": ["Service", "ProfessionalService"],
         "@id": `${SITE}/#service-ai-global`,
-        "name": "Custom AI Chatbot & RAG Development – Global",
+        "name": "Custom AI Chatbot & RAG Development  Global",
         "serviceType": "Artificial Intelligence Solutions",
         "provider": { "@id": LOCAL_ID },
         "areaServed": GLOBAL_AREA_SERVED,
@@ -1060,7 +1060,7 @@ export default function LocalSchema() {
       {
         "@type": ["Service", "ProfessionalService"],
         "@id": `${SITE}/#service-ecommerce-global`,
-        "name": "International E-Commerce Development – Stripe, PayPal, Multi-Currency",
+        "name": "International E-Commerce Development  Stripe, PayPal, Multi-Currency",
         "serviceType": "E-Commerce Development",
         "provider": { "@id": LOCAL_ID },
         "areaServed": GLOBAL_AREA_SERVED,
@@ -1077,11 +1077,11 @@ export default function LocalSchema() {
       {
         "@type": ["Service", "ProfessionalService"],
         "@id": `${SITE}/#service-staff-augmentation`,
-        "name": "Dedicated Remote Developers & IT Staff Augmentation – India",
+        "name": "Dedicated Remote Developers & IT Staff Augmentation  India",
         "serviceType": "IT Staff Augmentation",
         "provider": { "@id": LOCAL_ID },
         "areaServed": { "@type": "Place", "name": "World" },
-        "description": "Hire dedicated Next.js, React, React Native, Kotlin, or AI developers from ChittorTech India on hourly ($15/hr USD) or monthly contracts ($800–$1,200/month). Daily standups, GitHub delivery, full source code ownership.",
+        "description": "Hire dedicated Next.js, React, React Native, Kotlin, or AI developers from ChittorTech India on hourly ($15/hr USD) or monthly contracts ($800$1,200/month). Daily standups, GitHub delivery, full source code ownership.",
         "url": `${SITE}/contact`,
         "offers": {
           "@type": "Offer",
@@ -1098,12 +1098,12 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 9. PORTFOLIO — Item List
+      // 9. PORTFOLIO  Item List
       // ============================================================
       {
         "@type": "ItemList",
         "@id": `${SITE}/#portfolio`,
-        "name": "ChittorTech Portfolio – Recent Projects",
+        "name": "ChittorTech Portfolio  Recent Projects",
         "description": "Selected project case studies delivered by ChittorTech for clients across India and internationally.",
         "url": `${SITE}/projects`,
         "numberOfItems": 6,
@@ -1113,7 +1113,7 @@ export default function LocalSchema() {
             "position": 1,
             "item": {
               "@type": "CreativeWork",
-              "name": "Mewari Special Achaar – NRI Pickle E-Commerce Store",
+              "name": "Mewari Special Achaar  NRI Pickle E-Commerce Store",
               "description": "Authentic Rajasthani pickle e-commerce platform with international shipping, Firebase OTP auth, WhatsApp ordering, multi-language support, and 100/100 PageSpeed scores.",
               "url": "https://www.mewari-achar.shop",
               "creator": { "@id": ORG_ID }
@@ -1124,7 +1124,7 @@ export default function LocalSchema() {
             "position": 2,
             "item": {
               "@type": "CreativeWork",
-              "name": "Shaadi Sutra – Wedding Venue Discovery Platform",
+              "name": "Shaadi Sutra  Wedding Venue Discovery Platform",
               "description": "Next.js wedding venue marketplace with Firebase backend, real-time search, and multi-vendor listing for Rajasthan.",
               "creator": { "@id": ORG_ID }
             }
@@ -1134,7 +1134,7 @@ export default function LocalSchema() {
             "position": 3,
             "item": {
               "@type": "CreativeWork",
-              "name": "Hotel & Resort Website – Hospitality Portal",
+              "name": "Hotel & Resort Website  Hospitality Portal",
               "description": "Premium hotel website with booking integration, responsive design, multilingual support, and Google Analytics/Maps integration.",
               "creator": { "@id": ORG_ID }
             }
@@ -1173,7 +1173,7 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 10. REVIEWS — Individual Review Entities
+      // 10. REVIEWS  Individual Review Entities
       // ============================================================
       {
         "@type": "Review",
@@ -1197,7 +1197,7 @@ export default function LocalSchema() {
         "itemReviewed": { "@id": LOCAL_ID },
         "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "author": { "@type": "Person", "name": "SaaS Founder, London UK" },
-        "reviewBody": "The AI chatbot they built for us handles 80% of customer queries automatically. Our support team now focuses only on complex issues. ChittorTech's RAG implementation was flawless — OpenAI GPT-4o with our custom knowledge base."
+        "reviewBody": "The AI chatbot they built for us handles 80% of customer queries automatically. Our support team now focuses only on complex issues. ChittorTech's RAG implementation was flawless  OpenAI GPT-4o with our custom knowledge base."
       },
       {
         "@type": "Review",
@@ -1213,11 +1213,11 @@ export default function LocalSchema() {
         "itemReviewed": { "@id": LOCAL_ID },
         "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
         "author": { "@type": "Person", "name": "Health App Founder, Toronto Canada" },
-        "reviewBody": "ChittorTech built our React Native app for both iOS and Android in just 6 weeks. We launched on the Play Store with zero critical bugs. Kush and Lav are outstanding engineers — best offshore agency we've ever worked with."
+        "reviewBody": "ChittorTech built our React Native app for both iOS and Android in just 6 weeks. We launched on the Play Store with zero critical bugs. Kush and Lav are outstanding engineers  best offshore agency we've ever worked with."
       },
 
       // ============================================================
-      // 11. FAQ PAGE — Exhaustive Q&A for Local + International SEO
+      // 11. FAQ PAGE  Exhaustive Q&A for Local + International SEO
       // ============================================================
       {
         "@type": "FAQPage",
@@ -1260,7 +1260,7 @@ export default function LocalSchema() {
             "name": "What is the cost of website development in Chittorgarh?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChittorTech offers premium website development in Chittorgarh starting from ₹15,000 INR for a basic business website. Custom e-commerce portals start from ₹35,000 INR and SaaS platforms from ₹75,000 INR. Contact us at +91 7597451057 for a free quote."
+              "text": "ChittorTech offers premium website development in Chittorgarh starting from 15,000 INR for a basic business website. Custom e-commerce portals start from 35,000 INR and SaaS platforms from 75,000 INR. Contact us at +91 7597451057 for a free quote."
             }
           },
           {
@@ -1284,7 +1284,7 @@ export default function LocalSchema() {
             "name": "How can I hire a dedicated Next.js or React Native developer from India?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChittorTech offers dedicated developer hiring for international clients. Hire expert Next.js, React, React Native, Kotlin, or AI developers on hourly ($15/hr), part-time ($800/month), or full-time ($1,200/month) contracts. WhatsApp us at +91 7597451057 or email contact@chittortech.online to start."
+              "text": "ChittorTech offers dedicated developer hiring for international clients. Hire expert Next.js, React, React Native, Kotlin, or AI developers on hourly ($15/hr), part-time ($800/month), or full-time ($1,200/month) contracts. WhatsApp us at +91 7597451057 or email chittortech@gmail.com to start."
             }
           },
           {
@@ -1300,7 +1300,7 @@ export default function LocalSchema() {
             "name": "What are the pricing models for outsourcing software development to ChittorTech?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChittorTech offers three engagement models: (1) Fixed Price – starting from $500 USD for websites, (2) Hourly Developer Hire – starting from $15/hr USD, and (3) Monthly Retainer – full-time dedicated developer from $1,200/month. All include free consultation, transparent milestones, and full source code ownership transferred to the client."
+              "text": "ChittorTech offers three engagement models: (1) Fixed Price  starting from $500 USD for websites, (2) Hourly Developer Hire  starting from $15/hr USD, and (3) Monthly Retainer  full-time dedicated developer from $1,200/month. All include free consultation, transparent milestones, and full source code ownership transferred to the client."
             }
           },
           {
@@ -1340,7 +1340,7 @@ export default function LocalSchema() {
             "name": "How long does it take to build a web app or mobile app with ChittorTech?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "A business website typically takes 1–2 weeks. A mobile app MVP takes 3–6 weeks. A full SaaS platform takes 6–12 weeks. We provide exact timelines and milestone breakdowns in our free project proposal."
+              "text": "A business website typically takes 12 weeks. A mobile app MVP takes 36 weeks. A full SaaS platform takes 612 weeks. We provide exact timelines and milestone breakdowns in our free project proposal."
             }
           },
           {
@@ -1348,7 +1348,7 @@ export default function LocalSchema() {
             "name": "Does ChittorTech sign NDAs for international client projects?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. ChittorTech signs mutual NDAs before project kickoff on request. All project details, business logic, and source code remain strictly confidential. We also transfer 100% source code ownership to the client upon final payment — no vendor lock-in."
+              "text": "Yes. ChittorTech signs mutual NDAs before project kickoff on request. All project details, business logic, and source code remain strictly confidential. We also transfer 100% source code ownership to the client upon final payment  no vendor lock-in."
             }
           },
           {
@@ -1356,7 +1356,7 @@ export default function LocalSchema() {
             "name": "Which is the best IT outsourcing company in India for small businesses?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "ChittorTech is one of the best IT outsourcing companies in India for small and medium businesses internationally. We offer flexible pricing starting from $500 USD, transparent communication, and agile delivery — making us ideal for startups and small businesses in the USA, UK, UAE, Canada, and Australia."
+              "text": "ChittorTech is one of the best IT outsourcing companies in India for small and medium businesses internationally. We offer flexible pricing starting from $500 USD, transparent communication, and agile delivery  making us ideal for startups and small businesses in the USA, UK, UAE, Canada, and Australia."
             }
           },
           {
@@ -1372,7 +1372,7 @@ export default function LocalSchema() {
             "name": "Can ChittorTech optimize my existing website for PageSpeed Insights?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. ChittorTech provides comprehensive technical SEO and performance optimization services. We consistently achieve 95–100/100 scores on Google PageSpeed Insights (both Mobile and Desktop), 100/100 Best Practices, 100/100 SEO, and 3/3 Agentic Browsing."
+              "text": "Yes. ChittorTech provides comprehensive technical SEO and performance optimization services. We consistently achieve 95100/100 scores on Google PageSpeed Insights (both Mobile and Desktop), 100/100 Best Practices, 100/100 SEO, and 3/3 Agentic Browsing."
             }
           },
           {
@@ -1380,7 +1380,7 @@ export default function LocalSchema() {
             "name": "How do I contact ChittorTech for a project?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "You can contact ChittorTech via: WhatsApp (+91 7597451057), Email (contact@chittortech.online), or the Contact Form at https://www.chittortech.online/contact. We respond within 2 hours during IST business hours (9 AM – 9 PM IST, Monday–Saturday)."
+              "text": "You can contact ChittorTech via: WhatsApp (+91 7597451057), Email (chittortech@gmail.com), or the Contact Form at https://www.chittortech.online/contact. We respond within 2 hours during IST business hours (9 AM  9 PM IST, MondaySaturday)."
             }
           }
         ]
@@ -1392,7 +1392,7 @@ export default function LocalSchema() {
       {
         "@type": "Course",
         "@id": `${SITE}/#internship-course`,
-        "name": "IT Internship Program – Web, Mobile & AI Development",
+        "name": "IT Internship Program  Web, Mobile & AI Development",
         "description": "ChittorTech's hands-on IT internship program in Chittorgarh, Rajasthan. Work on real client projects in Next.js, React Native, Node.js, Firebase, and AI development. Earn a verified, blockchain-backed digital internship certificate.",
         "provider": { "@id": ORG_ID },
         "url": `${SITE}/internship`,
@@ -1428,14 +1428,14 @@ export default function LocalSchema() {
         "@type": "ContactPage",
         "@id": `${SITE}/contact#webpage`,
         "url": `${SITE}/contact`,
-        "name": "Contact ChittorTech – Hire Offshore Developers & Get a Free Quote",
+        "name": "Contact ChittorTech  Hire Offshore Developers & Get a Free Quote",
         "description": "Contact ChittorTech for a free project consultation. Hire dedicated Next.js, React Native, AI developers from India. We serve USA, UK, Canada, UAE, Australia, Germany, and Singapore.",
         "isPartOf": { "@id": WEBSITE_ID },
         "inLanguage": "en-IN"
       },
 
       // ============================================================
-      // 14. SITE NAVIGATION ELEMENT — Sitelinks Schema
+      // 14. SITE NAVIGATION ELEMENT  Sitelinks Schema
       // ============================================================
       {
         "@type": "SiteLinksSearchBox",
@@ -1464,42 +1464,42 @@ export default function LocalSchema() {
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "Services – Web, Mobile, AI, SaaS, E-Commerce",
+            "name": "Services  Web, Mobile, AI, SaaS, E-Commerce",
             "url": `${SITE}/services`,
             "item": `${SITE}/services`
           },
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Projects – Portfolio of Delivered Work",
+            "name": "Projects  Portfolio of Delivered Work",
             "url": `${SITE}/projects`,
             "item": `${SITE}/projects`
           },
           {
             "@type": "ListItem",
             "position": 3,
-            "name": "About – ChittorTech Company Story",
+            "name": "About  ChittorTech Company Story",
             "url": `${SITE}/about`,
             "item": `${SITE}/about`
           },
           {
             "@type": "ListItem",
             "position": 4,
-            "name": "Reviews – Client Testimonials & Ratings",
+            "name": "Reviews  Client Testimonials & Ratings",
             "url": `${SITE}/reviews`,
             "item": `${SITE}/reviews`
           },
           {
             "@type": "ListItem",
             "position": 5,
-            "name": "Contact – Get a Free Project Quote",
+            "name": "Contact  Get a Free Project Quote",
             "url": `${SITE}/contact`,
             "item": `${SITE}/contact`
           },
           {
             "@type": "ListItem",
             "position": 6,
-            "name": "Internship – Apply for IT Internship Rajasthan",
+            "name": "Internship  Apply for IT Internship Rajasthan",
             "url": `${SITE}/internship`,
             "item": `${SITE}/internship`
           }
@@ -1507,7 +1507,7 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 15. HOW-TO SCHEMA — How to Hire a Developer from ChittorTech
+      // 15. HOW-TO SCHEMA  How to Hire a Developer from ChittorTech
       // ============================================================
       {
         "@type": "HowTo",
@@ -1533,7 +1533,7 @@ export default function LocalSchema() {
         "tool": [
           {
             "@type": "HowToTool",
-            "name": "WhatsApp (+91 7597451057) or Email (contact@chittortech.online)"
+            "name": "WhatsApp (+91 7597451057) or Email (chittortech@gmail.com)"
           }
         ],
         "step": [
@@ -1541,7 +1541,7 @@ export default function LocalSchema() {
             "@type": "HowToStep",
             "position": "1",
             "name": "Contact ChittorTech",
-            "text": "Send a WhatsApp message to +91 7597451057 or email contact@chittortech.online with your project description, requirements, preferred tech stack, and budget range.",
+            "text": "Send a WhatsApp message to +91 7597451057 or email chittortech@gmail.com with your project description, requirements, preferred tech stack, and budget range.",
             "url": `${SITE}/contact`,
             "image": `${SITE}/icon.png`
           },
@@ -1556,7 +1556,7 @@ export default function LocalSchema() {
             "@type": "HowToStep",
             "position": "3",
             "name": "Sign Agreement & NDA",
-            "text": "Review and sign a simple contract/SOW. NDA is available on request. Pay 30–50% advance via PayPal, Stripe, or international wire transfer.",
+            "text": "Review and sign a simple contract/SOW. NDA is available on request. Pay 3050% advance via PayPal, Stripe, or international wire transfer.",
             "url": `${SITE}/contact`
           },
           {
@@ -1577,7 +1577,7 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 16. HOW-TO SCHEMA — How to Outsource Web Development to India
+      // 16. HOW-TO SCHEMA  How to Outsource Web Development to India
       // ============================================================
       {
         "@type": "HowTo",
@@ -1590,13 +1590,13 @@ export default function LocalSchema() {
             "@type": "HowToStep",
             "position": "1",
             "name": "Define Your Project Scope",
-            "text": "Write down what you want to build — website, mobile app, SaaS, AI chatbot, or e-commerce. Note key features, preferred tech, and your budget in USD."
+            "text": "Write down what you want to build  website, mobile app, SaaS, AI chatbot, or e-commerce. Note key features, preferred tech, and your budget in USD."
           },
           {
             "@type": "HowToStep",
             "position": "2",
             "name": "Contact ChittorTech for a Free Consultation",
-            "text": "Reach out via WhatsApp (+91 7597451057) or email (contact@chittortech.online). We respond within 2 hours during IST business hours (9 AM – 9 PM IST, Mon–Sat)."
+            "text": "Reach out via WhatsApp (+91 7597451057) or email (chittortech@gmail.com). We respond within 2 hours during IST business hours (9 AM  9 PM IST, MonSat)."
           },
           {
             "@type": "HowToStep",
@@ -1620,14 +1620,14 @@ export default function LocalSchema() {
       },
 
       // ============================================================
-      // 17. AGGREGATE OFFER — Engagement Pricing Table
+      // 17. AGGREGATE OFFER  Engagement Pricing Table
       // ============================================================
       {
         "@type": "Product",
         "@id": `${SITE}/#service-product-offshore`,
         "name": "ChittorTech Offshore IT Development Services",
         "brand": { "@id": ORG_ID },
-        "description": "Full range of offshore IT services from ChittorTech India — web development, mobile apps, AI, SaaS, e-commerce, and dedicated developers. Serving USA, UK, UAE, Canada, Australia.",
+        "description": "Full range of offshore IT services from ChittorTech India  web development, mobile apps, AI, SaaS, e-commerce, and dedicated developers. Serving USA, UK, UAE, Canada, Australia.",
         "category": "Software Development Services",
         "offers": [
           {
@@ -1664,7 +1664,7 @@ export default function LocalSchema() {
           },
           {
             "@type": "Offer",
-            "name": "Dedicated Developer – Hourly",
+            "name": "Dedicated Developer  Hourly",
             "price": "15",
             "priceCurrency": "USD",
             "priceSpecification": {
@@ -1678,7 +1678,7 @@ export default function LocalSchema() {
           },
           {
             "@type": "Offer",
-            "name": "Dedicated Developer – Monthly Retainer",
+            "name": "Dedicated Developer  Monthly Retainer",
             "price": "1200",
             "priceCurrency": "USD",
             "priceSpecification": {

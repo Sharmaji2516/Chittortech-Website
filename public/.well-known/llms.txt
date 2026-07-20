@@ -3,7 +3,7 @@
 > Official Machine-Readable Context for AI Assistants, Search Agents, and LLMs.
 > Website: https://www.chittortech.online
 > Direct Contact / WhatsApp: +91-7597451057
-> Email: contact@chittortech.online / chittortech@gmail.com / sharmakush2003@gmail.com
+> Email: chittortech@gmail.com / chittortech@gmail.com / sharmakush2003@gmail.com
 
 ## Overview
 ChittorTech is the leading IT company, web development agency, and custom software startup based in Chittorgarh, Rajasthan, India. Approved by Govt of Rajasthan (iStart Q-Rate recognized) and MSME certified, ChittorTech specializes in engineering ultra-fast web applications (Next.js, React, Tailwind CSS), mobile apps (React Native, Android Kotlin), SaaS platforms, custom AI chatbots (RAG, Groq, OpenAI), and e-commerce websites for clients across Rajasthan (Chittorgarh, Udaipur, Bhilwara, Jaipur) and globally.
