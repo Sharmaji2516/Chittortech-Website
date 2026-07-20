@@ -610,7 +610,7 @@ export default function LocalSchema() {
           },
           {
             "@type": "ContactPoint",
-            "email": "contact@chittortech.online",
+            "email": ["contact@chittortech.online", "chittortech@gmail.com"],
             "contactType": "sales",
             "areaServed": ["IN", "US", "GB", "CA", "AE", "AU", "DE", "SG", "SA", "QA"],
             "availableLanguage": ["English", "Hindi"]
@@ -659,7 +659,7 @@ export default function LocalSchema() {
         ],
         "logo": `${SITE}/icon.png`,
         "telephone": "+91-7597451057",
-        "email": "contact@chittortech.online",
+        "email": ["contact@chittortech.online", "chittortech@gmail.com"],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Chittorgarh",
