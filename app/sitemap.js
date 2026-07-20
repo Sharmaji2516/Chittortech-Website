@@ -43,6 +43,36 @@ export default async function sitemap() {
       lastModified: CURRENT_DATE,
     },
     {
+      path: "/services/web-development",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/services/mobile-app-development",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/services/e-commerce-solutions",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/services/custom-software-development",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/services/ai-integration",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
       path: "/offshore-software-development-usa",
       priority: 0.95,
       changeFrequency: "weekly",

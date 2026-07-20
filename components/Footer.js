@@ -108,8 +108,14 @@ export default function Footer({ onModalOpen }) {
               marginBottom: '20px'
             }}>Services</h4>
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              {['Web Development', 'Mobile App Dev', 'E-Commerce Setup', 'Custom Software', 'AI Integration'].map(s => (
-                <li key={s}><Link href="/services" style={{ color: '#52525b', fontSize: '0.875rem', textDecoration: 'none' }}>{s}</Link></li>
+              {[
+                { name: 'Web Development', href: '/services/web-development' },
+                { name: 'Mobile App Dev', href: '/services/mobile-app-development' },
+                { name: 'E-Commerce Setup', href: '/services/e-commerce-solutions' },
+                { name: 'Custom Software', href: '/services/custom-software-development' },
+                { name: 'AI Integration', href: '/services/ai-integration' },
+              ].map(s => (
+                <li key={s.name}><Link href={s.href} style={{ color: '#52525b', fontSize: '0.875rem', textDecoration: 'none' }}>{s.name}</Link></li>
               ))}
             </ul>
           </div>
