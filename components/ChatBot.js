@@ -188,11 +188,7 @@ export default function ChatBot({ onModalOpen }) {
     }
   }, [isOpen, messages]);
 
-  useEffect(() => {
-    if (isOpen && !userInfo) {
-      setShowLeadForm(true);
-    }
-  }, [isOpen, userInfo]);
+
 
   useEffect(() => {
     function handleClickOutside(event) {
