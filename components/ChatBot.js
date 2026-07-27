@@ -314,12 +314,6 @@ export default function ChatBot({ onModalOpen }) {
     const messageText = (typeof customMessage === 'string' ? customMessage : null) || input;
     if (!messageText || typeof messageText !== 'string' || !messageText.trim() || isLoading) return;
 
-    // Trigger lead form if not identified
-    if (!userInfo) {
-      setShowLeadForm(true);
-      return;
-    }
-
     setShowSuggestions(false);
     const userMessage = { role: "user", content: messageText.trim() };
     setMessages((prev) => [...prev, userMessage]);
