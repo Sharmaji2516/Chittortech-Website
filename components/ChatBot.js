@@ -279,17 +279,15 @@ export default function ChatBot({ onModalOpen }) {
       setUserInfo(userObj);
       setShowLeadForm(false);
 
-      // Notify founders via email
-      fetch('/api/chatbot-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      // Notify founders & customer via EmailJS
+      import('@/lib/email-service').then(m => {
+        m.sendChatbotLeadEmail({
           name: data.name,
           email: data.email,
           phone: data.phone,
           location
-        })
-      }).catch(err => console.error("Email notification failed:", err));
+        }).catch(err => console.error("Email notification failed:", err));
+      });
 
       // Now sync to Firestore in background
       await addDoc(collection(db, "chatbot_leads"), {

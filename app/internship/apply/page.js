@@ -71,18 +71,27 @@ export default function InternshipApplyPage() {
     }
 
     try {
-      const response = await fetch('/api/internship', {
-        method: 'POST',
-        body: formData,
-      });
+      const { sendInternshipApplicationEmail } = await import("@/lib/email-service");
+      const appData = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        phone: formData.get('phone'),
+        university: formData.get('university'),
+        college: formData.get('college'),
+        course: formData.get('course'),
+        startYear: formData.get('startYear'),
+        endYear: formData.get('endYear'),
+        track: track,
+        resume: resumeFile ? { filename: resumeFile.name } : null
+      };
+
+      const result = await sendInternshipApplicationEmail(appData);
       
-      const result = await response.json();
-      
-      if (response.ok) {
+      if (result.success) {
         setIsSubmitted(true);
         form.reset();
       } else {
-        alert(`Error: ${result.error || "Something went wrong. Please try again."}`);
+        alert("Something went wrong. Please try again.");
       }
     } catch (error) {
       alert("Network error. Please check your connection and try again.");
