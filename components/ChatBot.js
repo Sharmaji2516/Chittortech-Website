@@ -316,6 +316,44 @@ export default function ChatBot({ onModalOpen }) {
     setInput("");
     setIsLoading(true);
 
+    const groqKey = process.env.NEXT_PUBLIC_GROQ_API_KEY;
+
+    if (groqKey) {
+      try {
+        const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${groqKey}`
+          },
+          body: JSON.stringify({
+            model: "llama-3.3-70b-versatile",
+            messages: [
+              {
+                role: "system",
+                content: `You are the ChittorTech Principal AI Assistant for ChittorTech (IT & Web Development Agency). Founders: Kush Sharma & Lav Sharma. Location: Chittorgarh, Rajasthan. Email: chittortech@gmail.com. Help users with Web Development, Mobile Apps, AI Solutions, Projects, and Internships. Keep answers clear, technical, and helpful.`
+              },
+              ...messages.map(m => ({ role: m.role === 'ai' ? 'assistant' : 'user', content: m.content })),
+              userMessage
+            ],
+            temperature: 0.7,
+            max_tokens: 512
+          })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const aiReply = data.choices[0].message.content;
+          setMessages((prev) => [...prev, { role: "ai", content: aiReply }]);
+          setIsLoading(false);
+          return;
+        }
+      } catch (e) {
+        console.warn("Groq API Fallback to Knowledge Engine:", e);
+      }
+    }
+
+    // Knowledge Engine Fallback
     setTimeout(() => {
       const getAIResponse = (userText) => {
         const text = userText.toLowerCase();
