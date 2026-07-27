@@ -44,3 +44,5 @@ vercel-hook.txt
 
 # Antigravity Reminders
 REMINDER_CHECKLIST.md
+check_git_status.bat
+check_git_status.ps1
