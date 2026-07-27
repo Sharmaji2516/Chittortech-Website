@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import Groq from "groq-sdk";
 const pdf = require('pdf-parse-fork');
 
+export const dynamic = 'force-static';
+
 export async function POST(request) {
     try {
         const formData = await request.formData();

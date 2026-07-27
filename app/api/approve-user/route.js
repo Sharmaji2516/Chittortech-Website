@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/firebase';
 import { doc, getDoc, setDoc, deleteDoc } from 'firebase/firestore';
 
+export const dynamic = 'force-static';
+
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const email = searchParams.get('email');

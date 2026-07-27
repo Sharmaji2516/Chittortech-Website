@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 export default async function sitemap() {
   const BASE_URL = "https://www.chittortech.online";
   const CURRENT_DATE = new Date();

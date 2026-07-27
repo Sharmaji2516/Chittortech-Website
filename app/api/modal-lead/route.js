@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { sendModalLeadEmail } from '@/lib/email-service';
 
+export const dynamic = 'force-static';
+
 export async function POST(req) {
     try {
         const body = await req.json();

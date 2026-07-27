@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
 import { db } from '@/lib/firebase';
 import { doc, getDoc, deleteDoc, setDoc } from 'firebase/firestore';
 import { sendChittorWelcomeEmail } from '@/lib/email-service';
 import { verifyOtpToken } from '@/lib/otpStore';
+
+export const dynamic = 'force-static';
 
 export async function POST(request) {
     try {
