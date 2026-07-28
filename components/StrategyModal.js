@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { sendModalLeadEmail } from "@/lib/email-service";
 
 export default function StrategyModal({ isOpen, onClose }) {
   const [status, setStatus] = useState("");
@@ -29,13 +30,9 @@ export default function StrategyModal({ isOpen, onClose }) {
     };
 
     try {
-      const response = await fetch('/api/modal-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const result = await sendModalLeadEmail(formData);
 
-      if (response.ok) {
+      if (result.success) {
         setStatus("Thank you! Our strategist will contact you shortly.");
       } else {
         setStatus("Something went wrong. Please try again.");

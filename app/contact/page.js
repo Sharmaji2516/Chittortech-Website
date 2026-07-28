@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { sendProjectInquiryEmail } from "@/lib/email-service";
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -12,17 +13,9 @@ export default function ContactPage() {
     const data = Object.fromEntries(formData.entries());
     
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      const result = await sendProjectInquiryEmail(data);
       
-      const result = await response.json();
-      
-      if (response.ok) {
+      if (result.success) {
         setIsSubmitted(true);
         form.reset();
       } else {

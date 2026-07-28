@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { sendInternshipApplicationEmail } from '@/lib/email-service';
 
+export const dynamic = 'force-static';
+
 export async function POST(request) {
     try {
         const formData = await request.formData();

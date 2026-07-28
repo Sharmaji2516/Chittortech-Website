@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { sendModalLeadEmail } from "@/lib/email-service";
 
 export default function DemoModal({ isOpen, onClose }) {
   const [status, setStatus] = useState("");
@@ -23,13 +24,9 @@ export default function DemoModal({ isOpen, onClose }) {
     };
 
     try {
-      const response = await fetch('/api/modal-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const result = await sendModalLeadEmail(formData);
 
-      if (response.ok) {
+      if (result.success) {
         setStatus("Thank you! Our expert will call you shortly.");
       } else {
         setStatus("Something went wrong. Please try again.");

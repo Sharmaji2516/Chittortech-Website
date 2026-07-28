@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { sendChatbotLeadEmail } from '@/lib/email-service';
 
+export const dynamic = 'force-static';
+
 export async function POST(request) {
     try {
         const leadData = await request.json();

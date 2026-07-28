@@ -4,6 +4,8 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { sendOtpEmail } from '@/lib/email-service';
 import { generateOtpToken } from '@/lib/otpStore';
 
+export const dynamic = 'force-static';
+
 export async function POST(request) {
     try {
         const { email, password, loginWithOtp, mode, auditData } = await request.json();

@@ -188,11 +188,7 @@ export default function ChatBot({ onModalOpen }) {
     }
   }, [isOpen, messages]);
 
-  useEffect(() => {
-    if (isOpen && !userInfo) {
-      setShowLeadForm(true);
-    }
-  }, [isOpen, userInfo]);
+
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -279,17 +275,15 @@ export default function ChatBot({ onModalOpen }) {
       setUserInfo(userObj);
       setShowLeadForm(false);
 
-      // Notify founders via email
-      fetch('/api/chatbot-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+      // Notify founders & customer via EmailJS
+      import('@/lib/email-service').then(m => {
+        m.sendChatbotLeadEmail({
           name: data.name,
           email: data.email,
           phone: data.phone,
           location
-        })
-      }).catch(err => console.error("Email notification failed:", err));
+        }).catch(err => console.error("Email notification failed:", err));
+      });
 
       // Now sync to Firestore in background
       await addDoc(collection(db, "chatbot_leads"), {
@@ -316,50 +310,108 @@ export default function ChatBot({ onModalOpen }) {
     const messageText = (typeof customMessage === 'string' ? customMessage : null) || input;
     if (!messageText || typeof messageText !== 'string' || !messageText.trim() || isLoading) return;
 
-    // Trigger lead form if not identified
-    if (!userInfo) {
-      setShowLeadForm(true);
-      return;
-    }
-
     setShowSuggestions(false);
     const userMessage = { role: "user", content: messageText.trim() };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
 
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: [...(messages || []), userMessage]
-            .filter(m => m && !m.isSystem)
-            .map((m) => ({
-              role: m.role === 'ai' ? 'assistant' : 'user',
-              content: m.content,
-            })),
-          language,
-        }),
-      });
+    const groqKey = process.env.NEXT_PUBLIC_GROQ_API_KEY;
 
-      if (!response.ok) throw new Error("Failed to fetch");
+    if (groqKey) {
+      try {
+        const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${groqKey}`
+          },
+          body: JSON.stringify({
+            model: "llama-3.3-70b-versatile",
+            messages: [
+              {
+                role: "system",
+                content: `You are the official ChittorTech Principal AI Assistant for ChittorTech.
 
-      // Wait for the full response instead of streaming
-      const data = await response.json();
-      setMessages((prev) => [
-        ...prev,
-        { role: "ai", content: data.response },
-      ]);
-    } catch (error) {
-      console.error("Chat Error:", error);
-      setMessages((prev) => [
-        ...prev,
-        { role: "ai", content: "I'm sorry, I'm having trouble connecting to my neural core. Please try again later or contact us directly." },
-      ]);
-    } finally {
-      setIsLoading(false);
+STRICT BOUNDARY & RESTRICTION RULE:
+- You MUST ONLY answer questions strictly related to ChittorTech company, its web & mobile services, digital products, portfolio projects, founders (Kush Sharma & Lav Sharma), contact information, pricing, and internship applications.
+- If the user asks ANY general knowledge, general coding, politics, math, jokes, or unrelated off-topic questions (e.g. "Who is the Prime Minister?", "Write Python code for snake game", "What is quantum physics?"), politely decline by stating: "I am ChittorTech's official AI assistant. I can only assist you with questions regarding ChittorTech services, digital products, portfolio projects, and founder inquiries. How can I help you with ChittorTech today?"
+- NEVER break character. Maintain an elite, high-end engineering tone.
+
+CHITTORTECH KNOWLEDGE BASE:
+- Company Name: ChittorTech (Premier IT Startup & Digital Product Engineering Agency).
+- Location: Chittorgarh, Rajasthan, India.
+- Founders: Kush Sharma (Founder) & Lav Sharma (Co-Founder).
+- Email: chittortech@gmail.com
+- Core Services: Web Development (Next.js, React, Node.js), Mobile App Development (React Native, iOS, Android), Custom AI Systems & RAG Chatbots, Cloud & SaaS Architecture.
+- Key Projects: 
+  1. AI Content & NotebookLLM Systems
+  2. Mewari Achar E-Commerce (https://www.mewari-achar.shop/)
+  3. Hospitality & Admin Hubs (https://dharamsala-admin-portal.vercel.app/)
+  4. Shaadi Sutra Event SaaS (https://shaadi-sutra.vercel.app/)
+  5. MailPulse Elite Bulk Email Engine
+- Contact Link: [Contact Us](https://chittortech.online/contact)
+- Internship Link: [Apply for Internship](https://chittortech.online/internship/apply)`
+              },
+              ...messages.map(m => ({ role: m.role === 'ai' ? 'assistant' : 'user', content: m.content })),
+              userMessage
+            ],
+            temperature: 0.7,
+            max_tokens: 512
+          })
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          const aiReply = data.choices[0].message.content;
+          setMessages((prev) => [...prev, { role: "ai", content: aiReply }]);
+          setIsLoading(false);
+          return;
+        }
+      } catch (e) {
+        console.warn("Groq API Fallback to Knowledge Engine:", e);
+      }
     }
+
+    // Knowledge Engine Fallback
+    setTimeout(() => {
+      const getAIResponse = (userText) => {
+        const text = userText.toLowerCase();
+
+        if (text.includes("hi") || text.includes("hello") || text.includes("hey") || text.includes("namaste") || text.includes("hieee")) {
+          return "Hello! I'm the ChittorTech Principal AI Assistant. How can I assist you with our digital products, services, or founders today?";
+        }
+
+        if (text.includes("founder") || text.includes("kush") || text.includes("lav") || text.includes("contact") || text.includes("owner") || text.includes("team") || text.includes("email") || text.includes("phone")) {
+          return "ChittorTech was founded by Kush Sharma (Founder) & Lav Sharma (Co-Founder).\n\n📍 Location: Chittorgarh, Rajasthan, India\n📧 Email: chittortech@gmail.com\n\n[Contact Us Directly](https://chittortech.online/contact)";
+        }
+
+        if (text.includes("service") || text.includes("web") || text.includes("app") || text.includes("ai") || text.includes("build") || text.includes("develop") || text.includes("software")) {
+          return "ChittorTech provides elite digital engineering services:\n\n1. Web Application Development (Next.js, React, Node.js)\n2. Mobile App Development (React Native, iOS & Android)\n3. Custom AI Integration & RAG Chatbots\n4. Cloud & SaaS Infrastructure\n\n[Explore Our Services](https://chittortech.online/services)";
+        }
+
+        if (text.includes("project") || text.includes("portfolio") || text.includes("work") || text.includes("demo") || text.includes("client")) {
+          return "Here are some of ChittorTech's featured live projects:\n\n1. AI Content & NotebookLLM Systems\n[View Services](https://chittortech.online/services)\n\n2. Mewari Achar E-Commerce\n[View Live](https://www.mewari-achar.shop/)\n\n3. Hospitality & Admin Hubs\n[View Live](https://dharamsala-admin-portal.vercel.app/)\n\n4. Shaadi Sutra Event SaaS\n[View Live](https://shaadi-sutra.vercel.app/)\n\n[View All Projects](https://chittortech.online/projects)";
+        }
+
+        if (text.includes("intern") || text.includes("job") || text.includes("career") || text.includes("apply") || text.includes("hiring")) {
+          return "We offer exciting engineering internships across Web Development, Mobile Apps, and AI Systems!\n\n[Apply for Internship](https://chittortech.online/internship/apply)";
+        }
+
+        if (text.includes("price") || text.includes("cost") || text.includes("rate") || text.includes("quote")) {
+          return "Every project is custom-engineered to meet your exact business goals. Reach out to Kush & Lav Sharma for a free strategy session & quote!\n\n[Get a Free Quote](https://chittortech.online/contact)";
+        }
+
+        return "ChittorTech specializes in engineering high-end web applications, mobile apps, and custom AI automation for modern businesses.\n\nWould you like to explore our services or speak directly with our founders?\n\n[Talk to Founders](https://chittortech.online/contact)";
+      };
+
+      const reply = getAIResponse(messageText);
+      setMessages((prev) => [
+        ...prev,
+        { role: "ai", content: reply },
+      ]);
+      setIsLoading(false);
+    }, 400);
   };
 
   return (

@@ -1,3 +1,5 @@
+export const dynamic = 'force-static';
+
 export default function robots() {
   const baseUrl = "https://www.chittortech.online";
 
@@ -9,6 +11,14 @@ export default function robots() {
         allow: [
           "/",
           "/services",
+          "/services/web-development",
+          "/services/mobile-app-development",
+          "/services/e-commerce-solutions",
+          "/services/custom-software-development",
+          "/services/ai-integration",
+          "/offshore-software-development-usa",
+          "/hire-react-native-developers",
+          "/custom-ai-solutions-dubai-uae",
           "/about",
           "/projects",
           "/reviews",

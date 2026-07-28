@@ -1,14 +1,33 @@
+export const dynamic = 'force-static';
+
 export default async function sitemap() {
   const BASE_URL = "https://www.chittortech.online";
   const CURRENT_DATE = new Date();
 
+  // Full hreflang language map for all pages
+  const buildAlternates = (path) => ({
+    languages: {
+      "x-default": `${BASE_URL}${path}`,
+      "en-US":     `${BASE_URL}${path}`,
+      "en-GB":     `${BASE_URL}${path}`,
+      "en-CA":     `${BASE_URL}${path}`,
+      "en-AE":     `${BASE_URL}${path}`,
+      "en-AU":     `${BASE_URL}${path}`,
+      "en-DE":     `${BASE_URL}${path}`,
+      "en-SG":     `${BASE_URL}${path}`,
+      "en-IN":     `${BASE_URL}${path}`,
+      "hi-IN":     `${BASE_URL}${path}`,
+    },
+  });
+
   // ─────────────────────────────────────────────────────────────
   // Priority Scale:
-  //   1.0 = Homepage (most important)
-  //   0.95 = Core service/conversion pages
-  //   0.90 = High-value content pages
-  //   0.85 = Supporting business pages
-  //   0.75 = Secondary pages
+  //   1.0  = Homepage (most important)
+  //   0.95 = Core conversion + international service pages
+  //   0.90 = High-value social proof + portfolio pages
+  //   0.85 = Brand, trust & lead generation pages
+  //   0.80 = Secondary conversion pages
+  //   0.75 = Utility pages
   // ─────────────────────────────────────────────────────────────
   const STATIC_ROUTES = [
     // Tier 1: Homepage
@@ -18,9 +37,57 @@ export default async function sitemap() {
       changeFrequency: "daily",
       lastModified: CURRENT_DATE,
     },
-    // Tier 2: Primary conversion & service pages
+    // Tier 2: Primary conversion & global service pages
     {
       path: "/services",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/services/web-development",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/services/mobile-app-development",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/services/e-commerce-solutions",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/services/custom-software-development",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/services/ai-integration",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/offshore-software-development-usa",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/hire-react-native-developers",
+      priority: 0.95,
+      changeFrequency: "weekly",
+      lastModified: CURRENT_DATE,
+    },
+    {
+      path: "/custom-ai-solutions-dubai-uae",
       priority: 0.95,
       changeFrequency: "weekly",
       lastModified: CURRENT_DATE,
@@ -33,13 +100,13 @@ export default async function sitemap() {
     },
     // Tier 3: High-value content & social proof pages
     {
-      path: "/reviews",
+      path: "/projects",
       priority: 0.90,
       changeFrequency: "weekly",
       lastModified: CURRENT_DATE,
     },
     {
-      path: "/projects",
+      path: "/reviews",
       priority: 0.90,
       changeFrequency: "weekly",
       lastModified: CURRENT_DATE,
@@ -72,27 +139,13 @@ export default async function sitemap() {
     },
   ];
 
-  // ─────────────────────────────────────────────────────────────
-  // Build final sitemap array
-  // Each entry includes:
-  //   - Absolute URL
-  //   - lastModified date
-  //   - changeFrequency
-  //   - priority
-  //   - hreflang alternates (en-IN for India targeting)
-  // ─────────────────────────────────────────────────────────────
+  // Build final sitemap array with full global hreflang alternates
   const sitemapEntries = STATIC_ROUTES.map((route) => ({
     url: `${BASE_URL}${route.path}`,
     lastModified: route.lastModified,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
-    alternates: {
-      languages: {
-        "x-default": `${BASE_URL}${route.path}`,
-        "en-IN": `${BASE_URL}${route.path}`,
-        "en-US": `${BASE_URL}${route.path}`,
-      },
-    },
+    alternates: buildAlternates(route.path),
   }));
 
   return sitemapEntries;

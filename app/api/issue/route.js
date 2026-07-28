@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
+export const dynamic = 'force-static';
+
 export async function POST(request) {
     try {
         const data = await request.json();

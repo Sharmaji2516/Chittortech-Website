@@ -24,7 +24,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Services & Projects", href: "/services" },
+    { name: "Services", href: "/services" },
     { name: "Reviews", href: "/reviews" },
     { name: "Internship", href: "/internship" },
     { name: "Contact", href: "/contact" },
@@ -72,7 +72,7 @@ export default function Navbar() {
             <a href="https://www.linkedin.com/company/chittortech" target="_blank" rel="noopener noreferrer" className="social-icon" title="LinkedIn">
               <i className="fab fa-linkedin"></i>
             </a>
-            <a href="https://wa.me/918233816674" target="_blank" rel="noopener noreferrer" className="social-icon" title="WhatsApp">
+            <a href="https://wa.me/917597451057" target="_blank" rel="noopener noreferrer" className="social-icon" title="WhatsApp">
               <i className="fab fa-whatsapp"></i>
             </a>
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=chittortech@gmail.com&su=New%20Project%20Inquiry" target="_blank" rel="noopener noreferrer" className="social-icon" title="Email">
