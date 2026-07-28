@@ -70,6 +70,30 @@ export default function InternshipApplyPage() {
       return;
     }
 
+    let resumePayload = null;
+    if (resumeFile && resumeFile.size > 0) {
+      try {
+        const base64Data = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const resultStr = reader.result || '';
+            const base64Content = resultStr.includes(',') ? resultStr.split(',')[1] : resultStr;
+            resolve(base64Content);
+          };
+          reader.onerror = (err) => reject(err);
+          reader.readAsDataURL(resumeFile);
+        });
+
+        resumePayload = {
+          name: resumeFile.name,
+          filename: resumeFile.name,
+          data: base64Data
+        };
+      } catch (fileErr) {
+        console.warn("Base64 Resume Conversion Warning:", fileErr);
+      }
+    }
+
     try {
       const { sendInternshipApplicationEmail } = await import("@/lib/email-service");
       const appData = {
@@ -82,7 +106,7 @@ export default function InternshipApplyPage() {
         startYear: formData.get('startYear'),
         endYear: formData.get('endYear'),
         track: track,
-        resume: resumeFile ? { filename: resumeFile.name } : null
+        resume: resumePayload
       };
 
       const result = await sendInternshipApplicationEmail(appData);
