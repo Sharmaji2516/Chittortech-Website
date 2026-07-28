@@ -207,12 +207,8 @@ export default function RootLayout({ children }) {
         <link 
           rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-          media="print" 
-          onLoad="this.media='all'" 
+          crossOrigin="anonymous"
         />
-        <noscript>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-        </noscript>
         <LocalSchema />
       </head>
       <body className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
