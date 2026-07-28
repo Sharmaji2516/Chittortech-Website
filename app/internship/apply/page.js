@@ -1,51 +1,21 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { storage } from "@/lib/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { sendWhatsAppLead } from "@/lib/whatsapp-service";
 
 export default function InternshipApplyPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState(null);
-  const [analysisError, setAnalysisError] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [track, setTrack] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     if (isSubmitted) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [isSubmitted]);
-
-  const handleAnalyzeResume = async (file) => {
-    if (!file || file.type !== 'application/pdf') return;
-    
-    setIsAnalyzing(true);
-    setAnalysisResult(null);
-    setAnalysisError(null);
-
-    const formData = new FormData();
-    formData.append('resume', file);
-
-    try {
-      const response = await fetch('/api/internship/analyze', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const result = await response.json();
-      if (response.ok) {
-        setAnalysisResult(result);
-        setShowModal(true); // Automatically open the modal when results are ready
-      } else {
-        setAnalysisError(result.error || "Analysis failed. Please try again.");
-      }
-    } catch (error) {
-      console.error("Analysis failed:", error);
-      setAnalysisError("Network error. Please check your connection.");
-    } finally {
-      setIsAnalyzing(false);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,43 +29,30 @@ export default function InternshipApplyPage() {
     
     // File validation
     const resumeFile = formData.get('resume');
-    if (resumeFile && resumeFile.size > 2 * 1024 * 1024) {
-      alert("Resume file size must be less than 2MB.");
+    if (resumeFile && resumeFile.size > 5 * 1024 * 1024) {
+      alert("Resume file size must be less than 5MB.");
       setIsSubmitting(false);
       return;
     }
-    if (resumeFile && resumeFile.type !== 'application/pdf') {
+    if (resumeFile && resumeFile.size > 0 && resumeFile.type !== 'application/pdf') {
       alert("Please upload resume in PDF format only.");
       setIsSubmitting(false);
       return;
     }
 
-    let resumePayload = null;
+    let resumeUrl = "Not Provided";
     if (resumeFile && resumeFile.size > 0) {
       try {
-        const base64Data = await new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            const resultStr = reader.result || '';
-            const base64Content = resultStr.includes(',') ? resultStr.split(',')[1] : resultStr;
-            resolve(base64Content);
-          };
-          reader.onerror = (err) => reject(err);
-          reader.readAsDataURL(resumeFile);
-        });
-
-        resumePayload = {
-          name: resumeFile.name,
-          filename: resumeFile.name,
-          data: base64Data
-        };
-      } catch (fileErr) {
-        console.warn("Base64 Resume Conversion Warning:", fileErr);
+        const fileRef = ref(storage, `resumes/${Date.now()}_${resumeFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`);
+        await uploadBytes(fileRef, resumeFile);
+        resumeUrl = await getDownloadURL(fileRef);
+      } catch (uploadErr) {
+        console.warn("Resume Storage Upload Fallback:", uploadErr);
+        resumeUrl = `File: ${resumeFile.name} (Upload error, please ask candidate)`;
       }
     }
 
     try {
-      const { sendWhatsAppLead } = await import("@/lib/whatsapp-service");
       sendWhatsAppLead({
         title: 'Internship Application',
         fields: {
@@ -105,22 +62,20 @@ export default function InternshipApplyPage() {
           '🏫 University': formData.get('university'),
           '🎓 College': formData.get('college'),
           '📚 Course': `${formData.get('course')} (${formData.get('startYear')} - ${formData.get('endYear')})`,
-          '💻 Preferred Track': track,
-        },
-        messageText: `Resume attached/selected: ${resumeFile ? resumeFile.name : 'Not provided'}`
+          '💻 Preferred Track': track === "Others" ? (formData.get('otherTrack') || "Others") : track,
+          '📄 PDF Resume Link': resumeUrl !== "Not Provided" ? resumeUrl : "No File Uploaded"
+        }
       });
 
       setIsSubmitted(true);
       form.reset();
+      setTrack("");
     } catch (error) {
       alert("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  const [track, setTrack] = useState("");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <main style={{ paddingTop: '0px' }}>
@@ -150,17 +105,17 @@ export default function InternshipApplyPage() {
             }}>
               {isSubmitted ? (
                 <div className="success-overlay" style={{ textAlign: 'center' }}>
-                  <div className="success-icon" style={{ color: 'var(--primary)', fontSize: '3rem', marginBottom: '1.5rem' }}>
-                    <i className="fas fa-circle-check"></i>
+                  <div className="success-icon" style={{ color: '#25D366', fontSize: '3rem', marginBottom: '1.5rem' }}>
+                    <i className="fab fa-whatsapp"></i>
                   </div>
-                  <h3 style={{ fontSize: '1.8rem', color: 'var(--text-main)', fontWeight: '800' }}>Application Received</h3>
-                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Our HR division will review your profile and contact you soon.</p>
+                  <h3 style={{ fontSize: '1.8rem', color: 'var(--text-main)', fontWeight: '800' }}>Opening WhatsApp!</h3>
+                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Your internship application and resume link have been formatted for WhatsApp.</p>
                   <button 
-                    onClick={() => window.location.href = '/internship'} 
+                    onClick={() => setIsSubmitted(false)} 
                     className="btn btn-outline" 
                     style={{ marginTop: '2rem', borderRadius: '50px' }}
                   >
-                    Back to Internship
+                    Submit Another Application
                   </button>
                 </div>
               ) : (
@@ -264,7 +219,6 @@ export default function InternshipApplyPage() {
                               animation: 'slideDownDropdown 0.2s ease-out'
                             }}
                           >
-
                             {[
                               "Frontend Development",
                               "Backend Development",
@@ -337,24 +291,6 @@ export default function InternshipApplyPage() {
 
                   <div className="form-group" style={{ marginTop: '1.5rem' }}>
                     <label className="input-label">Upload Resume (PDF only)</label>
-                    
-                    {/* Advisory Note */}
-                    <div style={{ 
-                      background: 'rgba(0, 62, 216, 0.03)', 
-                      borderLeft: '3.5px solid var(--primary)', 
-                      padding: '1rem', 
-                      borderRadius: '8px',
-                      marginBottom: '1.5rem',
-                      display: 'flex',
-                      gap: '1rem',
-                      alignItems: 'flex-start'
-                    }}>
-                      <i className="fas fa-info-circle" style={{ color: 'var(--primary)', marginTop: '0.2rem' }}></i>
-                      <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.5', margin: 0 }}>
-                        <span style={{ color: 'var(--primary)', fontWeight: 'bold' }}>Pro Tip:</span> Please upload your <span style={{ color: 'var(--text-main)' }}>actual, professional resume</span>. Our AI analysis provides the most accurate Tech-Readiness Score and feedback when it can analyze your real skills and experience.
-                      </p>
-                    </div>
-
                     <div style={{ 
                       position: 'relative',
                       border: '2px dashed rgba(0, 62, 216, 0.15)',
@@ -385,185 +321,40 @@ export default function InternshipApplyPage() {
                           if (fileName) {
                             const label = e.target.parentElement.querySelector('.file-name-display');
                             if (label) label.textContent = fileName;
-                            handleAnalyzeResume(file);
                           }
                         }}
                       />
                       <div className="file-upload-ui">
                         <i className="fas fa-cloud-arrow-up" style={{ fontSize: '1.5rem', color: 'var(--primary)', marginBottom: '0.5rem', display: 'block' }}></i>
-                        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '0.2rem' }}>Click to upload PDF</p>
+                        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '0.2rem' }}>Click to upload PDF resume</p>
                         <p className="file-name-display" style={{ color: 'var(--primary)', fontWeight: '600', fontSize: '0.75rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>No file selected</p>
                       </div>
                     </div>
                   </div>
 
-                  {/* AI Feedback Status / Trigger */}
-                  {(isAnalyzing || analysisResult || analysisError) && (
-                    <div style={{ 
-                      marginTop: '2rem', 
-                      padding: '1.2rem', 
-                      background: 'rgba(0, 62, 216, 0.03)', 
-                      border: '1px solid rgba(0, 62, 216, 0.1)', 
-                      borderRadius: '16px',
-                      animation: 'slideDown 0.5s ease-out',
-                      textAlign: 'center'
-                    }}>
-                      {isAnalyzing ? (
-                        <div>
-                          <div className="status-badge" style={{ margin: '0 auto 0.8rem', borderColor: 'rgba(0, 62, 216, 0.1)', background: 'rgba(0, 62, 216, 0.05)' }}>
-                            <div className="status-dot" style={{ backgroundColor: 'var(--primary)', animation: 'pulse 1.5s infinite' }}></div>
-                            <span style={{ color: 'var(--primary)' }}>AI Analysis in Progress...</span>
-                          </div>
-                          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>Reviewing your technical profile for ChittorTech Standards.</p>
-                        </div>
-                      ) : analysisError ? (
-                        <div>
-                          <p style={{ color: '#ff4d4d', fontSize: '0.9rem' }}><i className="fas fa-exclamation-triangle"></i> {analysisError}</p>
-                        </div>
-                      ) : (
-                        <div>
-                          <p style={{ color: '#4CAF50', fontSize: '0.9rem', marginBottom: '1rem', fontWeight: 'bold' }}>
-                            <i className="fas fa-check-circle"></i> AI Analysis Complete!
-                          </p>
-                          <button 
-                            type="button"
-                            onClick={() => setShowModal(true)}
-                            className="btn btn-outline"
-                            style={{ 
-                              padding: '0.6rem 1.5rem', 
-                              fontSize: '0.85rem'
-                            }}
-                          >
-                            <i className="fas fa-chart-line"></i> View Detailed Analysis
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Analysis Modal */}
-                  {showModal && analysisResult && (
-                    <div className="shahi-modal-overlay" style={{
-                      position: 'fixed',
-                      inset: 0,
-                      background: 'rgba(0, 0, 0, 0.5)',
-                      backdropFilter: 'blur(5px)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      zIndex: 10000,
-                      padding: '1.5rem'
-                    }}>
-                      <div className="shahi-modal-card" style={{
-                        background: '#ffffff',
-                        border: '1px solid rgba(0, 62, 216, 0.15)',
-                        borderRadius: '24px',
-                        padding: '2.5rem',
-                        maxWidth: '500px',
-                        width: '100%',
-                        boxShadow: 'var(--shadow-glow)',
-                        position: 'relative'
-                      }}>
-                        <button className="close-modal" onClick={() => setShowModal(false)} style={{
-                          position: 'absolute',
-                          top: '1.5rem',
-                          right: '1.5rem',
-                          background: 'none',
-                          border: 'none',
-                          fontSize: '1.2rem',
-                          cursor: 'pointer',
-                          color: 'var(--text-muted)'
-                        }}>
-                          <i className="fas fa-times"></i>
-                        </button>
-
-                        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                          <div className="score-circle" style={{
-                            width: '80px',
-                            height: '80px',
-                            borderRadius: '50%',
-                            background: 'rgba(0, 62, 216, 0.05)',
-                            border: '2px solid var(--primary)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            fontSize: '1.5rem',
-                            fontWeight: '900',
-                            color: 'var(--primary)',
-                            margin: '0 auto 1rem'
-                          }}>
-                            {analysisResult.score}%
-                          </div>
-                          <h3 style={{ color: 'var(--primary)', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: '800' }}>Tech-Readiness Score</h3>
-                        </div>
-
-                        <div style={{ display: 'grid', gap: '1.5rem' }}>
-                          <div>
-                            <h4 style={{ color: '#4CAF50', fontSize: '0.95rem', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold' }}>
-                              <i className="fas fa-star"></i> CORE STRENGTHS
-                            </h4>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                              {analysisResult.strengths?.map((s, i) => (
-                                <li key={i} style={{ color: 'var(--text-main)', fontSize: '0.9rem', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-                                  <div style={{ width: '6px', height: '6px', background: '#4CAF50', borderRadius: '50%', flexShrink: 0 }}></div> {s}
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          <div style={{ borderTop: '1px solid rgba(0, 62, 216, 0.08)', paddingTop: '1.2rem' }}>
-                            <h4 style={{ color: 'var(--primary)', fontSize: '0.95rem', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold' }}>
-                              <i className="fas fa-lightbulb"></i> AREAS FOR GROWTH
-                            </h4>
-                            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                              {analysisResult.tips?.map((t, i) => (
-                                <li key={i} style={{ color: 'var(--text-dim)', fontSize: '0.85rem', marginBottom: '0.7rem', display: 'flex', gap: '0.8rem' }}>
-                                  <i className="fas fa-arrow-right" style={{ color: 'var(--primary)', fontSize: '0.7rem', marginTop: '0.3rem', flexShrink: 0 }}></i> <span>{t}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </div>
-
-                        <div style={{ marginTop: '2rem', textAlign: 'center' }}>
-                          <button 
-                            type="button"
-                            onClick={() => setShowModal(false)}
-                            className="btn btn-primary"
-                            style={{ 
-                              padding: '0.7rem 2rem',
-                              fontSize: '0.9rem',
-                              borderRadius: '50px',
-                              color: '#ffffff'
-                            }}
-                          >
-                            GOT IT, THANKS!
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  
                   <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2.5rem' }}>
                     <button 
                       type="submit" 
-                      className="btn btn-primary" 
                       disabled={isSubmitting}
+                      className="btn btn-primary" 
                       style={{ 
                         width: '100%', 
-                        maxWidth: '400px',
+                        maxWidth: '400px', 
+                        padding: '1rem',
+                        backgroundColor: '#25D366', 
+                        borderColor: '#25D366', 
+                        color: '#fff',
                         borderRadius: '50px',
-                        color: '#ffffff'
+                        fontWeight: '700',
+                        fontSize: '1rem'
                       }}
                     >
-                      {isSubmitting ? "Processing Application..." : "Submit Application"}
+                      {isSubmitting ? (
+                        <span><i className="fas fa-spinner fa-spin" style={{ marginRight: '8px' }}></i> Uploading Resume & Preparing WhatsApp...</span>
+                      ) : (
+                        <span><i className="fab fa-whatsapp" style={{ marginRight: '8px', fontSize: '1.2rem' }}></i> Submit Application via WhatsApp</span>
+                      )}
                     </button>
-                  </div>
-                  
-                  <div className="trust-badges" style={{ marginTop: '3rem', display: 'flex', flexWrap: 'wrap', gap: '1.5rem', justifyContent: 'center' }}>
-                    <div className="trust-item" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}><i className="fas fa-certificate" style={{ color: 'var(--primary)', marginRight: '6px' }}></i> Certified Program</div>
-                    <div className="trust-item" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}><i className="fas fa-laptop-code" style={{ color: 'var(--primary)', marginRight: '6px' }}></i> Live Projects</div>
-                    <div className="trust-item" style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}><i className="fas fa-graduation-cap" style={{ color: 'var(--primary)', marginRight: '6px' }}></i> Industry Mentorship</div>
                   </div>
                 </form>
               )}
