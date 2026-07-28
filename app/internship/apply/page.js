@@ -1,13 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { storage } from "@/lib/firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { sendWhatsAppLead } from "@/lib/whatsapp-service";
 
 export default function InternshipApplyPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [track, setTrack] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -17,64 +14,36 @@ export default function InternshipApplyPage() {
     }
   }, [isSubmitted]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!track) {
       alert("Please select a specialization track.");
       return;
     }
-    setIsSubmitting(true);
+
     const form = e.target;
     const formData = new FormData(form);
-    
-    // File validation
     const resumeFile = formData.get('resume');
-    if (resumeFile && resumeFile.size > 5 * 1024 * 1024) {
-      alert("Resume file size must be less than 5MB.");
-      setIsSubmitting(false);
-      return;
-    }
-    if (resumeFile && resumeFile.size > 0 && resumeFile.type !== 'application/pdf') {
-      alert("Please upload resume in PDF format only.");
-      setIsSubmitting(false);
-      return;
-    }
+    const fileName = resumeFile && resumeFile.size > 0 ? resumeFile.name : "Attaching in WhatsApp Chat";
 
-    let resumeUrl = "Not Provided";
-    if (resumeFile && resumeFile.size > 0) {
-      try {
-        const fileRef = ref(storage, `resumes/${Date.now()}_${resumeFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`);
-        await uploadBytes(fileRef, resumeFile);
-        resumeUrl = await getDownloadURL(fileRef);
-      } catch (uploadErr) {
-        console.warn("Resume Storage Upload Fallback:", uploadErr);
-        resumeUrl = `File: ${resumeFile.name} (Upload error, please ask candidate)`;
-      }
-    }
+    sendWhatsAppLead({
+      title: 'Internship Application',
+      fields: {
+        '👤 Candidate Name': formData.get('name'),
+        '📧 Email': formData.get('email'),
+        '📱 Phone': formData.get('phone'),
+        '🏫 University': formData.get('university'),
+        '🎓 College': formData.get('college'),
+        '📚 Course': `${formData.get('course')} (${formData.get('startYear')} - ${formData.get('endYear')})`,
+        '💻 Preferred Track': track === "Others" ? (formData.get('otherTrack') || "Others") : track,
+        '📄 Resume File': fileName
+      },
+      messageText: 'Candidate application submitted. PDF resume attached in WhatsApp chat.'
+    });
 
-    try {
-      sendWhatsAppLead({
-        title: 'Internship Application',
-        fields: {
-          '👤 Candidate Name': formData.get('name'),
-          '📧 Email': formData.get('email'),
-          '📱 Phone': formData.get('phone'),
-          '🏫 University': formData.get('university'),
-          '🎓 College': formData.get('college'),
-          '📚 Course': `${formData.get('course')} (${formData.get('startYear')} - ${formData.get('endYear')})`,
-          '💻 Preferred Track': track === "Others" ? (formData.get('otherTrack') || "Others") : track,
-          '📄 PDF Resume Link': resumeUrl !== "Not Provided" ? resumeUrl : "No File Uploaded"
-        }
-      });
-
-      setIsSubmitted(true);
-      form.reset();
-      setTrack("");
-    } catch (error) {
-      alert("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    setIsSubmitted(true);
+    form.reset();
+    setTrack("");
   };
 
   return (
@@ -108,8 +77,8 @@ export default function InternshipApplyPage() {
                   <div className="success-icon" style={{ color: '#25D366', fontSize: '3rem', marginBottom: '1.5rem' }}>
                     <i className="fab fa-whatsapp"></i>
                   </div>
-                  <h3 style={{ fontSize: '1.8rem', color: 'var(--text-main)', fontWeight: '800' }}>Opening WhatsApp!</h3>
-                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Your internship application and resume link have been formatted for WhatsApp.</p>
+                  <h3 style={{ fontSize: '1.8rem', color: 'var(--text-main)', fontWeight: '800' }}>Opening WhatsApp Instantly!</h3>
+                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Your internship application details are pre-filled on WhatsApp.</p>
                   <button 
                     onClick={() => setIsSubmitted(false)} 
                     className="btn btn-outline" 
@@ -306,7 +275,6 @@ export default function InternshipApplyPage() {
                         type="file" 
                         name="resume" 
                         accept=".pdf" 
-                        required 
                         style={{
                           position: 'absolute',
                           inset: 0,
@@ -326,7 +294,7 @@ export default function InternshipApplyPage() {
                       />
                       <div className="file-upload-ui">
                         <i className="fas fa-cloud-arrow-up" style={{ fontSize: '1.5rem', color: 'var(--primary)', marginBottom: '0.5rem', display: 'block' }}></i>
-                        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '0.2rem' }}>Click to upload PDF resume</p>
+                        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '0.2rem' }}>Click to select PDF resume</p>
                         <p className="file-name-display" style={{ color: 'var(--primary)', fontWeight: '600', fontSize: '0.75rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>No file selected</p>
                       </div>
                     </div>
@@ -335,7 +303,6 @@ export default function InternshipApplyPage() {
                   <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2.5rem' }}>
                     <button 
                       type="submit" 
-                      disabled={isSubmitting}
                       className="btn btn-primary" 
                       style={{ 
                         width: '100%', 
@@ -349,11 +316,7 @@ export default function InternshipApplyPage() {
                         fontSize: '1rem'
                       }}
                     >
-                      {isSubmitting ? (
-                        <span><i className="fas fa-spinner fa-spin" style={{ marginRight: '8px' }}></i> Uploading Resume & Preparing WhatsApp...</span>
-                      ) : (
-                        <span><i className="fab fa-whatsapp" style={{ marginRight: '8px', fontSize: '1.2rem' }}></i> Submit Application via WhatsApp</span>
-                      )}
+                      <i className="fab fa-whatsapp" style={{ marginRight: '8px', fontSize: '1.2rem' }}></i> Submit Application via WhatsApp
                     </button>
                   </div>
                 </form>
