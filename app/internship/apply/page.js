@@ -23,8 +23,6 @@ export default function InternshipApplyPage() {
 
     const form = e.target;
     const formData = new FormData(form);
-    const resumeFile = formData.get('resume');
-    const fileName = resumeFile && resumeFile.size > 0 ? resumeFile.name : "Attaching in WhatsApp Chat";
 
     sendWhatsAppLead({
       title: 'Internship Application',
@@ -35,10 +33,9 @@ export default function InternshipApplyPage() {
         '🏫 University': formData.get('university'),
         '🎓 College': formData.get('college'),
         '📚 Course': `${formData.get('course')} (${formData.get('startYear')} - ${formData.get('endYear')})`,
-        '💻 Preferred Track': track === "Others" ? (formData.get('otherTrack') || "Others") : track,
-        '📄 Resume File': fileName
+        '💻 Specialization Track': track === "Others" ? (formData.get('otherTrack') || "Others") : track,
       },
-      messageText: 'Candidate application submitted. PDF resume attached in WhatsApp chat.'
+      messageText: '📌 NOTE: Please attach your PDF Resume here in this WhatsApp chat.'
     });
 
     setIsSubmitted(true);
@@ -64,7 +61,7 @@ export default function InternshipApplyPage() {
           <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
             <div className="contact-form reveal" style={{ 
               position: 'relative', 
-              minHeight: isSubmitted ? 'auto' : '600px', 
+              minHeight: isSubmitted ? 'auto' : '500px', 
               width: '100%', 
               background: '#ffffff',
               border: '1px solid rgba(0, 62, 216, 0.08)',
@@ -73,12 +70,15 @@ export default function InternshipApplyPage() {
               padding: 'clamp(1.5rem, 5vw, 3.5rem)'
             }}>
               {isSubmitted ? (
-                <div className="success-overlay" style={{ textAlign: 'center' }}>
-                  <div className="success-icon" style={{ color: '#25D366', fontSize: '3rem', marginBottom: '1.5rem' }}>
+                <div className="success-overlay" style={{ textAlign: 'center', padding: '2rem 1rem' }}>
+                  <div className="success-icon" style={{ color: '#25D366', fontSize: '3.5rem', marginBottom: '1.5rem' }}>
                     <i className="fab fa-whatsapp"></i>
                   </div>
-                  <h3 style={{ fontSize: '1.8rem', color: 'var(--text-main)', fontWeight: '800' }}>Opening WhatsApp Instantly!</h3>
-                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Your internship application details are pre-filled on WhatsApp.</p>
+                  <h3 style={{ fontSize: '1.8rem', color: 'var(--text-main)', fontWeight: '800' }}>Opening WhatsApp!</h3>
+                  <p style={{ color: 'var(--text-muted)', marginTop: '0.8rem', fontSize: '1rem', lineHeight: '1.6' }}>
+                    Your application details are pre-filled.<br/>
+                    <strong style={{ color: '#25D366' }}>📌 Please attach your PDF resume directly inside the WhatsApp chat.</strong>
+                  </p>
                   <button 
                     onClick={() => setIsSubmitted(false)} 
                     className="btn btn-outline" 
@@ -131,22 +131,22 @@ export default function InternshipApplyPage() {
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
                     <div className="form-group">
-                      <label className="input-label">Full Name</label>
+                      <label className="input-label">Full Name *</label>
                       <input type="text" name="name" placeholder="Example: John Doe" required style={{ width: '100%' }} />
                     </div>
                     <div className="form-group">
-                      <label className="input-label">Email Address</label>
+                      <label className="input-label">Email Address *</label>
                       <input type="email" name="email" placeholder="Example: john@company.com" required style={{ width: '100%' }} />
                     </div>
                   </div>
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
                     <div className="form-group">
-                      <label className="input-label">Phone Number</label>
+                      <label className="input-label">Phone Number *</label>
                       <input type="tel" name="phone" placeholder="Example: +91 98765 43210" required style={{ width: '100%' }} />
                     </div>
                     <div className="form-group">
-                      <label className="input-label">Select Specialization</label>
+                      <label className="input-label">Select Specialization *</label>
                       <input type="hidden" name="track" value={track} />
                       <div className="custom-dropdown" style={{ position: 'relative', width: '100%' }}>
                         <div 
@@ -226,7 +226,7 @@ export default function InternshipApplyPage() {
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
                     <div className="form-group">
-                      <label className="input-label">University</label>
+                      <label className="input-label">University *</label>
                       <input 
                         type="text" 
                         name="university" 
@@ -236,7 +236,7 @@ export default function InternshipApplyPage() {
                       />
                     </div>
                     <div className="form-group">
-                      <label className="input-label">College / Institute</label>
+                      <label className="input-label">College / Institute *</label>
                       <input 
                         type="text" 
                         name="college" 
@@ -249,7 +249,7 @@ export default function InternshipApplyPage() {
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
                     <div className="form-group" style={{ flex: 1 }}>
-                        <label className="input-label">Course & Academic Duration</label>
+                        <label className="input-label">Course & Academic Duration *</label>
                         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                             <input type="text" name="course" placeholder="Example: B.Tech CS" required style={{ flex: '2 1 200px', minWidth: '0' }} />
                             <input type="number" name="startYear" placeholder="2023" required min="2000" max="2100" style={{ flex: '1 1 80px', minWidth: '0' }} />
@@ -258,49 +258,27 @@ export default function InternshipApplyPage() {
                     </div>
                   </div>
 
-                  <div className="form-group" style={{ marginTop: '1.5rem' }}>
-                    <label className="input-label">Upload Resume (PDF only)</label>
-                    <div style={{ 
-                      position: 'relative',
-                      border: '2px dashed rgba(0, 62, 216, 0.15)',
-                      borderRadius: '16px',
-                      padding: '1.5rem',
-                      textAlign: 'center',
-                      background: 'rgba(0, 62, 216, 0.01)',
-                      transition: 'all 0.3s ease'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--primary)'}
-                    onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(0, 62, 216, 0.15)'}>
-                      <input 
-                        type="file" 
-                        name="resume" 
-                        accept=".pdf" 
-                        style={{
-                          position: 'absolute',
-                          inset: 0,
-                          opacity: 0,
-                          cursor: 'pointer',
-                          width: '100%',
-                          height: '100%'
-                        }}
-                        onChange={(e) => {
-                          const file = e.target.files[0];
-                          const fileName = file?.name;
-                          if (fileName) {
-                            const label = e.target.parentElement.querySelector('.file-name-display');
-                            if (label) label.textContent = fileName;
-                          }
-                        }}
-                      />
-                      <div className="file-upload-ui">
-                        <i className="fas fa-cloud-arrow-up" style={{ fontSize: '1.5rem', color: 'var(--primary)', marginBottom: '0.5rem', display: 'block' }}></i>
-                        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '0.2rem' }}>Click to select PDF resume</p>
-                        <p className="file-name-display" style={{ color: 'var(--primary)', fontWeight: '600', fontSize: '0.75rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>No file selected</p>
-                      </div>
+                  {/* Informational Banner */}
+                  <div style={{ 
+                    marginTop: '2rem', 
+                    padding: '1.2rem 1.5rem', 
+                    background: 'rgba(37, 211, 102, 0.08)', 
+                    border: '1px solid rgba(37, 211, 102, 0.3)', 
+                    borderRadius: '16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem'
+                  }}>
+                    <i className="fab fa-whatsapp" style={{ fontSize: '1.8rem', color: '#25D366' }}></i>
+                    <div>
+                      <h4 style={{ margin: 0, color: 'var(--text-main)', fontSize: '0.95rem', fontWeight: '700' }}>WhatsApp Instant Application</h4>
+                      <p style={{ margin: '0.2rem 0 0 0', color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.4' }}>
+                        Clicking submit will open WhatsApp with your details pre-filled. <strong>Please attach your PDF resume directly inside the WhatsApp chat.</strong>
+                      </p>
                     </div>
                   </div>
 
-                  <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2.5rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
                     <button 
                       type="submit" 
                       className="btn btn-primary" 
