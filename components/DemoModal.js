@@ -1,45 +1,41 @@
 "use client";
 
 import { useState } from "react";
-import { sendModalLeadEmail } from "@/lib/email-service";
+import { sendWhatsAppLead } from "@/lib/whatsapp-service";
 
 export default function DemoModal({ isOpen, onClose }) {
   const [status, setStatus] = useState("");
 
   if (!isOpen) return null;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     
-    setStatus("Sending...");
+    setStatus("Redirecting to WhatsApp...");
     
-    const formData = {
-      type: "Free Demo",
-      name: e.target[0].value,
-      email: e.target[1].value,
-      phone: e.target[2].value,
-      company: e.target[3].value,
-      goalOrService: e.target[4].value,
-      description: e.target[5].value
-    };
+    const name = e.target[0].value;
+    const email = e.target[1].value;
+    const phone = e.target[2].value;
+    const company = e.target[3].value;
+    const goalOrService = e.target[4].value;
+    const description = e.target[5].value;
 
-    try {
-      const result = await sendModalLeadEmail(formData);
-
-      if (result.success) {
-        setStatus("Thank you! Our expert will call you shortly.");
-      } else {
-        setStatus("Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus("Failed to send request.");
-    }
+    sendWhatsAppLead({
+      title: 'Free Demo Request',
+      fields: {
+        '👤 Name': name,
+        '📧 Email': email,
+        '📱 Phone': phone,
+        '🏢 Company': company || 'N/A',
+        '🛠️ Service': goalOrService,
+      },
+      messageText: description
+    });
 
     setTimeout(() => {
       onClose();
       setStatus("");
-    }, 4000);
+    }, 2500);
   };
 
   return (
@@ -52,8 +48,8 @@ export default function DemoModal({ isOpen, onClose }) {
         </p>
 
         {status ? (
-          <div style={{ color: '#00ff88', fontWeight: 'bold', padding: '3rem 0', textAlign: 'center', fontSize: '1.1rem' }}>
-            <i className="fas fa-check-circle" style={{ fontSize: '3rem', marginBottom: '1rem', display: 'block' }}></i>
+          <div style={{ color: '#25D366', fontWeight: 'bold', padding: '3rem 0', textAlign: 'center', fontSize: '1.1rem' }}>
+            <i className="fab fa-whatsapp" style={{ fontSize: '3rem', marginBottom: '1rem', display: 'block' }}></i>
             {status}
           </div>
         ) : (
@@ -78,20 +74,20 @@ export default function DemoModal({ isOpen, onClose }) {
               <label>Service Interested In *</label>
               <select required defaultValue="">
                 <option value="" disabled>Select a Service</option>
-                <option value="website">Premium Website Development</option>
-                <option value="saas">SaaS Architecture & Web App</option>
-                <option value="mobile">Mobile App Development (Kotlin & Expo)</option>
-                <option value="ai">AI Business Automation</option>
-                <option value="chatbot">Real-Time Chatbots</option>
-                <option value="other">Other Digital Solutions</option>
+                <option value="Premium Website Development">Premium Website Development</option>
+                <option value="SaaS Architecture & Web App">SaaS Architecture & Web App</option>
+                <option value="Mobile App Development">Mobile App Development</option>
+                <option value="AI Business Automation">AI Business Automation</option>
+                <option value="Real-Time Chatbots">Real-Time Chatbots</option>
+                <option value="Other Digital Solutions">Other Digital Solutions</option>
               </select>
             </div>
             <div className="form-group" style={{ gridColumn: '1 / -1' }}>
               <label>Briefly Describe Your Project</label>
               <textarea placeholder="Tell us a little bit about what you're looking to build..." rows="3"></textarea>
             </div>
-            <button type="submit" className="btn btn-primary" style={{ gridColumn: '1 / -1', width: '100%', marginTop: '0.5rem', padding: '1rem' }}>
-              Request Demo Call
+            <button type="submit" className="btn btn-primary" style={{ gridColumn: '1 / -1', width: '100%', marginTop: '0.5rem', padding: '1rem', backgroundColor: '#25D366', borderColor: '#25D366', color: '#fff' }}>
+              <i className="fab fa-whatsapp" style={{ marginRight: '8px', fontSize: '1.2rem' }}></i> Request Demo via WhatsApp
             </button>
           </form>
         )}

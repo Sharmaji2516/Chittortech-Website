@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { sendProjectInquiryEmail } from "@/lib/email-service";
+import { sendWhatsAppLead } from "@/lib/whatsapp-service";
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -13,22 +13,25 @@ export default function ContactPage() {
     const data = Object.fromEntries(formData.entries());
     
     try {
-      const result = await sendProjectInquiryEmail(data);
+      sendWhatsAppLead({
+        title: 'New Project Inquiry',
+        fields: {
+          '👤 Full Name': data.name,
+          '📧 Email Address': data.email,
+          '💼 Looking For': data.projectType,
+        },
+        messageText: data.message
+      });
       
-      if (result.success) {
-        setIsSubmitted(true);
-        form.reset();
-      } else {
-        alert(`Error: ${result.error || "Something went wrong. Please try again."}`);
-      }
+      setIsSubmitted(true);
+      form.reset();
     } catch (error) {
-      alert("Network error. Please check your connection and try again.");
+      alert("Something went wrong. Please try again.");
     }
   };
 
   const emailSubject = encodeURIComponent("Project Inquiry - ChittorTech");
   const emailBody = encodeURIComponent("Hello ChittorTech Team,\n\nI would like to inquire about your services for my upcoming project.\n\nBest regards,");
-  const whatsappMessage = encodeURIComponent("Hello ChittorTech, I'm interested in your digital solutions. Let's discuss!");
 
   return (
     <main style={{ paddingTop: '0px' }}>
@@ -47,6 +50,18 @@ export default function ContactPage() {
             <div className="contact-info reveal">
               <h3>Contact Details</h3>
               
+              {/* WhatsApp Us Direct */}
+              <a href="https://wa.me/917597451057" target="_blank" rel="noopener noreferrer" className="info-box-link">
+                <div className="info-box">
+                  <div className="info-icon"><i className="fab fa-whatsapp" style={{ color: '#25D366' }}></i></div>
+                  <div>
+                    <h4>WhatsApp Us</h4>
+                    <p>+91 7597451057</p>
+                    <p style={{ fontSize: '0.85rem', color: '#25D366' }}>Instant 24/7 Chat • Click to message</p>
+                  </div>
+                </div>
+              </a>
+
               {/* Email Us */}
               <a href={`mailto:chittortech@gmail.com?subject=${emailSubject}&body=${emailBody}`} className="info-box-link">
                 <div className="info-box">
@@ -58,8 +73,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               </a>
-
-
 
               {/* LinkedIn Official */}
               <a href="https://www.linkedin.com/company/chittortech" target="_blank" rel="noopener noreferrer" className="info-box-link">
@@ -88,6 +101,9 @@ export default function ContactPage() {
               <div style={{ marginTop: '3rem' }}>
                 <span style={{ fontWeight: 600, marginRight: '1.5rem' }}>Connect With Us:</span>
                 <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+                  <a href="https://wa.me/917597451057" target="_blank" rel="noopener noreferrer" className="social-link-item" style={{ borderColor: 'rgba(37, 211, 102, 0.4)' }}>
+                    <i className="fab fa-whatsapp" style={{ color: '#25D366' }}></i> WhatsApp
+                  </a>
                   <a href="https://www.linkedin.com/company/chittortech" target="_blank" rel="noopener noreferrer" className="social-link-item">
                     <i className="fab fa-linkedin-in"></i> ChittorTech
                   </a>
@@ -107,17 +123,17 @@ export default function ContactPage() {
             <div className="contact-form reveal" style={{ position: 'relative', minHeight: '600px' }}>
               {isSubmitted ? (
                 <div className="success-overlay">
-                  <div className="success-icon">
-                    <i className="fas fa-circle-check"></i>
+                  <div className="success-icon" style={{ color: '#25D366' }}>
+                    <i className="fab fa-whatsapp"></i>
                   </div>
-                  <h3>Message Sent!</h3>
-                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>We'll get back to you as soon as possible.</p>
+                  <h3>Opening WhatsApp!</h3>
+                  <p style={{ color: 'var(--text-muted)', marginTop: '0.5rem' }}>Your project inquiry has been formatted for WhatsApp instant chat.</p>
                   <button 
                     onClick={() => setIsSubmitted(false)} 
                     className="btn btn-outline" 
                     style={{ marginTop: '2rem' }}
                   >
-                    Send Another
+                    Send Another Inquiry
                   </button>
                 </div>
               ) : (
@@ -131,26 +147,26 @@ export default function ContactPage() {
                   <div className="form-group">
                     <select name="projectType" required defaultValue="">
                       <option value="" disabled>What are you looking for?</option>
-                      <option value="web-dev">Premium Web Development</option>
-                      <option value="ai-solutions">Generative AI Solutions</option>
-                      <option value="ui-ux">High-End UI/UX Design</option>
-                      <option value="mobile-apps">Mobile App Development</option>
-                      <option value="other">Other Digital Innovation</option>
+                      <option value="Premium Web Development">Premium Web Development</option>
+                      <option value="Generative AI Solutions">Generative AI Solutions</option>
+                      <option value="High-End UI/UX Design">High-End UI/UX Design</option>
+                      <option value="Mobile App Development">Mobile App Development</option>
+                      <option value="Other Digital Innovation">Other Digital Innovation</option>
                     </select>
                   </div>
                   <div className="form-group">
-                    <textarea name="message" rows="5" placeholder="Project Inquiry" required></textarea>
+                    <textarea name="message" rows="5" placeholder="Project Inquiry Details" required></textarea>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem' }}>
-                    <button type="submit" className="btn btn-primary" style={{ width: '100%', maxWidth: '400px' }}>
-                      Send Query
+                    <button type="submit" className="btn btn-primary" style={{ width: '100%', maxWidth: '400px', backgroundColor: '#25D366', borderColor: '#25D366', color: '#fff' }}>
+                      <i className="fab fa-whatsapp" style={{ marginRight: '8px', fontSize: '1.2rem' }}></i> Send via WhatsApp
                     </button>
                   </div>
                   
                   <div className="trust-badges">
-                    <div className="trust-item"><i className="fas fa-shield-halved"></i> SSL Protected</div>
-                    <div className="trust-item"><i className="fas fa-bolt"></i> Fast Deploy</div>
-                    <div className="trust-item"><i className="fas fa-rocket"></i> Scalable Tech</div>
+                    <div className="trust-item"><i className="fas fa-bolt"></i> Instant Reply</div>
+                    <div className="trust-item"><i className="fas fa-shield-halved"></i> Direct Founder Connect</div>
+                    <div className="trust-item"><i className="fas fa-rocket"></i> 24/7 Operations</div>
                   </div>
                 </form>
               )}

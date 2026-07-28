@@ -275,14 +275,16 @@ export default function ChatBot({ onModalOpen }) {
       setUserInfo(userObj);
       setShowLeadForm(false);
 
-      // Notify founders & customer via EmailJS
-      import('@/lib/email-service').then(m => {
-        m.sendChatbotLeadEmail({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          location
-        }).catch(err => console.error("Email notification failed:", err));
+      import('@/lib/whatsapp-service').then(m => {
+        m.sendWhatsAppLead({
+          title: 'AI ChatBot Lead Captured',
+          fields: {
+            '👤 Name': data.name,
+            '📧 Email': data.email || 'N/A',
+            '📱 Phone': data.phone || 'N/A',
+            '📍 Location': location || 'N/A'
+          }
+        });
       });
 
       // Now sync to Firestore in background

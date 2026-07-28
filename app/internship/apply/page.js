@@ -95,30 +95,25 @@ export default function InternshipApplyPage() {
     }
 
     try {
-      const { sendInternshipApplicationEmail } = await import("@/lib/email-service");
-      const appData = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        phone: formData.get('phone'),
-        university: formData.get('university'),
-        college: formData.get('college'),
-        course: formData.get('course'),
-        startYear: formData.get('startYear'),
-        endYear: formData.get('endYear'),
-        track: track,
-        resume: resumePayload
-      };
+      const { sendWhatsAppLead } = await import("@/lib/whatsapp-service");
+      sendWhatsAppLead({
+        title: 'Internship Application',
+        fields: {
+          '👤 Candidate Name': formData.get('name'),
+          '📧 Email': formData.get('email'),
+          '📱 Phone': formData.get('phone'),
+          '🏫 University': formData.get('university'),
+          '🎓 College': formData.get('college'),
+          '📚 Course': `${formData.get('course')} (${formData.get('startYear')} - ${formData.get('endYear')})`,
+          '💻 Preferred Track': track,
+        },
+        messageText: `Resume attached/selected: ${resumeFile ? resumeFile.name : 'Not provided'}`
+      });
 
-      const result = await sendInternshipApplicationEmail(appData);
-      
-      if (result.success) {
-        setIsSubmitted(true);
-        form.reset();
-      } else {
-        alert("Something went wrong. Please try again.");
-      }
+      setIsSubmitted(true);
+      form.reset();
     } catch (error) {
-      alert("Network error. Please check your connection and try again.");
+      alert("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

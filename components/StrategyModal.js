@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { sendModalLeadEmail } from "@/lib/email-service";
+import { sendWhatsAppLead } from "@/lib/whatsapp-service";
 
 export default function StrategyModal({ isOpen, onClose }) {
   const [status, setStatus] = useState("");
@@ -14,38 +14,34 @@ export default function StrategyModal({ isOpen, onClose }) {
 
   if (!isOpen || !mounted) return null;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     
-    setStatus("Sending...");
+    setStatus("Redirecting to WhatsApp...");
     
-    const formData = {
-      type: "Strategy Call",
-      name: e.target[0].value,
-      email: e.target[1].value,
-      phone: e.target[2].value,
-      company: e.target[3].value,
-      goalOrService: e.target[4].value,
-      description: e.target[5].value
-    };
+    const name = e.target[0].value;
+    const email = e.target[1].value;
+    const phone = e.target[2].value;
+    const company = e.target[3].value;
+    const goalOrService = e.target[4].value;
+    const description = e.target[5].value;
 
-    try {
-      const result = await sendModalLeadEmail(formData);
-
-      if (result.success) {
-        setStatus("Thank you! Our strategist will contact you shortly.");
-      } else {
-        setStatus("Something went wrong. Please try again.");
-      }
-    } catch (error) {
-      console.error(error);
-      setStatus("Failed to send request.");
-    }
+    sendWhatsAppLead({
+      title: 'Strategy Call Request',
+      fields: {
+        '👤 Name': name,
+        '📧 Email': email,
+        '📱 Phone': phone,
+        '🏢 Company': company || 'N/A',
+        '🎯 Primary Goal': goalOrService,
+      },
+      messageText: description
+    });
 
     setTimeout(() => {
       onClose();
       setStatus("");
-    }, 4000);
+    }, 2500);
   };
 
   const modalContent = (
@@ -58,8 +54,8 @@ export default function StrategyModal({ isOpen, onClose }) {
         </p>
 
         {status ? (
-          <div style={{ color: '#00ff88', fontWeight: 'bold', padding: '3rem 0', textAlign: 'center', fontSize: '1.1rem' }}>
-            <i className="fas fa-check-circle" style={{ fontSize: '3rem', marginBottom: '1rem', display: 'block' }}></i>
+          <div style={{ color: '#25D366', fontWeight: 'bold', padding: '3rem 0', textAlign: 'center', fontSize: '1.1rem' }}>
+            <i className="fab fa-whatsapp" style={{ fontSize: '3rem', marginBottom: '1rem', display: 'block' }}></i>
             {status}
           </div>
         ) : (
@@ -84,19 +80,19 @@ export default function StrategyModal({ isOpen, onClose }) {
               <label>What's your primary goal? *</label>
               <select required defaultValue="">
                 <option value="" disabled>Select a Goal</option>
-                <option value="scale">Scale existing business</option>
-                <option value="new_product">Launch a new product</option>
-                <option value="automate">Automate internal processes</option>
-                <option value="seo">Dominate search rankings</option>
-                <option value="other">Other</option>
+                <option value="Scale Existing Business">Scale existing business</option>
+                <option value="Launch New Product">Launch a new product</option>
+                <option value="Automate Internal Processes">Automate internal processes</option>
+                <option value="Dominate Search Rankings">Dominate search rankings</option>
+                <option value="Other Growth Goals">Other</option>
               </select>
             </div>
             <div className="form-group" style={{ gridColumn: '1 / -1' }}>
               <label>Briefly Describe Your Business Context</label>
               <textarea placeholder="Tell us about your current challenges and what you want to achieve..." rows="3"></textarea>
             </div>
-            <button type="submit" className="btn btn-primary" style={{ gridColumn: '1 / -1', width: '100%', marginTop: '0.5rem', padding: '1rem' }}>
-              Confirm Strategy Call
+            <button type="submit" className="btn btn-primary" style={{ gridColumn: '1 / -1', width: '100%', marginTop: '0.5rem', padding: '1rem', backgroundColor: '#25D366', borderColor: '#25D366', color: '#fff' }}>
+              <i className="fab fa-whatsapp" style={{ marginRight: '8px', fontSize: '1.2rem' }}></i> Confirm Strategy Call via WhatsApp
             </button>
           </form>
         )}
