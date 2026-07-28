@@ -45,3 +45,8 @@ vercel-hook.txt
 
 # Antigravity Reminders
 REMINDER_CHECKLIST.md
+
+# Firebase & Scratch
+.firebase/
+scratch/
+
